@@ -1,0 +1,42 @@
+name: balnana_website
+description: Balnana — good times, clear balances. The official product website.
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: ^3.13.7
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  go_router: ^18.1.1
+  intl: ^0.20.3
+  material_ui: ^1.8.0
+  shared_preferences: ^2.5.6
+  url_launcher: ^6.3.3
+  web: ^1.1.1
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/screenshots/
+    - assets/fonts/OFL.txt
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/PlusJakartaSans-ExtraBold.ttf
+          weight: 800

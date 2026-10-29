@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#E8A800">
+  <meta name="description" content="Shared expenses, clear balances. An open-source app on your own server.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Balnana">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Balnana">
+  <meta property="og:title" content="Balnana — Good times. Clear balances.">
+  <meta property="og:description" content="Shared expenses, clear balances. An open-source app on your own server.">
+  <meta property="og:image" content="/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <title>Balnana — Good times. Clear balances.</title>
+  <!-- LOCALIZED_METADATA -->
+  <style>
+    :root{color-scheme:light;background:#fcf9f4;color:#24251e;font-family:system-ui,sans-serif}
+    :root[data-theme=dark]{color-scheme:dark;background:#191a16;color:#f3f0e7}
+    body{margin:0} #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;background:inherit}
+    #loading img{width:64px;height:64px} #loading strong{font-size:24px;letter-spacing:-1px}
+    .track{width:120px;height:3px;border-radius:3px;background:#e8a80040;overflow:hidden}
+    .track:after{content:"";display:block;width:45%;height:100%;background:#e8a800;animation:loading 1.3s ease-in-out infinite}
+    @keyframes loading{from{transform:translateX(-100%)}to{transform:translateX(330%)}}
+    @media(prefers-reduced-motion:reduce){.track:after{animation:none;width:100%}}
+    #retry{border:0;border-radius:30px;background:#e8a800;color:#352900;padding:16px 28px;font-size:16px;cursor:pointer}
+    #retry[hidden]{display:none} noscript{display:block;max-width:600px;margin:15vh auto;padding:32px;line-height:1.8} a{color:inherit}
+  </style>
+  <script>
+    try{const mode=JSON.parse(localStorage.getItem('flutter.site.theme')||'null');document.documentElement.dataset.theme=mode==='light'||mode==='dark'?mode:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    window.balnanaLoadFailed=function(){document.getElementById('retry').hidden=false;document.querySelector('.track').hidden=true;};
+    window.balnanaLoadTimer=setTimeout(window.balnanaLoadFailed,30000);
+  </script>
+</head>
+<body>
+  <div id="loading" role="status" aria-label="Balnana">
+    <img src="icons/Icon-192.png" alt=""><strong>balnana</strong><div class="track" aria-hidden="true"></div>
+    <button id="retry" hidden onclick="location.reload()">Retry</button>
+  </div>
+  <noscript><style>#loading{display:none}</style><h1>Balnana</h1><p>Shared expenses, clear balances. An open-source app on your own server.</p><a href="https://github.com/willie6666/balnana">View source</a></noscript>
+  <script src="flutter_bootstrap.js" async onerror="window.balnanaLoadFailed()"></script>
+</body>
+</html>

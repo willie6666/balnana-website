@@ -1,0 +1,381 @@
+{
+  "@@locale": "en",
+  "navFeatures": "Features",
+  "navDemo": "Try it out",
+  "navHosting": "Self-host",
+  "navFaq": "FAQ",
+  "heroEyebrow": "OPEN SOURCE. YOURS TO RUN.",
+  "heroTitle": "Good times.\nClear balances.",
+  "heroBody": "Trips, dinners, everyday life. Keep shared expenses clear and your group's data on a server you own.",
+  "tryDemo": "Try the demo",
+  "selfHost": "Self-host Balnana",
+  "development": "In development · Android + Web",
+  "trustSplit": "Flexible splits",
+  "trustLanguages": "20 languages",
+  "trustOpen": "Open source. No ads.",
+  "trustServer": "Your own server",
+  "demoLabel": "TRY IT TOGETHER",
+  "demoTitle": "Make plans.\nWe'll do the maths.",
+  "demoBody": "Change the amount. Choose who paid. Watch it all balance out.",
+  "scenarioTravel": "Travel",
+  "scenarioHome": "Flatmates",
+  "scenarioDinner": "Dinner",
+  "groupTravel": "Kyoto weekend",
+  "groupHome": "Our apartment",
+  "groupDinner": "Friday dinner",
+  "demoNotice": "Interactive demo · fictional data",
+  "payer": "Who paid?",
+  "balances": "Everyone's balance",
+  "payments": "Suggested payments",
+  "morePayments": "+{count} more",
+  "reset": "Reset demo",
+  "weightedHelp": "Alex has 2 shares; everyone else has 1.",
+  "featureLabel": "LITTLE DETAILS. BIG DIFFERENCE.",
+  "featureTitle": "Less figuring out.\nMore being together.",
+  "featureSplitTitle": "Fair doesn't always mean equal.",
+  "featureSplitBody": "Split equally, by exact amounts or by shares. Several people can pay for the same expense.",
+  "featureSettleTitle": "A clearer way to settle.",
+  "featureSettleBody": "Know who owes whom, with suggestions that reduce the number of payments.",
+  "travelLabel": "BUILT FOR THE NEXT TRIP",
+  "travelTitle": "Different currencies.\nSame good company.",
+  "travelBody": "Keep the original currency. Enter the rate or your card's actual charge. Balances stay in the group's currency.",
+  "screenshotsNote": "Actual Android screens · fictional data · English",
+  "screenshotExpenses": "Every expense",
+  "screenshotForeign": "Original currency",
+  "screenshotStats": "Spending insights",
+  "extraTitle": "Everything your group needs.",
+  "recurringTitle": "The everyday, on repeat.",
+  "recurringBody": "Schedule rent and other recurring expenses.",
+  "receiptsTitle": "Keep the little details.",
+  "receiptsBody": "Attach receipts and save places alongside expenses.",
+  "liveTitle": "Stay on the same page.",
+  "liveBody": "Open groups refresh as others add expenses.",
+  "exportTitle": "Take your history with you.",
+  "exportBody": "Export CSV or import your group from Settle Up.",
+  "hostingLabel": "YOUR PEOPLE. YOUR SERVER.",
+  "hostingTitle": "Your balance.\nOn your terms.",
+  "hostingBody": "Run Balnana with Docker Compose and PostgreSQL. You choose where your group's accounts live.",
+  "hostingLink": "Read the setup guide",
+  "hostingModeLink": "Share a private link. No sign-up in link mode.",
+  "hostingModeAccounts": "Or enable accounts with password, Google or OIDC.",
+  "faqTitle": "A few things worth knowing.",
+  "faqAccountQ": "Does everyone need an account?",
+  "faqAccountA": "In link mode, a private link or QR code is enough. In accounts mode, access depends on your server's settings.",
+  "faqOfflineQ": "Can I use it offline?",
+  "faqOfflineA": "On Android, previously cached groups and expenses remain readable when the server is unreachable. Adding or changing expenses needs a connection.",
+  "faqCurrencyQ": "Are exchange rates automatic?",
+  "faqCurrencyA": "Enter a rate yourself, or the actual amount charged to your card. Balnana does not fetch live exchange rates.",
+  "faqPlatformQ": "Which platforms are supported?",
+  "faqPlatformA": "Android and the web are supported today. An iOS release is not currently available.",
+  "faqCostQ": "Is Balnana free?",
+  "faqCostA": "Balnana is open-source software under AGPL-3.0. There is no app subscription; running your own server may have hosting costs.",
+  "endTitle": "Your next good time\nstarts here.",
+  "endBody": "Bring your people. We'll help with the numbers.",
+  "github": "View source",
+  "reportIssue": "Report an issue",
+  "footerNote": "An open-source project, made for sharing.",
+  "backHome": "Back to home",
+  "notFound": "That page isn't here.",
+  "screenshotOpen": "View screenshot",
+  "settled": "Everyone is settled up.",
+  "retry": "Retry",
+  "owed": "{name} is owed",
+  "languageEndonym": "English",
+  "languageLabel": "Language",
+  "themeLabel": "Theme",
+  "themeSystem": "System default",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "amountLabel": "Amount",
+  "splitEqual": "Equally",
+  "splitShares": "Shares",
+  "cancel": "Cancel",
+  "invalidAmount": "Enter an amount greater than zero.",
+  "amountTooLarge": "That amount is too large.",
+  "@navFeatures": {
+    "description": "Official website: navFeatures. Keep product names and named services unchanged."
+  },
+  "@navDemo": {
+    "description": "Official website: navDemo. Keep product names and named services unchanged."
+  },
+  "@navHosting": {
+    "description": "Official website: navHosting. Keep product names and named services unchanged."
+  },
+  "@heroEyebrow": {
+    "description": "Official website: heroEyebrow. Keep product names and named services unchanged."
+  },
+  "@heroTitle": {
+    "description": "Official website: heroTitle. Keep product names and named services unchanged."
+  },
+  "@heroBody": {
+    "description": "Official website: heroBody. Keep product names and named services unchanged."
+  },
+  "@tryDemo": {
+    "description": "Official website: tryDemo. Keep product names and named services unchanged."
+  },
+  "@selfHost": {
+    "description": "Official website: selfHost. Keep product names and named services unchanged."
+  },
+  "@development": {
+    "description": "Official website: development. Keep product names and named services unchanged."
+  },
+  "@trustSplit": {
+    "description": "Official website: trustSplit. Keep product names and named services unchanged."
+  },
+  "@trustLanguages": {
+    "description": "Official website: trustLanguages. Keep product names and named services unchanged."
+  },
+  "@trustOpen": {
+    "description": "Official website: trustOpen. Keep product names and named services unchanged."
+  },
+  "@trustServer": {
+    "description": "Official website: trustServer. Keep product names and named services unchanged."
+  },
+  "@demoLabel": {
+    "description": "Official website: demoLabel. Keep product names and named services unchanged."
+  },
+  "@demoTitle": {
+    "description": "Official website: demoTitle. Keep product names and named services unchanged."
+  },
+  "@demoBody": {
+    "description": "Official website: demoBody. Keep product names and named services unchanged."
+  },
+  "@scenarioTravel": {
+    "description": "Official website: scenarioTravel. Keep product names and named services unchanged."
+  },
+  "@scenarioHome": {
+    "description": "Official website: scenarioHome. Keep product names and named services unchanged."
+  },
+  "@scenarioDinner": {
+    "description": "Official website: scenarioDinner. Keep product names and named services unchanged."
+  },
+  "@groupTravel": {
+    "description": "Official website: groupTravel. Keep product names and named services unchanged."
+  },
+  "@groupHome": {
+    "description": "Official website: groupHome. Keep product names and named services unchanged."
+  },
+  "@groupDinner": {
+    "description": "Official website: groupDinner. Keep product names and named services unchanged."
+  },
+  "@demoNotice": {
+    "description": "Official website: demoNotice. Keep product names and named services unchanged."
+  },
+  "@payer": {
+    "description": "Official website: payer. Keep product names and named services unchanged."
+  },
+  "@balances": {
+    "description": "Official website: balances. Keep product names and named services unchanged."
+  },
+  "@payments": {
+    "description": "Official website: payments. Keep product names and named services unchanged."
+  },
+  "@reset": {
+    "description": "Official website: reset. Keep product names and named services unchanged."
+  },
+  "@weightedHelp": {
+    "description": "Official website: weightedHelp. Keep product names and named services unchanged."
+  },
+  "@featureLabel": {
+    "description": "Official website: featureLabel. Keep product names and named services unchanged."
+  },
+  "@featureTitle": {
+    "description": "Official website: featureTitle. Keep product names and named services unchanged."
+  },
+  "@featureSplitTitle": {
+    "description": "Official website: featureSplitTitle. Keep product names and named services unchanged."
+  },
+  "@featureSplitBody": {
+    "description": "Official website: featureSplitBody. Keep product names and named services unchanged."
+  },
+  "@featureSettleTitle": {
+    "description": "Official website: featureSettleTitle. Keep product names and named services unchanged."
+  },
+  "@featureSettleBody": {
+    "description": "Official website: featureSettleBody. Keep product names and named services unchanged."
+  },
+  "@travelLabel": {
+    "description": "Official website: travelLabel. Keep product names and named services unchanged."
+  },
+  "@travelTitle": {
+    "description": "Official website: travelTitle. Keep product names and named services unchanged."
+  },
+  "@travelBody": {
+    "description": "Official website: travelBody. Keep product names and named services unchanged."
+  },
+  "@screenshotsNote": {
+    "description": "Official website: screenshotsNote. Keep product names and named services unchanged."
+  },
+  "@screenshotExpenses": {
+    "description": "Official website: screenshotExpenses. Keep product names and named services unchanged."
+  },
+  "@screenshotForeign": {
+    "description": "Official website: screenshotForeign. Keep product names and named services unchanged."
+  },
+  "@screenshotStats": {
+    "description": "Official website: screenshotStats. Keep product names and named services unchanged."
+  },
+  "@extraTitle": {
+    "description": "Official website: extraTitle. Keep product names and named services unchanged."
+  },
+  "@recurringTitle": {
+    "description": "Official website: recurringTitle. Keep product names and named services unchanged."
+  },
+  "@recurringBody": {
+    "description": "Official website: recurringBody. Keep product names and named services unchanged."
+  },
+  "@receiptsTitle": {
+    "description": "Official website: receiptsTitle. Keep product names and named services unchanged."
+  },
+  "@receiptsBody": {
+    "description": "Official website: receiptsBody. Keep product names and named services unchanged."
+  },
+  "@liveTitle": {
+    "description": "Official website: liveTitle. Keep product names and named services unchanged."
+  },
+  "@liveBody": {
+    "description": "Official website: liveBody. Keep product names and named services unchanged."
+  },
+  "@exportTitle": {
+    "description": "Official website: exportTitle. Keep product names and named services unchanged."
+  },
+  "@exportBody": {
+    "description": "Official website: exportBody. Keep product names and named services unchanged."
+  },
+  "@hostingLabel": {
+    "description": "Official website: hostingLabel. Keep product names and named services unchanged."
+  },
+  "@hostingTitle": {
+    "description": "Official website: hostingTitle. Keep product names and named services unchanged."
+  },
+  "@hostingBody": {
+    "description": "Official website: hostingBody. Keep product names and named services unchanged."
+  },
+  "@hostingLink": {
+    "description": "Official website: hostingLink. Keep product names and named services unchanged."
+  },
+  "@hostingModeLink": {
+    "description": "Official website: hostingModeLink. Keep product names and named services unchanged."
+  },
+  "@hostingModeAccounts": {
+    "description": "Official website: hostingModeAccounts. Keep product names and named services unchanged."
+  },
+  "@faqTitle": {
+    "description": "Official website: faqTitle. Keep product names and named services unchanged."
+  },
+  "@faqAccountQ": {
+    "description": "Official website: faqAccountQ. Keep product names and named services unchanged."
+  },
+  "@faqAccountA": {
+    "description": "Official website: faqAccountA. Keep product names and named services unchanged."
+  },
+  "@faqOfflineQ": {
+    "description": "Official website: faqOfflineQ. Keep product names and named services unchanged."
+  },
+  "@faqOfflineA": {
+    "description": "Official website: faqOfflineA. Keep product names and named services unchanged."
+  },
+  "@faqCurrencyQ": {
+    "description": "Official website: faqCurrencyQ. Keep product names and named services unchanged."
+  },
+  "@faqCurrencyA": {
+    "description": "Official website: faqCurrencyA. Keep product names and named services unchanged."
+  },
+  "@faqPlatformQ": {
+    "description": "Official website: faqPlatformQ. Keep product names and named services unchanged."
+  },
+  "@faqPlatformA": {
+    "description": "Official website: faqPlatformA. Keep product names and named services unchanged."
+  },
+  "@faqCostQ": {
+    "description": "Official website: faqCostQ. Keep product names and named services unchanged."
+  },
+  "@faqCostA": {
+    "description": "Official website: faqCostA. Keep product names and named services unchanged."
+  },
+  "@endTitle": {
+    "description": "Official website: endTitle. Keep product names and named services unchanged."
+  },
+  "@endBody": {
+    "description": "Official website: endBody. Keep product names and named services unchanged."
+  },
+  "@github": {
+    "description": "Official website: github. Keep product names and named services unchanged."
+  },
+  "@reportIssue": {
+    "description": "Official website: reportIssue. Keep product names and named services unchanged."
+  },
+  "@footerNote": {
+    "description": "Official website: footerNote. Keep product names and named services unchanged."
+  },
+  "@backHome": {
+    "description": "Official website: backHome. Keep product names and named services unchanged."
+  },
+  "@notFound": {
+    "description": "Official website: notFound. Keep product names and named services unchanged."
+  },
+  "@screenshotOpen": {
+    "description": "Official website: screenshotOpen. Keep product names and named services unchanged."
+  },
+  "@settled": {
+    "description": "Official website: settled. Keep product names and named services unchanged."
+  },
+  "@retry": {
+    "description": "Official website: retry. Keep product names and named services unchanged."
+  },
+  "@owed": {
+    "description": "Official website: header of the demo balance card, naming the member who gets money back.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@languageEndonym": {
+    "description": "Official website: languageEndonym. Keep product names and named services unchanged."
+  },
+  "@languageLabel": {
+    "description": "Official website: languageLabel. Keep product names and named services unchanged."
+  },
+  "@themeLabel": {
+    "description": "Official website: themeLabel. Keep product names and named services unchanged."
+  },
+  "@themeSystem": {
+    "description": "Official website: themeSystem. Keep product names and named services unchanged."
+  },
+  "@themeLight": {
+    "description": "Official website: themeLight. Keep product names and named services unchanged."
+  },
+  "@themeDark": {
+    "description": "Official website: themeDark. Keep product names and named services unchanged."
+  },
+  "@amountLabel": {
+    "description": "Official website: amountLabel. Keep product names and named services unchanged."
+  },
+  "@splitEqual": {
+    "description": "Official website: splitEqual. Keep product names and named services unchanged."
+  },
+  "@splitShares": {
+    "description": "Official website: splitShares. Keep product names and named services unchanged."
+  },
+  "@cancel": {
+    "description": "Official website: cancel. Keep product names and named services unchanged."
+  },
+  "@invalidAmount": {
+    "description": "Official website: invalidAmount. Keep product names and named services unchanged."
+  },
+  "@amountTooLarge": {
+    "description": "Official website: amountTooLarge. Keep product names and named services unchanged."
+  },
+  "@navFaq": {
+    "description": "Official website: short navigation label for the FAQ section."
+  },
+  "@morePayments": {
+    "description": "Official website: shown after the first suggested payment when more are hidden.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

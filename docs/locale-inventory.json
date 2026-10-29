@@ -1,0 +1,128 @@
+{
+  "inspected_on": "2026-10-30",
+  "source_project": "/home/willie/storage/balnana",
+  "source_commit": "c869ad9",
+  "locale_count": 20,
+  "locales": [
+    {
+      "app_locale": "ar",
+      "web_tag": "ar",
+      "endonym": "العربية",
+      "message_count": 784
+    },
+    {
+      "app_locale": "de",
+      "web_tag": "de",
+      "endonym": "Deutsch",
+      "message_count": 784
+    },
+    {
+      "app_locale": "en",
+      "web_tag": "en",
+      "endonym": "English",
+      "message_count": 784
+    },
+    {
+      "app_locale": "es",
+      "web_tag": "es",
+      "endonym": "Español",
+      "message_count": 784
+    },
+    {
+      "app_locale": "fr",
+      "web_tag": "fr",
+      "endonym": "Français",
+      "message_count": 784
+    },
+    {
+      "app_locale": "hi",
+      "web_tag": "hi",
+      "endonym": "हिन्दी",
+      "message_count": 784
+    },
+    {
+      "app_locale": "id",
+      "web_tag": "id",
+      "endonym": "Bahasa Indonesia",
+      "message_count": 784
+    },
+    {
+      "app_locale": "it",
+      "web_tag": "it",
+      "endonym": "Italiano",
+      "message_count": 784
+    },
+    {
+      "app_locale": "ja",
+      "web_tag": "ja",
+      "endonym": "日本語",
+      "message_count": 784
+    },
+    {
+      "app_locale": "ko",
+      "web_tag": "ko",
+      "endonym": "한국어",
+      "message_count": 784
+    },
+    {
+      "app_locale": "nl",
+      "web_tag": "nl",
+      "endonym": "Nederlands",
+      "message_count": 784
+    },
+    {
+      "app_locale": "pl",
+      "web_tag": "pl",
+      "endonym": "Polski",
+      "message_count": 784
+    },
+    {
+      "app_locale": "pt",
+      "web_tag": "pt",
+      "endonym": "Português",
+      "message_count": 784
+    },
+    {
+      "app_locale": "ru",
+      "web_tag": "ru",
+      "endonym": "Русский",
+      "message_count": 784
+    },
+    {
+      "app_locale": "th",
+      "web_tag": "th",
+      "endonym": "ไทย",
+      "message_count": 784
+    },
+    {
+      "app_locale": "tr",
+      "web_tag": "tr",
+      "endonym": "Türkçe",
+      "message_count": 784
+    },
+    {
+      "app_locale": "uk",
+      "web_tag": "uk",
+      "endonym": "Українська",
+      "message_count": 784
+    },
+    {
+      "app_locale": "vi",
+      "web_tag": "vi",
+      "endonym": "Tiếng Việt",
+      "message_count": 784
+    },
+    {
+      "app_locale": "zh",
+      "web_tag": "zh",
+      "endonym": "简体中文",
+      "message_count": 784
+    },
+    {
+      "app_locale": "zh_Hant",
+      "web_tag": "zh-Hant",
+      "endonym": "繁體中文",
+      "message_count": 784
+    }
+  ]
+}

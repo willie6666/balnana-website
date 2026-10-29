@@ -1,0 +1,14 @@
+{
+  "name": "Balnana",
+  "short_name": "Balnana",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FCF9F4",
+  "theme_color": "#E8A800",
+  "description": "Good times. Clear balances.",
+  "icons": [
+    {"src":"icons/Icon-192.png","sizes":"192x192","type":"image/png"},
+    {"src":"icons/Icon-512.png","sizes":"512x512","type":"image/png"},
+    {"src":"icons/Icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ]
+}
