@@ -102,7 +102,17 @@ class SiteLocalizationsKo extends SiteLocalizations {
   String get reset => '데모 초기화';
 
   @override
-  String get weightedHelp => 'Alex는 2몫, 나머지는 1몫씩 부담합니다.';
+  String get weightedHelp => '각자 부담할 몫을 정하세요. 0이면 제외됩니다.';
+
+  @override
+  String fewerShares(String name) {
+    return '$name의 몫 줄이기';
+  }
+
+  @override
+  String moreShares(String name) {
+    return '$name의 몫 늘리기';
+  }
 
   @override
   String get featureLabel => '작은 배려, 큰 차이';

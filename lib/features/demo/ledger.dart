@@ -15,14 +15,32 @@ class DemoLedger {
     this.amount = 12000,
     this.payer = 0,
     this.mode = SplitMode.equal,
+    this.shareCounts = const [2, 1, 1, 1],
   });
   final Scenario scenario;
   final int amount;
   final int payer;
   final SplitMode mode;
+
+  /// Each member's shares in [SplitMode.shares]; kept when switching modes.
+  final List<int> shareCounts;
+  static const maxShares = 10;
   int get digits => scenario == Scenario.travel ? 0 : 2;
   String get currency => scenario == Scenario.travel ? 'JPY' : 'EUR';
-  List<int> get weights => mode == SplitMode.equal ? [1, 1, 1, 1] : [2, 1, 1, 1];
+  List<int> get weights => mode == SplitMode.equal ? const [1, 1, 1, 1] : shareCounts;
+
+  /// Whether [member]'s shares can change by [step] without leaving nobody to pay.
+  bool canAdjustShares(int member, int step) {
+    final next = shareCounts[member] + step;
+    if (next < 0 || next > maxShares) return false;
+    return shareCounts.fold(0, (a, b) => a + b) + step > 0;
+  }
+
+  DemoLedger adjustShares(int member, int step) => !canAdjustShares(member, step)
+      ? this
+      : copyWith(
+          shareCounts: [for (final (i, n) in shareCounts.indexed) i == member ? n + step : n],
+        );
 
   List<int> get shares {
     final sum = weights.fold(0, (a, b) => a + b);
@@ -63,11 +81,18 @@ class DemoLedger {
     return result;
   }
 
-  DemoLedger copyWith({Scenario? scenario, int? amount, int? payer, SplitMode? mode}) => DemoLedger(
+  DemoLedger copyWith({
+    Scenario? scenario,
+    int? amount,
+    int? payer,
+    SplitMode? mode,
+    List<int>? shareCounts,
+  }) => DemoLedger(
     scenario: scenario ?? this.scenario,
     amount: amount ?? this.amount,
     payer: payer ?? this.payer,
     mode: mode ?? this.mode,
+    shareCounts: shareCounts ?? this.shareCounts,
   );
   static DemoLedger forScenario(Scenario scenario) => DemoLedger(
     scenario: scenario,

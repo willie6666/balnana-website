@@ -103,7 +103,17 @@ class SiteLocalizationsIt extends SiteLocalizations {
   String get reset => 'Reimposta demo';
 
   @override
-  String get weightedHelp => 'Alex ha 2 quote; gli altri 1 ciascuno.';
+  String get weightedHelp => 'Imposta le quote di ciascuno. Con 0 la persona è esclusa.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Meno quote per $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Più quote per $name';
+  }
 
   @override
   String get featureLabel => 'PICCOLI DETTAGLI. GRANDE DIFFERENZA.';

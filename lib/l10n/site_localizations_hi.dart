@@ -103,7 +103,17 @@ class SiteLocalizationsHi extends SiteLocalizations {
   String get reset => 'डेमो रीसेट करें';
 
   @override
-  String get weightedHelp => 'Alex के 2 हिस्से हैं, बाकी सबका 1-1।';
+  String get weightedHelp => 'हर व्यक्ति के हिस्से तय करें। 0 होने पर वह शामिल नहीं होगा।';
+
+  @override
+  String fewerShares(String name) {
+    return '$name के कम हिस्से';
+  }
+
+  @override
+  String moreShares(String name) {
+    return '$name के अधिक हिस्से';
+  }
 
   @override
   String get featureLabel => 'छोटी बातें। बड़ा फ़र्क।';

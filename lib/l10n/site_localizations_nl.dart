@@ -103,7 +103,17 @@ class SiteLocalizationsNl extends SiteLocalizations {
   String get reset => 'Demo herstellen';
 
   @override
-  String get weightedHelp => 'Alex heeft 2 delen, alle anderen elk 1.';
+  String get weightedHelp => 'Stel per persoon het aantal delen in. Met 0 doet iemand niet mee.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Minder delen voor $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Meer delen voor $name';
+  }
 
   @override
   String get featureLabel => 'KLEINE DETAILS. GROOT VERSCHIL.';

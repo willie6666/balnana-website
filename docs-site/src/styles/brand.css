@@ -37,9 +37,11 @@
 	--sl-color-accent-high: #f8df9a;
 
 	--sl-color-white: #f3f0e7;
-	--sl-color-gray-1: #e6e2d7;
-	--sl-color-gray-2: #c1beb3;
-	--sl-color-gray-3: #8f8c82;
+	/* Body text is gray-2 and muted text gray-3: kept bright, since the thin type reads dimmer
+	   on a dark page than its contrast ratio suggests. */
+	--sl-color-gray-1: #eeebe2;
+	--sl-color-gray-2: #dedacf;
+	--sl-color-gray-3: #aeab9f;
 	--sl-color-gray-4: #5e5d54;
 	--sl-color-gray-5: #414238;
 	--sl-color-gray-6: #252620;

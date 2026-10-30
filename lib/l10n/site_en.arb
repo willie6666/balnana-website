@@ -30,7 +30,9 @@
   "payments": "Suggested payments",
   "morePayments": "+{count} more",
   "reset": "Reset demo",
-  "weightedHelp": "Alex has 2 shares; everyone else has 1.",
+  "weightedHelp": "Set each person's shares. 0 leaves someone out.",
+  "fewerShares": "Fewer shares for {name}",
+  "moreShares": "More shares for {name}",
   "featureLabel": "LITTLE DETAILS. BIG DIFFERENCE.",
   "featureTitle": "Less figuring out.\nMore being together.",
   "featureSplitTitle": "Fair doesn't always mean equal.",
@@ -175,7 +177,23 @@
     "description": "Official website: reset. Keep product names and named services unchanged."
   },
   "@weightedHelp": {
-    "description": "Official website: weightedHelp. Keep product names and named services unchanged."
+    "description": "Official website: help under the share counters in the demo's Shares mode."
+  },
+  "@fewerShares": {
+    "description": "Official website: accessibility label of the demo button that removes one share from a member.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@moreShares": {
+    "description": "Official website: accessibility label of the demo button that adds one share to a member.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   },
   "@featureLabel": {
     "description": "Official website: featureLabel. Keep product names and named services unchanged."

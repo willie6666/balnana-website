@@ -97,6 +97,30 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Everyone is settled up.'), findsNWidgets(2));
   });
+  testWidgets('custom shares change the split and fit a narrow, enlarged layout', (tester) async {
+    tester.view.physicalSize = const Size(320, 3000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    await tester.pumpWidget(localized(const DemoSection(), 'de', scale: 2));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('split-shares')));
+    await tester.pumpAndSettle();
+    String count(int member) => tester.widget<Text>(find.byKey(ValueKey('shares-$member'))).data!;
+    expect([for (var i = 0; i < 4; i++) count(i)], ['2', '1', '1', '1']);
+    for (final key in ['shares-fewer-1', 'shares-fewer-2', 'shares-fewer-3']) {
+      await tester.ensureVisible(find.byKey(ValueKey(key)));
+      await tester.tap(find.byKey(ValueKey(key)));
+      await tester.pumpAndSettle();
+    }
+    // Alex now pays the whole bill they paid for, so nobody owes anything.
+    expect(find.text('Alle Salden sind ausgeglichen.'), findsWidgets);
+    await tester.tap(find.byKey(const ValueKey('shares-fewer-0')));
+    await tester.tap(find.byKey(const ValueKey('shares-fewer-0')));
+    await tester.pumpAndSettle();
+    expect(count(0), '1');
+    expect(tester.takeException(), isNull);
+  });
   testWidgets('theme and language controls update the app and persist choices', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final storage = await SharedPreferences.getInstance();

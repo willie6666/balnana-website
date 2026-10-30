@@ -103,7 +103,17 @@ class SiteLocalizationsUk extends SiteLocalizations {
   String get reset => 'Скинути демо';
 
   @override
-  String get weightedHelp => 'Alex має 2 частки, решта — по 1.';
+  String get weightedHelp => 'Вкажіть частки кожного. 0 — людина не бере участі.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Менше часток: $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Більше часток: $name';
+  }
 
   @override
   String get featureLabel => 'МАЛІ ДЕТАЛІ. ВЕЛИКА РІЗНИЦЯ.';

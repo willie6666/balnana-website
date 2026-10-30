@@ -308,6 +308,67 @@ class _DemoSectionState extends State<DemoSection> {
     decimalDigits: ledger.digits,
   ).format(ledger.amount / math.pow(10, ledger.digits));
 
+  // On the banana panel a lighter fill alone barely shows which chip is picked; outline it too.
+  BorderSide pickedSide(bool picked) =>
+      picked ? BorderSide(color: context.c.onPrimaryContainer, width: 1.5) : BorderSide.none;
+
+  TextStyle pickedLabel(bool picked) => TextStyle(
+    color: context.c.onPrimaryContainer,
+    fontWeight: picked ? FontWeight.w800 : FontWeight.w500,
+  );
+
+  Widget shareCounter(int member) {
+    Widget step(int delta) => IconButton(
+      key: ValueKey('shares-${delta < 0 ? 'fewer' : 'more'}-$member'),
+      tooltip: delta < 0
+          ? context.l.fewerShares(memberNames[member])
+          : context.l.moreShares(memberNames[member]),
+      onPressed: ledger.canAdjustShares(member, delta)
+          ? () => setState(() => ledger = ledger.adjustShares(member, delta))
+          : null,
+      icon: Icon(delta < 0 ? Icons.remove_rounded : Icons.add_rounded, size: 20),
+      style: IconButton.styleFrom(
+        backgroundColor: context.c.surface.withValues(alpha: .6),
+        disabledBackgroundColor: context.c.surface.withValues(alpha: .25),
+      ),
+    );
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Row(
+        children: [
+          PersonAvatar(member, radius: 13),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              memberNames[member],
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: context.c.onPrimaryContainer,
+              ),
+            ),
+          ),
+          step(-1),
+          SizedBox(
+            width: 36,
+            child: Text(
+              '${ledger.shareCounts[member]}',
+              key: ValueKey('shares-$member'),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w800,
+                color: context.c.onPrimaryContainer,
+                fontFeatures: const [FontFeature.tabularFigures()],
+              ),
+            ),
+          ),
+          step(1),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -407,7 +468,8 @@ class _DemoSectionState extends State<DemoSection> {
                       onSelected: (_) => setState(() => ledger = ledger.copyWith(payer: i)),
                       selectedColor: context.c.surface,
                       backgroundColor: context.c.surface.withValues(alpha: .4),
-                      side: BorderSide.none,
+                      side: pickedSide(ledger.payer == i),
+                      labelStyle: pickedLabel(ledger.payer == i),
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                     ),
                   ),
@@ -428,20 +490,22 @@ class _DemoSectionState extends State<DemoSection> {
                           onSelected: (_) => setState(() => ledger = ledger.copyWith(mode: mode)),
                           selectedColor: context.c.surface,
                           backgroundColor: context.c.surface.withValues(alpha: .4),
-                          side: BorderSide.none,
+                          side: pickedSide(ledger.mode == mode),
+                          labelStyle: pickedLabel(ledger.mode == mode),
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                         ),
                       )
                       .toList(),
                 ),
-                if (ledger.mode == SplitMode.shares)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12),
-                    child: Text(
-                      context.l.weightedHelp,
-                      style: TextStyle(fontSize: 14, color: context.c.onPrimaryContainer),
-                    ),
+                if (ledger.mode == SplitMode.shares) ...[
+                  const SizedBox(height: 16),
+                  for (var i = 0; i < memberNames.length; i++) shareCounter(i),
+                  const SizedBox(height: 6),
+                  Text(
+                    context.l.weightedHelp,
+                    style: TextStyle(fontSize: 14, color: context.c.onPrimaryContainer),
                   ),
+                ],
                 const SizedBox(height: 24),
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,

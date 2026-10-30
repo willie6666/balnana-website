@@ -9,11 +9,32 @@ void main() {
     expect(const DemoLedger(amount: 7, mode: SplitMode.shares).shares, [3, 2, 1, 1]);
     expect(const DemoLedger(amount: 1).transfers, isEmpty);
   });
+  test('share counts stay between 0 and the limit and never all reach 0', () {
+    const ledger = DemoLedger(mode: SplitMode.shares, shareCounts: [1, 0, 0, 10]);
+    expect(ledger.adjustShares(1, -1).shareCounts, [1, 0, 0, 10]);
+    expect(ledger.adjustShares(3, 1).shareCounts, [1, 0, 0, 10]);
+    expect(ledger.adjustShares(1, 1).shareCounts, [1, 1, 0, 10]);
+    const last = DemoLedger(mode: SplitMode.shares, shareCounts: [0, 0, 1, 0]);
+    expect(last.canAdjustShares(2, -1), isFalse);
+    expect(const DemoLedger(amount: 9, mode: SplitMode.shares, shareCounts: [0, 2, 1, 0]).shares, [
+      0,
+      6,
+      3,
+      0,
+    ]);
+    expect(const DemoLedger(amount: 9, shareCounts: [0, 2, 1, 0]).shares, [3, 2, 2, 2]);
+  });
   test('every demo result preserves money and its suggested payments settle every balance', () {
     for (final amount in [1, 2, 3, 5, 7, 99, 12000, 999999, 1000000]) {
-      for (final mode in SplitMode.values) {
+      for (final (mode, counts) in [
+        (SplitMode.equal, const [2, 1, 1, 1]),
+        (SplitMode.shares, const [2, 1, 1, 1]),
+        (SplitMode.shares, const [0, 3, 1, 0]),
+        (SplitMode.shares, const [10, 0, 0, 0]),
+        (SplitMode.shares, const [7, 9, 10, 3]),
+      ]) {
         for (var payer = 0; payer < 4; payer++) {
-          final ledger = DemoLedger(amount: amount, mode: mode, payer: payer);
+          final ledger = DemoLedger(amount: amount, mode: mode, payer: payer, shareCounts: counts);
           expect(ledger.shares.reduce((a, b) => a + b), amount);
           expect(ledger.balances.reduce((a, b) => a + b), 0);
           final balances = ledger.balances.toList();

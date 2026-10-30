@@ -103,7 +103,17 @@ class SiteLocalizationsTh extends SiteLocalizations {
   String get reset => 'รีเซ็ตเดโม';
 
   @override
-  String get weightedHelp => 'Alex มี 2 ส่วน คนอื่นคนละ 1 ส่วน';
+  String get weightedHelp => 'กำหนดจำนวนส่วนของแต่ละคน 0 หมายถึงไม่ร่วมหาร';
+
+  @override
+  String fewerShares(String name) {
+    return 'ลดส่วนของ $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'เพิ่มส่วนของ $name';
+  }
 
   @override
   String get featureLabel => 'รายละเอียดเล็ก ๆ ความต่างที่ยิ่งใหญ่';

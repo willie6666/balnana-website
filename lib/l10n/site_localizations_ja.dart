@@ -102,7 +102,17 @@ class SiteLocalizationsJa extends SiteLocalizations {
   String get reset => 'デモをリセット';
 
   @override
-  String get weightedHelp => 'Alex は 2 口、ほかの人は 1 口ずつ。';
+  String get weightedHelp => '各メンバーの口数を設定します。0 にすると対象外になります。';
+
+  @override
+  String fewerShares(String name) {
+    return '$name の口数を減らす';
+  }
+
+  @override
+  String moreShares(String name) {
+    return '$name の口数を増やす';
+  }
 
   @override
   String get featureLabel => '小さな工夫、大きな違い';

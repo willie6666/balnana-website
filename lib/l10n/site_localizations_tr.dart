@@ -103,7 +103,17 @@ class SiteLocalizationsTr extends SiteLocalizations {
   String get reset => 'Demoyu sıfırla';
 
   @override
-  String get weightedHelp => 'Alex 2 pay, diğerleri 1\'er pay alır.';
+  String get weightedHelp => 'Herkesin pay sayısını belirleyin. 0, kişiyi hariç tutar.';
+
+  @override
+  String fewerShares(String name) {
+    return '$name için daha az pay';
+  }
+
+  @override
+  String moreShares(String name) {
+    return '$name için daha fazla pay';
+  }
 
   @override
   String get featureLabel => 'KÜÇÜK AYRINTILAR. BÜYÜK FARK.';

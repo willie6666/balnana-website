@@ -103,7 +103,17 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get reset => 'Reset demo';
 
   @override
-  String get weightedHelp => 'Alex has 2 shares; everyone else has 1.';
+  String get weightedHelp => 'Set each person\'s shares. 0 leaves someone out.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Fewer shares for $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'More shares for $name';
+  }
 
   @override
   String get featureLabel => 'LITTLE DETAILS. BIG DIFFERENCE.';

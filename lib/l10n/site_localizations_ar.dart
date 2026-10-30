@@ -103,7 +103,17 @@ class SiteLocalizationsAr extends SiteLocalizations {
   String get reset => 'إعادة ضبط العرض';
 
   @override
-  String get weightedHelp => 'حصة Alex تساوي حصتين، وللآخرين حصة لكل منهم.';
+  String get weightedHelp => 'حدّد عدد حصص كل شخص. القيمة 0 تستبعده.';
+
+  @override
+  String fewerShares(String name) {
+    return 'حصص أقل لـ $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'حصص أكثر لـ $name';
+  }
 
   @override
   String get featureLabel => 'تفاصيل صغيرة. فرق كبير.';

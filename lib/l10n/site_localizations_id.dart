@@ -103,7 +103,17 @@ class SiteLocalizationsId extends SiteLocalizations {
   String get reset => 'Atur ulang demo';
 
   @override
-  String get weightedHelp => 'Alex mendapat 2 bagian; yang lain masing-masing 1.';
+  String get weightedHelp => 'Atur jumlah bagian setiap orang. 0 berarti tidak ikut.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Kurangi bagian $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Tambah bagian $name';
+  }
 
   @override
   String get featureLabel => 'DETAIL KECIL. PERBEDAAN BESAR.';

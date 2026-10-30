@@ -103,7 +103,18 @@ class SiteLocalizationsDe extends SiteLocalizations {
   String get reset => 'Demo zurücksetzen';
 
   @override
-  String get weightedHelp => 'Alex hat 2 Anteile, alle anderen jeweils 1.';
+  String get weightedHelp =>
+      'Lege die Anteile jeder Person fest. Mit 0 ist jemand nicht beteiligt.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Weniger Anteile für $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Mehr Anteile für $name';
+  }
 
   @override
   String get featureLabel => 'KLEINE DETAILS. GROSSER UNTERSCHIED.';

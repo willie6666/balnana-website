@@ -103,7 +103,17 @@ class SiteLocalizationsVi extends SiteLocalizations {
   String get reset => 'Đặt lại demo';
 
   @override
-  String get weightedHelp => 'Alex có 2 phần; những người khác mỗi người 1 phần.';
+  String get weightedHelp => 'Đặt số phần của mỗi người. 0 nghĩa là không tham gia.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Bớt phần cho $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Thêm phần cho $name';
+  }
 
   @override
   String get featureLabel => 'CHI TIẾT NHỎ. KHÁC BIỆT LỚN.';

@@ -102,7 +102,17 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get reset => '重置演示';
 
   @override
-  String get weightedHelp => 'Alex 分摊 2 份，其他人各 1 份。';
+  String get weightedHelp => '设置每个人分摊几份；0 份表示不参与。';
+
+  @override
+  String fewerShares(String name) {
+    return '$name 减少一份';
+  }
+
+  @override
+  String moreShares(String name) {
+    return '$name 增加一份';
+  }
 
   @override
   String get featureLabel => '小细节，大不同';
@@ -390,7 +400,17 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get reset => '重設示範';
 
   @override
-  String get weightedHelp => 'Alex 分攤 2 份，其他人各 1 份。';
+  String get weightedHelp => '設定每個人分攤幾份；0 份代表不參與。';
+
+  @override
+  String fewerShares(String name) {
+    return '$name 減少一份';
+  }
+
+  @override
+  String moreShares(String name) {
+    return '$name 增加一份';
+  }
 
   @override
   String get featureLabel => '小細節，大不同';

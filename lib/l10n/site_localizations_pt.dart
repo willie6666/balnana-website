@@ -103,7 +103,17 @@ class SiteLocalizationsPt extends SiteLocalizations {
   String get reset => 'Repor demo';
 
   @override
-  String get weightedHelp => 'Alex tem 2 partes; os outros, 1 cada.';
+  String get weightedHelp => 'Defina as partes de cada pessoa. Com 0, ela fica de fora.';
+
+  @override
+  String fewerShares(String name) {
+    return 'Menos partes para $name';
+  }
+
+  @override
+  String moreShares(String name) {
+    return 'Mais partes para $name';
+  }
 
   @override
   String get featureLabel => 'PEQUENOS DETALHES. GRANDE DIFERENÇA.';

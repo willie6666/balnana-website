@@ -311,11 +311,23 @@ abstract class SiteLocalizations {
   /// **'Reset demo'**
   String get reset;
 
-  /// Official website: weightedHelp. Keep product names and named services unchanged.
+  /// Official website: help under the share counters in the demo's Shares mode.
   ///
   /// In en, this message translates to:
-  /// **'Alex has 2 shares; everyone else has 1.'**
+  /// **'Set each person\'s shares. 0 leaves someone out.'**
   String get weightedHelp;
+
+  /// Official website: accessibility label of the demo button that removes one share from a member.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer shares for {name}'**
+  String fewerShares(String name);
+
+  /// Official website: accessibility label of the demo button that adds one share to a member.
+  ///
+  /// In en, this message translates to:
+  /// **'More shares for {name}'**
+  String moreShares(String name);
 
   /// Official website: featureLabel. Keep product names and named services unchanged.
   ///
