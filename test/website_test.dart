@@ -1,10 +1,14 @@
 import 'package:balnana_website/app.dart';
 import 'package:balnana_website/core/preferences.dart';
 import 'package:balnana_website/design/components.dart';
+import 'package:balnana_website/design/smooth_scroll.dart';
 import 'package:balnana_website/design/theme.dart';
 import 'package:balnana_website/features/home/home_page.dart';
+import 'package:balnana_website/features/home/sections.dart';
 import 'package:balnana_website/features/demo/demo_section.dart';
 import 'package:balnana_website/l10n/site_localizations.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -138,5 +142,42 @@ void main() {
     expect(urls['zh'], urls['en']);
     expect(Uri.parse(urls['zh-Hant']!).path, '/docs/zh-hant/self-hosting/quick-start/');
     expect(Uri.parse(urls['en']!).hasScheme, isTrue);
+  });
+  testWidgets('hosting band text stays light on a light page', (tester) async {
+    await tester.pumpWidget(localized(const HostingSection(), 'en'));
+    final l = lookupSiteLocalizations(const Locale('en'));
+    for (final text in [l.hostingTitle, 'PostgreSQL']) {
+      final color = tester.renderObject<RenderParagraph>(find.text(text)).text.style!.color!;
+      expect(color.computeLuminance(), greaterThan(.6), reason: text);
+    }
+  });
+  testWidgets('mouse wheel eases toward its target; trackpads move at once', (tester) async {
+    final scroll = SmoothWheelScrollController();
+    addTearDown(scroll.dispose);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: scroll.wheelListener(
+          child: SingleChildScrollView(
+            controller: scroll,
+            child: const SizedBox(height: 5000, width: double.infinity),
+          ),
+        ),
+      ),
+    );
+    final center = tester.getCenter(find.byType(SingleChildScrollView));
+    final mouse = TestPointer(1, PointerDeviceKind.mouse);
+    await tester.sendEventToBinding(mouse.hover(center));
+    await tester.sendEventToBinding(mouse.scroll(const Offset(0, 100)));
+    await tester.sendEventToBinding(mouse.scroll(const Offset(0, 100)));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 60));
+    expect(scroll.offset, inExclusiveRange(0, 200));
+    await tester.pumpAndSettle();
+    expect(scroll.offset, 200);
+    final trackpad = TestPointer(2, PointerDeviceKind.trackpad);
+    await tester.sendEventToBinding(trackpad.hover(center));
+    await tester.sendEventToBinding(trackpad.scroll(const Offset(0, 30)));
+    await tester.pump();
+    expect(scroll.offset, 230);
   });
 }

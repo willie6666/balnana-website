@@ -372,102 +372,107 @@ class HostingSection extends StatelessWidget {
           ),
           child: PageWidth(
             vertical: 76,
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final copy = Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SectionTitle(
-                      context.l.hostingTitle,
-                      eyebrow: context.l.hostingLabel,
-                      subtitle: context.l.hostingBody,
-                    ),
-                    const SizedBox(height: 24),
-                    ExternalButton(
-                      label: context.l.hostingLink,
-                      url: quickStartUrl(context),
-                      filled: true,
-                      icon: Icons.arrow_forward_rounded,
-                      newTab: false,
-                    ),
-                  ],
-                );
-                final diagram = Panel(
-                  color: context.c.surfaceContainer,
-                  child: Column(
+            // Theme does not reach the page's DefaultTextStyle, so text without its own
+            // color would stay dark from a light page.
+            child: DefaultTextStyle.merge(
+              style: TextStyle(color: context.c.onSurface),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final copy = Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          for (final color in [
-                            const Color(0xFFF07C2E),
-                            banana,
-                            const Color(0xFF3C9D6B),
-                          ])
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(end: 7),
-                              child: CircleAvatar(radius: 4, backgroundColor: color),
-                            ),
-                        ],
+                      SectionTitle(
+                        context.l.hostingTitle,
+                        eyebrow: context.l.hostingLabel,
+                        subtitle: context.l.hostingBody,
                       ),
-                      const SizedBox(height: 30),
-                      const Center(child: Brand()),
-                      const SizedBox(height: 25),
-                      Center(
-                        child: Icon(Icons.swap_vert_rounded, color: context.c.primary, size: 30),
-                      ),
-                      const SizedBox(height: 14),
-                      Center(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                          decoration: BoxDecoration(
-                            color: context.c.surfaceContainerHigh,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(Icons.dns_outlined, size: 22),
-                              SizedBox(width: 12),
-                              Flexible(child: Text('PostgreSQL')),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      const Divider(),
-                      const SizedBox(height: 18),
-                      Text(
-                        context.l.hostingModeLink,
-                        style: TextStyle(
-                          fontSize: 15,
-                          height: 1.75,
-                          color: context.c.onSurfaceVariant,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        context.l.hostingModeAccounts,
-                        style: TextStyle(
-                          fontSize: 15,
-                          height: 1.75,
-                          color: context.c.onSurfaceVariant,
-                        ),
+                      const SizedBox(height: 24),
+                      ExternalButton(
+                        label: context.l.hostingLink,
+                        url: quickStartUrl(context),
+                        filled: true,
+                        icon: Icons.arrow_forward_rounded,
+                        newTab: false,
                       ),
                     ],
-                  ),
-                );
-                return constraints.maxWidth >= 850
-                    ? Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(flex: 6, child: copy),
-                          const SizedBox(width: 80),
-                          Expanded(flex: 5, child: diagram),
-                        ],
-                      )
-                    : Column(children: [copy, const SizedBox(height: 45), diagram]);
-              },
+                  );
+                  final diagram = Panel(
+                    color: context.c.surfaceContainer,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            for (final color in [
+                              const Color(0xFFF07C2E),
+                              banana,
+                              const Color(0xFF3C9D6B),
+                            ])
+                              Padding(
+                                padding: const EdgeInsetsDirectional.only(end: 7),
+                                child: CircleAvatar(radius: 4, backgroundColor: color),
+                              ),
+                          ],
+                        ),
+                        const SizedBox(height: 30),
+                        const Center(child: Brand()),
+                        const SizedBox(height: 25),
+                        Center(
+                          child: Icon(Icons.swap_vert_rounded, color: context.c.primary, size: 30),
+                        ),
+                        const SizedBox(height: 14),
+                        Center(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                            decoration: BoxDecoration(
+                              color: context.c.surfaceContainerHigh,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.dns_outlined, size: 22),
+                                SizedBox(width: 12),
+                                Flexible(child: Text('PostgreSQL')),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        const Divider(),
+                        const SizedBox(height: 18),
+                        Text(
+                          context.l.hostingModeLink,
+                          style: TextStyle(
+                            fontSize: 15,
+                            height: 1.75,
+                            color: context.c.onSurfaceVariant,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          context.l.hostingModeAccounts,
+                          style: TextStyle(
+                            fontSize: 15,
+                            height: 1.75,
+                            color: context.c.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                  return constraints.maxWidth >= 850
+                      ? Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(flex: 6, child: copy),
+                            const SizedBox(width: 80),
+                            Expanded(flex: 5, child: diagram),
+                          ],
+                        )
+                      : Column(children: [copy, const SizedBox(height: 45), diagram]);
+                },
+              ),
             ),
           ),
         ),

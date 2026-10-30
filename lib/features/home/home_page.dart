@@ -6,6 +6,7 @@ import 'package:url_launcher/link.dart';
 
 import '../../core/preferences.dart';
 import '../../design/components.dart';
+import '../../design/smooth_scroll.dart';
 import '../../design/theme.dart';
 import '../demo/demo_section.dart';
 import 'sections.dart';
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final scroll = ScrollController();
+  final scroll = SmoothWheelScrollController();
   final anchors = {
     for (final section in ['demo', 'features', 'hosting', 'faq']) section: GlobalKey(),
   };
@@ -489,43 +490,45 @@ class _HomePageState extends State<HomePage> {
         header(),
         Expanded(
           child: SelectionArea(
-            child: SingleChildScrollView(
-              controller: scroll,
-              child: Column(
-                children: [
-                  PageWidth(
-                    child: Column(
-                      children: [
-                        hero(),
-                        trust(),
-                        SizedBox(height: MediaQuery.sizeOf(context).width < 600 ? 80 : 118),
-                        const DemoSection(key: ValueKey('demo-section'))
-                            .withAnchor(anchors['demo']!),
-                        const SizedBox(height: 110),
-                        const BenefitsSection().withAnchor(anchors['features']!),
-                        const SizedBox(height: 110),
-                        const TravelSection(),
-                        const SizedBox(height: 95),
-                        const ExtraFeatures(),
-                        const SizedBox(height: 100),
-                      ],
+            child: scroll.wheelListener(
+              child: SingleChildScrollView(
+                controller: scroll,
+                child: Column(
+                  children: [
+                    PageWidth(
+                      child: Column(
+                        children: [
+                          hero(),
+                          trust(),
+                          SizedBox(height: MediaQuery.sizeOf(context).width < 600 ? 80 : 118),
+                          const DemoSection(key: ValueKey('demo-section'))
+                              .withAnchor(anchors['demo']!),
+                          const SizedBox(height: 110),
+                          const BenefitsSection().withAnchor(anchors['features']!),
+                          const SizedBox(height: 110),
+                          const TravelSection(),
+                          const SizedBox(height: 95),
+                          const ExtraFeatures(),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
                     ),
-                  ),
-                  const HostingSection().withAnchor(anchors['hosting']!),
-                  PageWidth(
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 100),
-                        const FaqSection().withAnchor(anchors['faq']!),
-                        const SizedBox(height: 100),
-                        const EndSection(),
-                        const SizedBox(height: 60),
-                        const SiteFooter(),
-                        const SizedBox(height: 30),
-                      ],
+                    const HostingSection().withAnchor(anchors['hosting']!),
+                    PageWidth(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 100),
+                          const FaqSection().withAnchor(anchors['faq']!),
+                          const SizedBox(height: 100),
+                          const EndSection(),
+                          const SizedBox(height: 60),
+                          const SiteFooter(),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
