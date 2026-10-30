@@ -174,10 +174,20 @@ void main() {
     expect(scroll.offset, inExclusiveRange(0, 200));
     await tester.pumpAndSettle();
     expect(scroll.offset, 200);
+    // A spinning wheel keeps moving every frame instead of pausing between ticks.
+    var previous = scroll.offset;
+    for (var frame = 0; frame < 30; frame++) {
+      if (frame % 4 == 0) await tester.sendEventToBinding(mouse.scroll(const Offset(0, 100)));
+      await tester.pump(const Duration(milliseconds: 16));
+      expect(scroll.offset, greaterThan(previous), reason: 'frame $frame');
+      previous = scroll.offset;
+    }
+    await tester.pumpAndSettle();
+    expect(scroll.offset, 1000);
     final trackpad = TestPointer(2, PointerDeviceKind.trackpad);
     await tester.sendEventToBinding(trackpad.hover(center));
     await tester.sendEventToBinding(trackpad.scroll(const Offset(0, 30)));
     await tester.pump();
-    expect(scroll.offset, 230);
+    expect(scroll.offset, 1030);
   });
 }
