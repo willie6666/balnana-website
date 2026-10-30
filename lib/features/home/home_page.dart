@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:url_launcher/link.dart';
 
 import '../../core/preferences.dart';
 import '../../design/components.dart';
@@ -160,6 +161,14 @@ class _HomePageState extends State<HomePage> {
                   goSection(section);
                 },
               ),
+            Link(
+              uri: Uri.parse(docsUrl(context)),
+              builder: (context, follow) => ListTile(
+                leading: const Icon(Icons.menu_book_outlined),
+                title: Text(context.l.navDocs),
+                onTap: follow,
+              ),
+            ),
             const ExternalButton(label: 'GitHub', url: sourceUrl, icon: Icons.code_rounded),
           ],
         ),
@@ -173,43 +182,66 @@ class _HomePageState extends State<HomePage> {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final wide = constraints.maxWidth >= 1000;
+          final brand = Semantics(
+            button: true,
+            label: context.l.backHome,
+            child: InkWell(
+              onTap: () => goSection(''),
+              borderRadius: BorderRadius.circular(12),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Brand(small: constraints.maxWidth < 400),
+              ),
+            ),
+          );
           return Row(
             children: [
-              Expanded(
-                child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Semantics(
-                    button: true,
-                    label: context.l.backHome,
-                    child: InkWell(
-                      onTap: () => goSection(''),
-                      borderRadius: BorderRadius.circular(12),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Brand(small: constraints.maxWidth < 400),
+              if (wide) ...[
+                brand,
+                // Long translations shrink the links a little rather than crowd the icons out.
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
+                        children: [
+                          TextButton(
+                            onPressed: () => goSection('features'),
+                            child: Text(context.l.navFeatures),
+                          ),
+                          TextButton(
+                            onPressed: () => goSection('demo'),
+                            child: Text(context.l.navDemo),
+                          ),
+                          TextButton(
+                            onPressed: () => goSection('hosting'),
+                            child: Text(context.l.navHosting),
+                          ),
+                          TextButton(
+                            onPressed: () => goSection('faq'),
+                            child: Text(context.l.navFaq),
+                          ),
+                          Link(
+                            uri: Uri.parse(docsUrl(context)),
+                            builder: (context, follow) =>
+                                TextButton(onPressed: follow, child: Text(context.l.navDocs)),
+                          ),
+                          const SizedBox(width: 14),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ),
-              if (wide) ...[
-                TextButton(
-                  onPressed: () => goSection('features'),
-                  child: Text(context.l.navFeatures),
+              ] else
+                Expanded(
+                  child: Align(alignment: AlignmentDirectional.centerStart, child: brand),
                 ),
-                TextButton(onPressed: () => goSection('demo'), child: Text(context.l.navDemo)),
-                TextButton(
-                  onPressed: () => goSection('hosting'),
-                  child: Text(context.l.navHosting),
-                ),
-                TextButton(onPressed: () => goSection('faq'), child: Text(context.l.navFaq)),
-                const SizedBox(width: 18),
-              ],
               IconButton(
                 key: const ValueKey('language-picker'),
                 tooltip: '${context.l.languageLabel}: ${languageNames[widget.tag]}',
                 onPressed: pickLanguage,
-                icon: const Icon(Icons.language_rounded, size: 21),
+                icon: const Icon(Icons.language_rounded, size: 22),
               ),
               PopupMenuButton<ThemeMode>(
                 key: const ValueKey('theme-picker'),
@@ -218,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                 onSelected: widget.preferences.setTheme,
                 icon: Icon(
                   context.isDark ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
-                  size: 21,
+                  size: 22,
                 ),
                 itemBuilder: (context) => [
                   for (final (mode, label, icon) in [
@@ -243,7 +275,15 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               if (wide)
-                const ExternalButton(label: 'GitHub', url: sourceUrl, icon: Icons.code_rounded)
+                Link(
+                  uri: Uri.parse(sourceUrl),
+                  target: LinkTarget.blank,
+                  builder: (context, follow) => IconButton(
+                    tooltip: 'GitHub',
+                    onPressed: follow,
+                    icon: const Icon(Icons.code_rounded, size: 22),
+                  ),
+                )
               else
                 IconButton(
                   tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -265,11 +305,11 @@ class _HomePageState extends State<HomePage> {
         context.l.heroTitle,
         style: TextStyle(
           fontSize: wide
-              ? 76
+              ? 84
               : cjk
-              ? 61
-              : 49,
-          height: 1.12,
+              ? 64
+              : 52,
+          height: 1.1,
           letterSpacing: cjk ? -2 : -3.3,
           fontWeight: FontWeight.w800,
         ),
@@ -293,12 +333,12 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 27),
           ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 530),
+            constraints: const BoxConstraints(maxWidth: 580),
             child: Text(
               context.l.heroBody,
               style: TextStyle(
-                fontSize: wide ? 18 : 16,
-                height: 1.8,
+                fontSize: wide ? 21 : 18,
+                height: 1.7,
                 color: context.c.onSurfaceVariant,
               ),
             ),
@@ -318,8 +358,8 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () => goSection('hosting'),
                 style: TextButton.styleFrom(
                   backgroundColor: context.c.surfaceContainerHigh,
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  minimumSize: const Size(48, 54),
+                  padding: const EdgeInsets.symmetric(horizontal: 28),
+                  minimumSize: const Size(48, 56),
                 ),
                 child: Text(context.l.selfHost),
               ),
@@ -329,15 +369,15 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: [
               Container(
-                width: 6,
-                height: 6,
-                decoration: BoxDecoration(color: context.c.primary, shape: BoxShape.circle),
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(color: banana, shape: BoxShape.circle),
               ),
-              const SizedBox(width: 9),
+              const SizedBox(width: 10),
               Expanded(
                 child: Text(
                   context.l.development,
-                  style: TextStyle(fontSize: 11, color: context.c.onSurfaceVariant),
+                  style: TextStyle(fontSize: 14, color: context.c.onSurfaceVariant),
                 ),
               ),
             ],
@@ -367,7 +407,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsetsDirectional.only(start: 18, bottom: 14),
                 child: Text(
                   context.l.demoNotice,
-                  style: TextStyle(fontSize: 11, color: context.c.onSurfaceVariant),
+                  style: TextStyle(fontSize: 13, color: context.c.onSurfaceVariant),
                 ),
               ),
               const BalancePreview(hero: true),
@@ -395,10 +435,10 @@ class _HomePageState extends State<HomePage> {
   );
 
   Widget trust() => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 23),
+    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 26),
     decoration: BoxDecoration(
       color: context.c.surfaceContainer,
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(28),
     ),
     child: LayoutBuilder(
       builder: (context, constraints) => Wrap(
@@ -418,12 +458,19 @@ class _HomePageState extends State<HomePage> {
                         (constraints.maxWidth > 800 ? 4 : 2),
                     child: Row(
                       children: [
-                        Icon(entry.$1, size: 18, color: context.c.primary),
-                        const SizedBox(width: 10),
+                        Container(
+                          padding: const EdgeInsets.all(9),
+                          decoration: BoxDecoration(
+                            color: context.c.primaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(entry.$1, size: 19, color: context.c.primary),
+                        ),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Text(
                             entry.$2,
-                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                           ),
                         ),
                       ],

@@ -1,0 +1,174 @@
+/* Balnana brand for Starlight: the same palette, type and shapes as the Flutter site
+   (lib/design/theme.dart). Starlight's dark theme is the default; light overrides below. */
+
+@font-face {
+	font-family: 'Plus Jakarta Sans';
+	font-weight: 400;
+	font-display: swap;
+	src: url('../../../assets/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Plus Jakarta Sans';
+	font-weight: 600;
+	font-display: swap;
+	src: url('../../../assets/fonts/PlusJakartaSans-SemiBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Plus Jakarta Sans';
+	font-weight: 700;
+	font-display: swap;
+	src: url('../../../assets/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Plus Jakarta Sans';
+	font-weight: 800;
+	font-display: swap;
+	src: url('../../../assets/fonts/PlusJakartaSans-ExtraBold.ttf') format('truetype');
+}
+
+:root {
+	--banana: #e8a800;
+	--on-banana: #352900;
+
+	--sl-font: 'Plus Jakarta Sans', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', system-ui;
+
+	--sl-color-accent-low: #3a2f12;
+	--sl-color-accent: #e8a800;
+	--sl-color-accent-high: #f8df9a;
+
+	--sl-color-white: #f3f0e7;
+	--sl-color-gray-1: #e6e2d7;
+	--sl-color-gray-2: #c1beb3;
+	--sl-color-gray-3: #8f8c82;
+	--sl-color-gray-4: #5e5d54;
+	--sl-color-gray-5: #414238;
+	--sl-color-gray-6: #252620;
+	--sl-color-black: #191a16;
+
+	--sl-color-bg-nav: var(--sl-color-black);
+	--sl-color-bg-sidebar: var(--sl-color-black);
+	--sl-color-hairline-shade: var(--sl-color-gray-5);
+
+	--sl-text-body: 1.0625rem;
+	--sl-text-h1: 2.5rem;
+	--sl-text-h2: 1.875rem;
+	--sl-text-h3: 1.4rem;
+	--sl-line-height: 1.8;
+	--sl-content-width: 48rem;
+	--sl-nav-height: 4.25rem;
+	--sl-sidebar-width: 19rem;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #f8e3ad;
+	--sl-color-accent: #765800;
+	--sl-color-accent-high: #4d3900;
+
+	--sl-color-white: #24251e;
+	--sl-color-gray-1: #33342c;
+	--sl-color-gray-2: #45463d;
+	--sl-color-gray-3: #66655c;
+	--sl-color-gray-4: #8e8c82;
+	--sl-color-gray-5: #dad6cb;
+	--sl-color-gray-6: #eae6dc;
+	--sl-color-gray-7: #f3efe6;
+	--sl-color-black: #fcf9f4;
+
+	--sl-color-bg-nav: var(--sl-color-black);
+	--sl-color-hairline-shade: var(--sl-color-gray-5);
+}
+
+/* Headings: heavy and tight, like the site's section titles. */
+.sl-markdown-content :is(h1, h2, h3, h4),
+h1#_top,
+.hero h1 {
+	font-weight: 800;
+	letter-spacing: -0.025em;
+	color: var(--sl-color-white);
+}
+:lang(zh-TW) :is(h1, h2, h3, h4) {
+	letter-spacing: 0;
+}
+.sl-markdown-content h2 {
+	margin-top: 2.75rem;
+}
+
+/* Pill buttons in banana, as the site's filled buttons. */
+.sl-link-button {
+	border-radius: 999px;
+	font-weight: 700;
+}
+.sl-link-button.primary {
+	background: var(--banana);
+	border-color: var(--banana);
+	color: var(--on-banana);
+}
+.sl-link-button.primary:hover {
+	background: #f2bb1f;
+	border-color: #f2bb1f;
+	color: var(--on-banana);
+}
+.sl-link-button.secondary {
+	background: var(--sl-color-gray-6);
+	border-color: transparent;
+	color: var(--sl-color-white);
+}
+
+/* Rounded panels. */
+.card,
+.sl-link-card,
+starlight-aside,
+.starlight-aside {
+	border-radius: 1.25rem;
+}
+.card {
+	background: var(--sl-color-gray-6);
+	border: 0;
+}
+:root[data-theme='light'] .card {
+	background: var(--sl-color-gray-7);
+}
+.card .icon {
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-text-accent);
+	border: 0;
+	border-radius: 0.875rem;
+}
+.sl-link-card {
+	border-color: var(--sl-color-gray-5);
+}
+.sl-link-card:hover {
+	border-color: var(--banana);
+	background: var(--sl-color-gray-6);
+}
+:root[data-theme='light'] .sl-link-card:hover {
+	background: var(--sl-color-gray-7);
+}
+.sl-markdown-content :not(pre) > code {
+	border-radius: 0.375rem;
+	padding: 0.1em 0.35em;
+}
+
+/* Sidebar: rounded current-page highlight. */
+.sidebar-content a {
+	border-radius: 0.625rem;
+}
+.sidebar-content a[aria-current='page'] {
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-text-accent);
+	font-weight: 700;
+}
+
+/* Splash hero. */
+.hero {
+	padding-block: 3rem 2rem;
+}
+.hero h1 {
+	font-size: clamp(2.5rem, 6vw, 4rem);
+	line-height: 1.1;
+}
+.hero .tagline {
+	font-size: 1.2rem;
+	line-height: 1.75;
+	color: var(--sl-color-gray-2);
+}

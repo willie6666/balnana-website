@@ -123,7 +123,7 @@ class BalancePreview extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+                    style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w700),
                   ),
                 ),
                 const Icon(Icons.more_horiz, size: 22),
@@ -146,7 +146,7 @@ class BalancePreview extends StatelessWidget {
                         : context.l.owed(memberNames[recipient]),
                     style: TextStyle(
                       color: context.c.onPrimaryContainer,
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -158,7 +158,7 @@ class BalancePreview extends StatelessWidget {
                       format(values[recipient]),
                       textDirection: TextDirection.ltr,
                       style: TextStyle(
-                        fontSize: hero ? 43 : 38,
+                        fontSize: hero ? 46 : 42,
                         height: 1.2,
                         color: context.c.onPrimaryContainer,
                         letterSpacing: -1.8,
@@ -174,7 +174,7 @@ class BalancePreview extends StatelessWidget {
             Text(
               context.l.balances,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 color: context.c.onSurfaceVariant,
                 fontWeight: FontWeight.w600,
               ),
@@ -191,7 +191,7 @@ class BalancePreview extends StatelessWidget {
                       const SizedBox(height: 9),
                       Text(
                         memberNames[i],
-                        style: TextStyle(fontSize: 11, color: context.c.onSurfaceVariant),
+                        style: TextStyle(fontSize: 13, color: context.c.onSurfaceVariant),
                       ),
                       const SizedBox(height: 7),
                       Padding(
@@ -203,7 +203,7 @@ class BalancePreview extends StatelessWidget {
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 12,
+                              fontSize: 14,
                               color: values[i] >= 0 ? context.positive : context.negative,
                             ),
                           ),
@@ -227,7 +227,7 @@ class BalancePreview extends StatelessWidget {
                 children: [
                   Text(
                     context.l.payments,
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 14),
                   if (transfers.isEmpty)
@@ -248,7 +248,7 @@ class BalancePreview extends StatelessWidget {
                             child: Text(
                               format(transfer.amount),
                               textDirection: TextDirection.ltr,
-                              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
                             ),
                           ),
                         ],
@@ -259,7 +259,7 @@ class BalancePreview extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 6),
                       child: Text(
                         context.l.morePayments(transfers.length - 1),
-                        style: TextStyle(fontSize: 12, color: context.c.onSurfaceVariant),
+                        style: TextStyle(fontSize: 14, color: context.c.onSurfaceVariant),
                       ),
                     ),
                 ],
@@ -439,7 +439,7 @@ class _DemoSectionState extends State<DemoSection> {
                     padding: const EdgeInsets.only(top: 12),
                     child: Text(
                       context.l.weightedHelp,
-                      style: TextStyle(fontSize: 12, color: context.c.onPrimaryContainer),
+                      style: TextStyle(fontSize: 14, color: context.c.onPrimaryContainer),
                     ),
                   ),
                 const SizedBox(height: 24),
@@ -456,7 +456,7 @@ class _DemoSectionState extends State<DemoSection> {
                     ),
                     Text(
                       context.l.demoNotice,
-                      style: TextStyle(fontSize: 11, color: context.c.onPrimaryContainer),
+                      style: TextStyle(fontSize: 13, color: context.c.onPrimaryContainer),
                     ),
                   ],
                 ),

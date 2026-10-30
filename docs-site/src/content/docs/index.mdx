@@ -1,0 +1,41 @@
+---
+title: Balnana documentation
+description: Run Balnana on a server you own, connect the web and Android apps, and bring your groups along.
+template: splash
+hero:
+  title: Your server, your group's money
+  tagline: Everything you need to run Balnana yourself, from one Docker command to a public server with sign-in, email and push notifications.
+  actions:
+    - text: Start self-hosting
+      link: /docs/self-hosting/quick-start/
+      icon: right-arrow
+    - text: Back to the website
+      link: /en
+      variant: secondary
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<Card title="Up in minutes" icon="rocket">
+		One Docker Compose file and a PostgreSQL database. Migrations run on startup.
+	</Card>
+	<Card title="Configured from the browser" icon="setting">
+		A password-protected `/admin` page changes most settings while the server runs.
+	</Card>
+	<Card title="Link or accounts" icon="open-book">
+		Share a private group link with no sign-up, or turn on accounts with a password, Google or OpenID Connect.
+	</Card>
+	<Card title="Free software" icon="github">
+		Balnana is licensed under the AGPL-3.0. Run it, change it and share it.
+	</Card>
+</CardGrid>
+
+## Where to next
+
+<CardGrid>
+	<LinkCard title="Quick start" description="Start a server with Docker and set the administrator password." href="/docs/self-hosting/quick-start/" />
+	<LinkCard title="Reverse proxy and limits" description="Put Balnana on the internet safely, behind TLS." href="/docs/self-hosting/reverse-proxy/" />
+	<LinkCard title="Connect the apps" description="Point the Android and web apps at your server." href="/docs/apps/connecting/" />
+	<LinkCard title="Import from Settle Up" description="Bring a group over with its balances intact." href="/docs/guides/import-settle-up/" />
+</CardGrid>

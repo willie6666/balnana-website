@@ -226,7 +226,7 @@ Flutter 官方說明其 Web 輸出偏向互動 App，搜尋引擎不容易像一
 
 - App 品牌：`app/lib/ui/theme.dart`、`colors.dart`、`tokens.dart`、`app/web/icons/logo.svg`。
 - 功能/限制：README、`docs/PLAN.md`、`docs/SELF_HOSTING.md` 與對應實作。
-- 20 語系來源：`app/lib/l10n/app_*.arb`、`app_localizations.dart`；快照見 [locale-inventory.json](docs/locale-inventory.json)。
+- 20 語系來源：`app/lib/l10n/app_*.arb`、`app_localizations.dart`；快照見 [locale-inventory.json](dev-docs/locale-inventory.json)。
 - 既有示範截圖：`assets/screenshots/{expenses,balances,statistics,foreign}.png`，README 明確標示為虛構資料。
 - 2026-10-30 模擬器觀察：目前前景為 `me.devvillie.balnana`，畫面為 Group not found，不能直接用作首頁功能圖；未更動群組、語言或主題。後續重新連至專用 demo server 再補拍。
 - 沿用 App 字型需保留 OFL；沿用原碼/品牌素材需核對原專案 AGPL-3.0-only 與相關素材授權，網站自己的使用條款/隱私說明應描述網站實際行為。

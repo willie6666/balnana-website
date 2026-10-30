@@ -1,0 +1,54 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+---
+
+{/*
+  Starlight's provider, sharing the theme choice with the Flutter site
+  (localStorage "flutter.site.theme": "system" | "light" | "dark", JSON encoded).
+  Inlined to avoid a flash of the wrong theme.
+*/}
+<script is:inline>
+	window.StarlightThemeProvider = (() => {
+		const siteKey = 'flutter.site.theme';
+		try {
+			const site = JSON.parse(localStorage.getItem(siteKey) || 'null');
+			if (site === 'light' || site === 'dark') localStorage.setItem('starlight-theme', site);
+			else if (site === 'system') localStorage.removeItem('starlight-theme');
+		} catch {}
+		let storedTheme = null;
+		try {
+			storedTheme = localStorage.getItem('starlight-theme');
+		} catch {}
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		document.addEventListener('change', (event) => {
+			const select = event.target;
+			if (!(select instanceof HTMLSelectElement) || !select.closest('starlight-theme-select')) return;
+			try {
+				localStorage.setItem(siteKey, JSON.stringify(select.value === 'auto' ? 'system' : select.value));
+			} catch {}
+		});
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+					}
+				});
+			},
+		};
+	})();
+</script>
+
+<template id="theme-icons">
+	<Icon name="sun" class="light" />
+	<Icon name="moon" class="dark" />
+	<Icon name="laptop" class="auto" />
+</template>

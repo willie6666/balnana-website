@@ -1,5 +1,6 @@
 import 'package:balnana_website/app.dart';
 import 'package:balnana_website/core/preferences.dart';
+import 'package:balnana_website/design/components.dart';
 import 'package:balnana_website/design/theme.dart';
 import 'package:balnana_website/features/home/home_page.dart';
 import 'package:balnana_website/features/demo/demo_section.dart';
@@ -116,5 +117,26 @@ void main() {
     await tester.pumpAndSettle();
     expect(storage.getString('site.locale'), 'zh-Hant');
     expect(find.text('一起玩，\n輕鬆算清。'), findsOneWidget);
+  });
+  testWidgets('docs links are absolute and pick the translated docs', (tester) async {
+    final urls = <String, String>{};
+    for (final tag in ['en', 'de', 'zh', 'zh-Hant']) {
+      await tester.pumpWidget(
+        localized(
+          Builder(
+            builder: (context) {
+              urls[tag] = quickStartUrl(context);
+              return const SizedBox();
+            },
+          ),
+          tag,
+        ),
+      );
+    }
+    expect(Uri.parse(urls['en']!).path, '/docs/self-hosting/quick-start/');
+    expect(urls['de'], urls['en']);
+    expect(urls['zh'], urls['en']);
+    expect(Uri.parse(urls['zh-Hant']!).path, '/docs/zh-hant/self-hosting/quick-start/');
+    expect(Uri.parse(urls['en']!).hasScheme, isTrue);
   });
 }

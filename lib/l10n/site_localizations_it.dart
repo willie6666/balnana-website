@@ -22,6 +22,9 @@ class SiteLocalizationsIt extends SiteLocalizations {
   String get navFaq => 'FAQ';
 
   @override
+  String get navDocs => 'Documentazione';
+
+  @override
   String get heroEyebrow => 'OPEN SOURCE. SOTTO IL TUO CONTROLLO.';
 
   @override

@@ -22,6 +22,9 @@ class SiteLocalizationsId extends SiteLocalizations {
   String get navFaq => 'FAQ';
 
   @override
+  String get navDocs => 'Dokumentasi';
+
+  @override
   String get heroEyebrow => 'SUMBER TERBUKA. KENDALI DI TANGANMU.';
 
   @override

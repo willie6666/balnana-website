@@ -1,0 +1,63 @@
+---
+title: Quick start
+description: Start a Balnana server with Docker Compose and claim it with an administrator password.
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+Balnana is one server process and a PostgreSQL database. The repository ships a Docker Compose file that runs both, with the web app built in.
+
+## What you need
+
+- A machine with **Docker** and the **Compose plugin**.
+- A copy of the [Balnana repository](https://github.com/willie6666/balnana).
+
+## Start the server
+
+<Steps>
+
+1. Create your settings file from the example:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Open `.env` and set at least `POSTGRES_PASSWORD`. A long random value works well:
+
+   ```bash
+   openssl rand -hex 24
+   ```
+
+   Avoid `$` in the password, since Compose reads it as a variable, or write it as `$$`.
+
+3. Build and start everything:
+
+   ```bash
+   docker compose up -d --build
+   ```
+
+   Database migrations run automatically on startup.
+
+4. Open `http://localhost:8080`. Change the port with `BALNANA_PORT` in `.env`.
+
+</Steps>
+
+## Claim the server right away
+
+The first time anyone opens a new server, the app sends them to `/admin` to choose the administrator password. Do this straight after starting the server.
+
+Until the password is set, `/admin` also asks for a **setup code** that the server prints in its log, so a visitor who finds the server first cannot take it over:
+
+```bash
+docker compose logs balnana
+```
+
+<Aside type="tip">
+	Every setting is listed, with comments, in `.env.example`. Settings marked `[admin]` can also be changed later at `/admin` without restarting.
+</Aside>
+
+## Next steps
+
+- Running it for more than your own machine? Put it behind a [reverse proxy](/docs/self-hosting/reverse-proxy/).
+- Choose between [link mode and accounts](/docs/self-hosting/access-and-sign-in/).
+- [Connect the Android app](/docs/apps/connecting/) to your server.

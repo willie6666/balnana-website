@@ -1,0 +1,54 @@
+---
+// The wordmark goes back to the main site, as on the Flutter pages; "Docs" goes to the docs home.
+const { siteTitleHref, lang } = Astro.locals.starlightRoute;
+const zh = lang === 'zh-TW';
+---
+
+<div class="site-title sl-flex">
+	<a href={zh ? '/zh-Hant' : '/en'} class="brand sl-flex" aria-label={zh ? 'Balnana 首頁' : 'Balnana home'}>
+		<svg viewBox="0 0 72 72" aria-hidden="true">
+			<circle cx="36" cy="36" r="36" fill="#E8A800"></circle>
+			<path d="M32.5 63.131A24 24 0 0 1 32.5 15.131Z" fill="#3A2C00"></path>
+			<path d="M39.5 9.131A24 24 0 0 1 39.5 57.131Z" fill="#3A2C00"></path>
+		</svg>
+		<span translate="no">balnana</span>
+	</a>
+	<a href={siteTitleHref} class="docs">{zh ? '文件' : 'Docs'}</a>
+</div>
+
+<style>
+	.site-title {
+		align-items: center;
+		gap: 0.75rem;
+		min-width: 0;
+	}
+	.brand {
+		align-items: center;
+		gap: 0.6rem;
+		color: var(--sl-color-white);
+		text-decoration: none;
+	}
+	svg {
+		width: 2.1rem;
+		height: 2.1rem;
+		flex: none;
+	}
+	.brand span {
+		font-size: 1.45rem;
+		font-weight: 800;
+		letter-spacing: -0.06em;
+	}
+	.docs {
+		padding: 0.3rem 0.8rem;
+		border-radius: 999px;
+		background: var(--sl-color-accent-low);
+		color: var(--sl-color-text-accent);
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+	.docs:hover {
+		color: var(--sl-color-white);
+	}
+</style>

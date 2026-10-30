@@ -22,6 +22,9 @@ class SiteLocalizationsTh extends SiteLocalizations {
   String get navFaq => 'คำถาม';
 
   @override
+  String get navDocs => 'เอกสาร';
+
+  @override
   String get heroEyebrow => 'โอเพนซอร์ส คุณเป็นผู้ดูแล';
 
   @override

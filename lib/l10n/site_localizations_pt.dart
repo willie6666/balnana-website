@@ -22,6 +22,9 @@ class SiteLocalizationsPt extends SiteLocalizations {
   String get navFaq => 'Perguntas';
 
   @override
+  String get navDocs => 'Documentação';
+
+  @override
   String get heroEyebrow => 'CÓDIGO ABERTO. SOB O TEU CONTROLO.';
 
   @override

@@ -22,6 +22,9 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get navFaq => '常见问题';
 
   @override
+  String get navDocs => '文档';
+
+  @override
   String get heroEyebrow => '开源自由，由你掌握。';
 
   @override
@@ -305,6 +308,9 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
 
   @override
   String get navFaq => '常見問題';
+
+  @override
+  String get navDocs => '文件';
 
   @override
   String get heroEyebrow => '開源自由，由你掌握。';

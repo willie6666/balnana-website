@@ -22,6 +22,9 @@ class SiteLocalizationsAr extends SiteLocalizations {
   String get navFaq => 'الأسئلة';
 
   @override
+  String get navDocs => 'التوثيق';
+
+  @override
   String get heroEyebrow => 'مفتوح المصدر. تحت سيطرتك.';
 
   @override

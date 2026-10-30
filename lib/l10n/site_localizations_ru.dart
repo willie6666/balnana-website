@@ -22,6 +22,9 @@ class SiteLocalizationsRu extends SiteLocalizations {
   String get navFaq => 'Вопросы';
 
   @override
+  String get navDocs => 'Документация';
+
+  @override
   String get heroEyebrow => 'ОТКРЫТЫЙ КОД. ВАШ КОНТРОЛЬ.';
 
   @override

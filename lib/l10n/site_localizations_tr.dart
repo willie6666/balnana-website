@@ -22,6 +22,9 @@ class SiteLocalizationsTr extends SiteLocalizations {
   String get navFaq => 'SSS';
 
   @override
+  String get navDocs => 'Belgeler';
+
+  @override
   String get heroEyebrow => 'AÇIK KAYNAK. KONTROL SENDE.';
 
   @override

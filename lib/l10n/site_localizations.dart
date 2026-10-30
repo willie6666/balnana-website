@@ -155,6 +155,12 @@ abstract class SiteLocalizations {
   /// **'FAQ'**
   String get navFaq;
 
+  /// Official website: short navigation label for the documentation site at /docs.
+  ///
+  /// In en, this message translates to:
+  /// **'Docs'**
+  String get navDocs;
+
   /// Official website: heroEyebrow. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:

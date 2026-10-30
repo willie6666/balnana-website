@@ -22,6 +22,9 @@ class SiteLocalizationsDe extends SiteLocalizations {
   String get navFaq => 'FAQ';
 
   @override
+  String get navDocs => 'Doku';
+
+  @override
   String get heroEyebrow => 'OPEN SOURCE. IN DEINER HAND.';
 
   @override

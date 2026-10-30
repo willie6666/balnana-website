@@ -22,6 +22,9 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get navFaq => 'FAQ';
 
   @override
+  String get navDocs => 'Docs';
+
+  @override
   String get heroEyebrow => 'OPEN SOURCE. YOURS TO RUN.';
 
   @override

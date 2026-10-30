@@ -7,8 +7,17 @@ import '../core/preferences.dart';
 import 'theme.dart';
 
 const sourceUrl = 'https://github.com/willie6666/balnana';
-const setupUrl = '$sourceUrl/blob/main/docs/SELF_HOSTING.md';
 const memberNames = ['Alex', 'Jamie', 'Morgan', 'Sam'];
+
+/// The Starlight docs live beside the app under /docs; only Traditional Chinese is translated.
+///
+/// The address is absolute so [Link] loads the page instead of pushing an app route.
+String docsUrl(BuildContext context, [String page = '']) {
+  final zh = Localizations.localeOf(context).toLanguageTag() == 'zh-Hant';
+  return Uri.base.resolve('/docs/${zh ? 'zh-hant/' : ''}$page').toString();
+}
+
+String quickStartUrl(BuildContext context) => docsUrl(context, 'self-hosting/quick-start/');
 
 class BrandMark extends StatelessWidget {
   const BrandMark({super.key, this.size = 42});
@@ -83,16 +92,16 @@ class Eyebrow extends StatelessWidget {
   final bool filled;
   @override
   Widget build(BuildContext context) => Container(
-    padding: filled ? const EdgeInsets.symmetric(horizontal: 14, vertical: 9) : EdgeInsets.zero,
+    padding: filled ? const EdgeInsets.symmetric(horizontal: 16, vertical: 10) : EdgeInsets.zero,
     decoration: filled
         ? BoxDecoration(color: context.c.primaryContainer, borderRadius: BorderRadius.circular(40))
         : null,
     child: Text(
       text,
       style: TextStyle(
-        fontSize: 11,
+        fontSize: 13,
         fontWeight: FontWeight.w800,
-        letterSpacing: 1.8,
+        letterSpacing: 1.6,
         color: filled ? context.c.onPrimaryContainer : context.c.primary,
       ),
     ),
@@ -112,19 +121,19 @@ class SectionTitle extends StatelessWidget {
       Text(
         title,
         style: TextStyle(
-          fontSize: MediaQuery.sizeOf(context).width < 600 ? 35 : 49,
-          height: 1.18,
+          fontSize: MediaQuery.sizeOf(context).width < 600 ? 38 : 56,
+          height: 1.15,
           fontWeight: FontWeight.w800,
-          letterSpacing: -1.8,
+          letterSpacing: -2,
         ),
       ),
       if (subtitle != null) ...[
         const SizedBox(height: 20),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 600),
+          constraints: const BoxConstraints(maxWidth: 660),
           child: Text(
             subtitle!,
-            style: TextStyle(fontSize: 17, height: 1.75, color: context.c.onSurfaceVariant),
+            style: TextStyle(fontSize: 19, height: 1.7, color: context.c.onSurfaceVariant),
           ),
         ),
       ],
@@ -137,7 +146,7 @@ class Panel extends StatelessWidget {
     super.key,
     required this.child,
     this.color,
-    this.padding = const EdgeInsets.all(30),
+    this.padding = const EdgeInsets.all(34),
   });
   final Widget child;
   final Color? color;
@@ -148,7 +157,7 @@ class Panel extends StatelessWidget {
     padding: padding,
     decoration: BoxDecoration(
       color: color ?? context.c.surfaceContainer,
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(32),
     ),
     child: child,
   );
@@ -176,26 +185,30 @@ class ExternalButton extends StatelessWidget {
     required this.url,
     this.filled = false,
     this.icon = Icons.north_east_rounded,
+    this.newTab = true,
   });
   final String label;
   final String url;
   final bool filled;
   final IconData icon;
+
+  /// Our own pages, such as the docs, open in the same tab.
+  final bool newTab;
   @override
   Widget build(BuildContext context) => Link(
     uri: Uri.parse(url),
-    target: LinkTarget.blank,
+    target: newTab ? LinkTarget.blank : LinkTarget.self,
     builder: (context, follow) => filled
         ? FilledButton.icon(
             onPressed: follow,
             label: Text(label),
-            icon: Icon(icon, size: 18),
+            icon: Icon(icon, size: 19),
             iconAlignment: IconAlignment.end,
           )
         : TextButton.icon(
             onPressed: follow,
             label: Text(label),
-            icon: Icon(icon, size: 17),
+            icon: Icon(icon, size: 18),
             iconAlignment: IconAlignment.end,
           ),
   );

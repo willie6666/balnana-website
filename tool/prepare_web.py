@@ -54,7 +54,10 @@ def prepare(site_url=None, output=None):
     if site_url:
         urls=''.join(f'<url><loc>{html.escape(site_url)}/{tag}</loc></url>' for tag in locales)
         (output/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls+'</urlset>')
-        (output/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n')
+        sitemaps=[f'{site_url}/sitemap.xml']
+        if (output/'docs/sitemap-index.xml').is_file():
+            sitemaps.append(f'{site_url}/docs/sitemap-index.xml')
+        (output/'robots.txt').write_text('User-agent: *\nAllow: /\n'+''.join(f'Sitemap: {url}\n' for url in sitemaps))
     else:
         (output/'robots.txt').write_text('User-agent: *\nDisallow: /\n')
         (output/'sitemap.xml').unlink(missing_ok=True)

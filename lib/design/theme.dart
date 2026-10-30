@@ -25,12 +25,12 @@ ThemeData siteTheme(Brightness brightness) {
       style: FilledButton.styleFrom(
         backgroundColor: banana,
         foregroundColor: const Color(0xFF352900),
-        minimumSize: const Size(48, 54),
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        minimumSize: const Size(48, 56),
+        padding: const EdgeInsets.symmetric(horizontal: 28),
         textStyle: const TextStyle(
           fontFamily: 'PlusJakartaSans',
           fontWeight: FontWeight.w700,
-          fontSize: 15,
+          fontSize: 16,
         ),
       ),
     ),
@@ -39,7 +39,11 @@ ThemeData siteTheme(Brightness brightness) {
         foregroundColor: scheme.onSurface,
         minimumSize: const Size(48, 48),
         padding: const EdgeInsets.symmetric(horizontal: 18),
-        textStyle: const TextStyle(fontFamily: 'PlusJakartaSans', fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(
+          fontFamily: 'PlusJakartaSans',
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+        ),
       ),
     ),
     iconButtonTheme: IconButtonThemeData(

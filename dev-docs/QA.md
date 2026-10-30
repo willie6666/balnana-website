@@ -29,7 +29,7 @@ Verified in the Codex in-app browser against the release build:
 - The hosting band stays visually distinct from the page in dark mode.
 - Entering `12.5` in the German EUR scenario is read as 12,50 € (Alex receives 9,37 €).
 
-Saved captures are in `docs/qa/`. They show the actual Flutter application, not the original SVG concepts.
+Saved captures are in `dev-docs/qa/`. They show the actual Flutter application, not the original SVG concepts.
 
 ## Remaining verification scope
 

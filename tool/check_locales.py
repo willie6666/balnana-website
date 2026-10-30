@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 files=list((ROOT/'lib/l10n').glob('*.arb'))
 base=json.loads((ROOT/'lib/l10n/site_en.arb').read_text())
 keys={key for key in base if not key.startswith('@')}
-expected={entry['app_locale'] for entry in json.loads((ROOT/'docs/locale-inventory.json').read_text())['locales']}
+expected={entry['app_locale'] for entry in json.loads((ROOT/'dev-docs/locale-inventory.json').read_text())['locales']}
 actual=set()
 for file in files:
     data=json.loads(file.read_text())

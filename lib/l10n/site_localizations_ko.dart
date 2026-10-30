@@ -22,6 +22,9 @@ class SiteLocalizationsKo extends SiteLocalizations {
   String get navFaq => '자주 묻는 질문';
 
   @override
+  String get navDocs => '문서';
+
+  @override
   String get heroEyebrow => '오픈 소스. 관리는 내 손에.';
 
   @override

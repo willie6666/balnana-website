@@ -4,6 +4,7 @@
   "navDemo": "Try it out",
   "navHosting": "Self-host",
   "navFaq": "FAQ",
+  "navDocs": "Docs",
   "heroEyebrow": "OPEN SOURCE. YOURS TO RUN.",
   "heroTitle": "Good times.\nClear balances.",
   "heroBody": "Trips, dinners, everyday life. Keep shared expenses clear and your group's data on a server you own.",
@@ -369,6 +370,9 @@
   },
   "@navFaq": {
     "description": "Official website: short navigation label for the FAQ section."
+  },
+  "@navDocs": {
+    "description": "Official website: short navigation label for the documentation site at /docs."
   },
   "@morePayments": {
     "description": "Official website: shown after the first suggested payment when more are hidden.",

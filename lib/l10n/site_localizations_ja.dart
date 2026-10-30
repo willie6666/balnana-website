@@ -22,6 +22,9 @@ class SiteLocalizationsJa extends SiteLocalizations {
   String get navFaq => 'よくある質問';
 
   @override
+  String get navDocs => 'ドキュメント';
+
+  @override
   String get heroEyebrow => 'オープンソース。管理はあなたに。';
 
   @override

@@ -1,10 +1,10 @@
 # Deploying to Cloudflare Pages
 
-This is a static Flutter website. It does not include the Balnana Go server or PostgreSQL database.
+This is a static Flutter website with Starlight docs under `/docs`. It does not include the Balnana Go server or PostgreSQL database.
 
 ## Build
 
-Use Flutter 3.47.8 (Dart 3.13.7). From the project root:
+Use Flutter 3.47.8 (Dart 3.13.7) and Node.js 22.12 or later. From the project root:
 
 ```bash
 flutter pub get
@@ -15,9 +15,9 @@ flutter test
 SITE_URL=https://your-real-domain.example bash tool/build.sh
 ```
 
-Replace the example origin with the actual production origin. Do not publish using an example domain. `SITE_URL` must be a root origin, without a subpath or credentials. The output is `build/web`.
+`tool/build.sh` also runs `npm ci` and builds `docs-site/` into `build/web/docs`. Replace the example origin with the actual production origin. Do not publish using an example domain. `SITE_URL` must be a root origin, without a subpath or credentials. The output is `build/web`.
 
-Without `SITE_URL`, the build intentionally emits `noindex` entry documents and a disallowing robots.txt for previews. With the origin, it generates localized title/description, canonical URLs, 20 hreflang entries plus x-default, Open Graph, sitemap.xml and robots.txt. The website's visible interface is Flutter; this metadata does not make its full body content reliably indexable.
+Without `SITE_URL`, the build intentionally emits `noindex` entry documents and a disallowing robots.txt for previews. The docs follow the same rule: without `SITE_URL` every page carries `noindex`; with it they get canonical URLs and `/docs/sitemap-index.xml`, which robots.txt lists. With the origin, it also generates localized title/description, canonical URLs, 20 hreflang entries plus x-default, Open Graph, sitemap.xml and robots.txt. The website's visible interface is Flutter; this metadata does not make its full body content reliably indexable.
 
 ## Pages project
 
@@ -36,16 +36,17 @@ Cloudflare says a Direct Upload project cannot later be switched directly to Git
 ## Routing and caching
 
 - The website is hosted at `/`, with locale routes such as `/en` and `/zh-Hant`.
+- The docs are plain static pages under `/docs/` (English) and `/docs/zh-hant/` (Traditional Chinese). Pages serves each directory's `index.html` and redirects `/docs` to `/docs/`; the Flutter router never sees these paths.
 - Every locale has an actual `<tag>.html` document (served at `/<tag>` without a trailing-slash redirect) so share crawlers can read metadata before Flutter starts.
-- Pages SPA fallback handles remaining extensionless routes when there is no top-level `404.html`. The Flutter router then displays its own not-found page for unknown paths.
+- Pages SPA fallback handles remaining extensionless routes when there is no top-level `404.html` (the docs' own `404.html` sits under `/docs/`). The Flutter router then displays its own not-found page for unknown paths.
 - This SPA fallback may return HTTP 200 for unknown paths. If HTTP-level 404 responses become a requirement, add and test an explicit edge routing strategy.
-- Keep Pages default caching. Do not mark unhashed HTML or JavaScript as permanently immutable.
+- Keep Pages default caching. Do not mark unhashed HTML or JavaScript as permanently immutable. The only exception is `/docs/_astro/*`, whose file names carry content hashes.
 - The bundled `_headers` configures MIME sniffing, referrer policy and disables camera/microphone/geolocation permissions, which this marketing site does not use.
 - Flutter engine resources are bundled by `--no-web-resources-cdn`. Font fallback for scripts missing from the bundled Latin font may still request Flutter's Google-hosted fallback fonts.
 
 ## Prelaunch verification
 
-Check the real domain, locale deep links and browser refresh, theme persistence, mobile demo inputs, screenshot enlargement, FAQ expansion, GitHub/setup links, social-preview.png, robots.txt and sitemap.xml. Test a second deployment for stale caches. Preview deployments should stay noindex; production should use the final canonical origin.
+Check the real domain, locale deep links and browser refresh, theme persistence, mobile demo inputs, screenshot enlargement, FAQ expansion, GitHub/setup links, social-preview.png, robots.txt and sitemap.xml, plus `/docs/`, its search, its language switch and the theme shared with the homepage. Test a second deployment for stale caches. Preview deployments should stay noindex; production should use the final canonical origin.
 
 The translations have complete key coverage, but still benefit from native-speaker review. Accessibility and performance have targeted tests; a full screen-reader audit and an iOS/Safari browser pass remain follow-up work.
 

@@ -1,4 +1,6 @@
-"""Local static preview with the same extensionless SPA fallback as Pages."""
+"""Local static preview with the same extensionless SPA fallback as Pages.
+
+Directories with an index.html, such as the docs under /docs/, are served as they are."""
 import argparse
 import os
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer

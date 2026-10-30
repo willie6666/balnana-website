@@ -22,6 +22,9 @@ class SiteLocalizationsHi extends SiteLocalizations {
   String get navFaq => 'सवाल-जवाब';
 
   @override
+  String get navDocs => 'दस्तावेज़';
+
+  @override
   String get heroEyebrow => 'ओपन सोर्स। नियंत्रण आपका।';
 
   @override

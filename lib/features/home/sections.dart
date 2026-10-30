@@ -19,22 +19,22 @@ class BenefitsSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(icon, size: 34, color: context.c.primary),
+                Icon(icon, size: 38, color: context.c.primary),
                 const SizedBox(height: 28),
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -.7,
+                    fontSize: 29,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -.8,
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 16),
                 Text(
                   body,
                   style: TextStyle(
-                    fontSize: 16,
-                    height: 1.8,
+                    fontSize: 18,
+                    height: 1.7,
                     color: warm ? context.c.onPrimaryContainer : context.c.onSurfaceVariant,
                   ),
                 ),
@@ -66,9 +66,14 @@ class BenefitsSection extends StatelessWidget {
                           (t) => Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.check_rounded, size: 16, color: context.c.primary),
+                              Icon(Icons.check_rounded, size: 18, color: context.c.primary),
                               const SizedBox(width: 6),
-                              Flexible(child: Text(t, style: const TextStyle(fontSize: 13))),
+                              Flexible(
+                                child: Text(
+                                  t,
+                                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                                ),
+                              ),
                             ],
                           ),
                         )
@@ -155,7 +160,7 @@ class _TravelSectionState extends State<TravelSection> {
             ),
             Padding(
               padding: const EdgeInsets.all(18),
-              child: Text(context.l.screenshotsNote, style: const TextStyle(fontSize: 11)),
+              child: Text(context.l.screenshotsNote, style: const TextStyle(fontSize: 13)),
             ),
           ],
         ),
@@ -201,7 +206,7 @@ class _TravelSectionState extends State<TravelSection> {
         ),
       ),
       const SizedBox(height: 22),
-      Text(label, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
+      Text(label, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
     ],
   );
 
@@ -259,7 +264,7 @@ class _TravelSectionState extends State<TravelSection> {
         Center(
           child: Text(
             context.l.screenshotsNote,
-            style: TextStyle(fontSize: 11, color: context.c.onSurfaceVariant),
+            style: TextStyle(fontSize: 13, color: context.c.onSurfaceVariant),
             textAlign: TextAlign.center,
           ),
         ),
@@ -276,7 +281,11 @@ class ExtraFeatures extends StatelessWidget {
     children: [
       Text(
         context.l.extraTitle,
-        style: const TextStyle(fontSize: 29, fontWeight: FontWeight.w800, letterSpacing: -1),
+        style: TextStyle(
+          fontSize: MediaQuery.sizeOf(context).width < 600 ? 30 : 36,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -1.2,
+        ),
       ),
       const SizedBox(height: 38),
       LayoutBuilder(
@@ -311,24 +320,24 @@ class ExtraFeatures extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(13),
+                              padding: const EdgeInsets.all(14),
                               decoration: BoxDecoration(
-                                color: context.c.surfaceContainer,
-                                borderRadius: BorderRadius.circular(16),
+                                color: context.c.primaryContainer,
+                                borderRadius: BorderRadius.circular(18),
                               ),
-                              child: Icon(item.$1, size: 23, color: context.c.primary),
+                              child: Icon(item.$1, size: 26, color: context.c.primary),
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 22),
                             Text(
                               item.$2,
-                              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                             ),
                             const SizedBox(height: 12),
                             Text(
                               item.$3,
                               style: TextStyle(
-                                fontSize: 14,
-                                height: 1.8,
+                                fontSize: 16,
+                                height: 1.75,
                                 color: context.c.onSurfaceVariant,
                               ),
                             ),
@@ -374,7 +383,13 @@ class HostingSection extends StatelessWidget {
                       subtitle: context.l.hostingBody,
                     ),
                     const SizedBox(height: 24),
-                    ExternalButton(label: context.l.hostingLink, url: setupUrl, filled: true),
+                    ExternalButton(
+                      label: context.l.hostingLink,
+                      url: quickStartUrl(context),
+                      filled: true,
+                      icon: Icons.arrow_forward_rounded,
+                      newTab: false,
+                    ),
                   ],
                 );
                 final diagram = Panel(
@@ -425,8 +440,8 @@ class HostingSection extends StatelessWidget {
                       Text(
                         context.l.hostingModeLink,
                         style: TextStyle(
-                          fontSize: 13,
-                          height: 1.8,
+                          fontSize: 15,
+                          height: 1.75,
                           color: context.c.onSurfaceVariant,
                         ),
                       ),
@@ -434,8 +449,8 @@ class HostingSection extends StatelessWidget {
                       Text(
                         context.l.hostingModeAccounts,
                         style: TextStyle(
-                          fontSize: 13,
-                          height: 1.8,
+                          fontSize: 15,
+                          height: 1.75,
                           color: context.c.onSurfaceVariant,
                         ),
                       ),
@@ -481,13 +496,13 @@ class FaqSection extends StatelessWidget {
                 border: Border(bottom: BorderSide(color: context.c.outlineVariant)),
               ),
               child: ExpansionTile(
-                tilePadding: const EdgeInsets.symmetric(vertical: 10),
+                tilePadding: const EdgeInsets.symmetric(vertical: 12),
                 childrenPadding: const EdgeInsets.only(bottom: 24),
                 shape: const Border(),
                 collapsedShape: const Border(),
                 title: Text(
                   pair.$1,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 children: [
                   Align(
@@ -495,8 +510,8 @@ class FaqSection extends StatelessWidget {
                     child: Text(
                       pair.$2,
                       style: TextStyle(
-                        fontSize: 14,
-                        height: 1.9,
+                        fontSize: 17,
+                        height: 1.8,
                         color: context.c.onSurfaceVariant,
                       ),
                     ),
@@ -538,7 +553,7 @@ class EndSection extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: context.c.onPrimaryContainer,
-            fontSize: MediaQuery.sizeOf(context).width < 600 ? 36 : 55,
+            fontSize: MediaQuery.sizeOf(context).width < 600 ? 40 : 62,
             fontWeight: FontWeight.w800,
             height: 1.2,
             letterSpacing: -1.8,
@@ -548,7 +563,7 @@ class EndSection extends StatelessWidget {
         Text(
           context.l.endBody,
           textAlign: TextAlign.center,
-          style: TextStyle(color: context.c.onPrimaryContainer, height: 1.8, fontSize: 16),
+          style: TextStyle(color: context.c.onPrimaryContainer, height: 1.7, fontSize: 19),
         ),
         const SizedBox(height: 28),
         Wrap(
@@ -556,7 +571,13 @@ class EndSection extends StatelessWidget {
           runSpacing: 12,
           alignment: WrapAlignment.center,
           children: [
-            ExternalButton(label: context.l.selfHost, url: setupUrl, filled: true),
+            ExternalButton(
+              label: context.l.selfHost,
+              url: quickStartUrl(context),
+              filled: true,
+              icon: Icons.arrow_forward_rounded,
+              newTab: false,
+            ),
             ExternalButton(label: context.l.github, url: sourceUrl, icon: Icons.code_rounded),
           ],
         ),
@@ -577,13 +598,22 @@ class SiteFooter extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           const Brand(small: true),
+          ExternalButton(
+            label: context.l.navDocs,
+            url: docsUrl(context),
+            icon: Icons.menu_book_outlined,
+            newTab: false,
+          ),
           ExternalButton(label: context.l.github, url: sourceUrl, icon: Icons.code_rounded),
           ExternalButton(label: context.l.reportIssue, url: '$sourceUrl/issues'),
           const ExternalButton(label: 'AGPL-3.0', url: '$sourceUrl/blob/main/LICENSE'),
         ],
       ),
       const SizedBox(height: 22),
-      Text(context.l.footerNote, style: TextStyle(color: context.c.onSurfaceVariant, fontSize: 12)),
+      Text(
+        context.l.footerNote,
+        style: TextStyle(color: context.c.onSurfaceVariant, fontSize: 14, height: 1.6),
+      ),
     ],
   );
 }

@@ -209,7 +209,7 @@ for path in sorted((SOURCE/'app/lib/l10n').glob('*.arb')):
     inventory.append(dict(app_locale=locale, web_tag=locale.replace('_','-'),
                           endonym=data['languageEndonym'],
                           message_count=len([k for k in data if not k.startswith('@')])))
-(ROOT.parent/'docs/locale-inventory.json').write_text(json.dumps(dict(
+(ROOT.parent/'dev-docs/locale-inventory.json').write_text(json.dumps(dict(
     inspected_on='2026-10-30', source_project=str(SOURCE), source_commit='c869ad9',
     locale_count=len(inventory), locales=inventory), ensure_ascii=False, indent=2)+'\n')
 print('Generated three SVG concepts and the locale inventory.')

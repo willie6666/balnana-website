@@ -22,6 +22,9 @@ class SiteLocalizationsVi extends SiteLocalizations {
   String get navFaq => 'Hỏi đáp';
 
   @override
+  String get navDocs => 'Tài liệu';
+
+  @override
   String get heroEyebrow => 'MÃ NGUỒN MỞ. BẠN LÀM CHỦ.';
 
   @override
