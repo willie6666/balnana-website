@@ -1,106 +1,106 @@
-# Balnana 官方網站設計計畫
+# Balnana Official Website Design Plan
 
-日期：2026-10-30 · 本文件保留原始設計提案。Flutter 官網已開始實作，最新功能、驗證與執行方式見 [README](README.md)；尚未部署。
+Date: 2026-10-30 · This document preserves the original design proposal. The Flutter website is now being implemented; see the [README](README.md) for the latest features, verification, and how to run it. Nothing is deployed yet.
 
-研究來源：`/home/willie/storage/balnana`，commit `c869ad9`。本計畫以 README、實作程式、`docs/DESIGN.md`、`docs/PLAN.md`、ARB 語言檔與既有 Android 示範截圖為依據。
+Research source: `/home/willie/storage/balnana`, commit `c869ad9`. This plan is based on the README, the implementation code, `docs/DESIGN.md`, `docs/PLAN.md`, the ARB language files, and the existing Android demo screenshots.
 
-## 1. 目標與定位
+## 1. Goals and positioning
 
-讓第一次認識 Balnana 的人，在第一屏理解三件事：這是團體分帳工具、可以減少結算時的轉帳、資料放在自己管理的伺服器。
+On the first screen, someone new to Balnana should understand three things: it is a group expense-splitting tool, it reduces the number of transfers needed to settle up, and the data lives on a server the group manages.
 
-優先使用情境：朋友旅行、室友合租、聚餐與日常共同開銷。第二層受眾是想為朋友或家庭自行架設服務的人。
+Primary use cases: friends traveling together, housemates sharing rent, dining out, and everyday shared expenses. The secondary audience is people who want to self-host the service for friends or family.
 
-建議品牌主張：
+Suggested brand statement:
 
-> **一起玩，輕鬆算清。**
+> **Good times. Clear balances.**
 >
-> 旅行、聚餐、合租，讓 Balnana 整理共同開銷、算清彼此餘額。
-> 分帳更輕鬆，資料也由你掌握。
+> Trips, dinners, shared housing: Balnana keeps shared expenses organized and balances clear.
+> Splitting gets easier, and the data stays in your hands.
 
-英文方向：**Good times. Clear balances.**
+The Traditional Chinese tagline is 一起玩，輕鬆算清。
 
-目標是讓訪客願意操作分帳示範，再了解如何自行架設與取得 App。專案目前 README 標示為早期開發、準備首次發佈；首次官網應如實標示開發狀態。
+The goal is to get visitors to try the splitting demo, then learn how to self-host and get the app. The project README currently describes it as early development, preparing for a first release; the first version of the site should state the development status honestly.
 
-## 2. 視覺方向：Warm balance
+## 2. Visual direction: Warm balance
 
-保留 App 的品牌辨識，轉成適合網頁的大尺度排版。
+Keep the app's brand identity and turn it into large-scale web typography.
 
-| 元素 | 設計規則 |
+| Element | Design rule |
 | --- | --- |
-| 主色 | 沿用香蕉黃 seed `#E8A800`，重點放在主按鈕、選取狀態與圖形 |
-| 淺色 | 暖白背景、米色層次、深褐黑文字，避免滿版高飽和黃 |
-| 深色 | 暖炭黑背景、低明度表面、柔和金黃重點；依 App 暗色方案產生色階 |
-| 字型 | 沿用 Plus Jakarta Sans；中文與其他文字系統補適當 fallback |
-| 造型 | 16 / 24 / 32 圓角、膠囊按鈕、圓形人物 initials、清楚的數字 |
-| 語意色 | 沿用應收綠、應付紅；同時有正負號與文字說明 |
-| 留白 | 桌面較大段落間距；內容寬約 1200px，長文閱讀欄約 720px |
-| 品牌圖形 | 從原有 Logo 的雙半圓延伸成香蕉弧線，串連「支出 → 餘額 → 結清」 |
-| 圖像 | 真實介面與示範資料為主；重點人物用 App 的 initials 圓形頭像 |
+| Primary color | Keep the banana yellow seed `#E8A800`, used for primary buttons, selected states, and graphics |
+| Light | Warm white background, beige layers, dark brown-black text; avoid full-bleed saturated yellow |
+| Dark | Warm charcoal background, low-lightness surfaces, soft golden accents; derive the tonal steps from the app's dark scheme |
+| Typeface | Keep Plus Jakarta Sans; add suitable fallbacks for Chinese and other scripts |
+| Shapes | 16 / 24 / 32 corner radii, pill buttons, circular person initials, clear numerals |
+| Semantic colors | Keep the green for receivable and red for payable, always paired with a sign and a text description |
+| Whitespace | Larger section spacing on desktop; content about 1200px wide, long-form reading column about 720px |
+| Brand graphic | Extend the logo's double semicircle into a banana arc that connects "expense → balance → settled" |
+| Imagery | Real UI and demo data first; key people use the app's circular initials avatars |
 
-概念稿：
+Concept mockups:
 
-- [桌面淺色](design/home-desktop-light.png)
-- [桌面深色](design/home-desktop-dark.png)
-- [手機版](design/home-mobile.png)
+- [Desktop light](design/home-desktop-light.png)
+- [Desktop dark](design/home-desktop-dark.png)
+- [Mobile](design/home-mobile.png)
 
-這些是靜態方向稿，文案、數字與卡片供評估視覺層次；不是已完成的 Flutter 元件。稿上的深色卡片是依 App 風格繪製的官網示範，不是實機深色截圖。顏色與字型 fallback 在 Flutter 第一版再與真實主題逐項比對。
+These are static direction studies. Their copy, numbers, and cards are for evaluating visual hierarchy; they are not finished Flutter components. The dark cards in the mockups are website demos drawn in the app's style, not real dark-mode device screenshots. Colors and font fallbacks will be compared item by item against the real theme in the first Flutter version.
 
-## 3. 首頁內容與互動
+## 3. Homepage content and interaction
 
-| 順序 | 區塊 | 內容與目的 |
+| Order | Section | Content and purpose |
 | --- | --- | --- |
-| 1 | 頂部導覽 | Logo、功能、分帳示範、自行架設、GitHub、語言、外觀；手機保留語言/外觀入口，其餘收進選單 |
-| 2 | Hero | 大標題、簡短說明；主 CTA「體驗分帳」移至本頁互動示範，次 CTA「自行架設」移至架設區 |
-| 3 | 信任資訊列 | 開源、自行架設、無 App 廣告；Android + Web；開發中標記放在 CTA 附近 |
-| 4 | 情境式分帳示範 | 旅行 / 合租 / 聚餐切換；呈現支出、各人餘額、建議轉帳。訪客可改一個付款人或金額，看結果更新 |
-| 5 | 三個主要優點 | 彈性分攤、清楚結算、資料自主管理；用不同寬度的展示面板，避免重複小卡堆疊 |
-| 6 | 一起去旅行 | 以京都週末為故事：支出列表、不同幣別、分類統計；桌面圖文交錯、手機垂直排列 |
-| 7 | 完整功能 | 多人付款、等分/指定金額/份數、週期性支出、收據與地點、即時更新、匯入匯出 |
-| 8 | 你的群組，你的伺服器 | 簡圖說明 Android / Web 連至自己的 Balnana 伺服器；區分免註冊連結模式與帳號模式 |
-| 9 | 開始使用 | 一般使用者加入已架設服務；自行架設者開啟完整文件。首次上線以原始碼/架設文件為真實目的地 |
-| 10 | FAQ | 是否需帳號、能否離線、匯率如何處理、是否免費、是否支援 iOS、官網與資料伺服器的關係 |
-| 11 | Footer | 原始碼、問題回報、架設說明、授權資訊、專案狀態 |
+| 1 | Top navigation | Logo, Features, Split demo, Self-host, GitHub, language, appearance; on mobile keep language/appearance access and fold the rest into a menu |
+| 2 | Hero | Large headline and a short description; the primary CTA "Try splitting" jumps to the interactive demo on this page, and the secondary CTA "Self-host" jumps to the self-hosting section |
+| 3 | Trust strip | Open source, self-hostable, no app ads; Android + Web; the in-development marker sits near the CTA |
+| 4 | Scenario-based splitting demo | Switch between travel / housemates / dining; shows expenses, each person's balance, and suggested transfers. Visitors can change one payer or amount and watch the result update |
+| 5 | Three main benefits | Flexible splitting, clear settlement, data under your control; use display panels of different widths to avoid a stack of repeated small cards |
+| 6 | Traveling together | Tell the story of a Kyoto weekend: expense list, different currencies, category statistics; alternating image and text on desktop, vertical on mobile |
+| 7 | Full features | Multiple payers, equal / exact amount / shares splitting, recurring expenses, receipts and locations, live updates, import and export |
+| 8 | Your group, your server | A simple diagram of Android / Web connecting to your own Balnana server; distinguishes the no-signup link mode from the account mode |
+| 9 | Get started | Regular users join an already hosted service; self-hosters open the full docs. For the first launch, the source code and self-hosting docs are the real destinations |
+| 10 | FAQ | Is an account required, does it work offline, how are exchange rates handled, is it free, is iOS supported, how the website relates to the data server |
+| 11 | Footer | Source code, issue reporting, self-hosting guide, license information, project status |
 
-### 展示的創意細節
+### Creative details to show
 
-- **帳目收攏動態**：用人物間的弧線轉換為建議付款路徑，視覺化結算。只表達此示範的付款關係，不暗示演算法保證數學最少筆數。
-- **情境一起換**：切換旅行/合租/聚餐時，更換帳本名稱、分類、幣別與文案，維持同一套操作方式。
-- **主題即時預覽**：切換網站深淺色時，Flutter 繪製的展示卡同步變色；真實截圖若無對應暗色版，保留真實外觀並註明。
-- **幣別小故事**：原始 USD 支出與 JPY 入帳並排，以實際填入的匯率/入帳金額解釋，不做即時匯率假象。
-- **輕微入場**：150 / 300 / 450ms 為基礎；不用持續旋轉、強制視差或捲動劫持。遵循系統減少動畫設定。
+- **Balances converging**: arcs between people turn into suggested payment paths, visualizing settlement. It only expresses the payment relationships in this demo and does not imply the algorithm guarantees the mathematically minimal number of transfers.
+- **Scenarios switch together**: switching travel / housemates / dining changes the ledger name, categories, currency, and copy while keeping the same interaction.
+- **Live theme preview**: when the site switches between light and dark, the Flutter-drawn demo cards change color too; real screenshots without a matching dark version keep their real look and say so.
+- **Currency mini-story**: the original USD expense and the JPY amount received are shown side by side and explained with the rate or received amount actually entered, with no illusion of live exchange rates.
+- **Subtle entrance**: 150 / 300 / 450ms as the base; no continuous rotation, forced parallax, or scroll hijacking. Respect the system reduce-motion setting.
 
-### 分帳互動的資料規則
+### Data rules for the splitting interaction
 
-這是純前端示範，不連使用者的 Balnana 伺服器、不建立真實群組。
+This is a frontend-only demo. It does not connect to a user's Balnana server and does not create real groups.
 
-第一版用四個虛構人物與少量可編輯支出，只支援目前產品已具備的分攤方式。金額使用整數最小單位或 BigInt；總支出、付款、分攤、餘額、建議付款必須一致。金額輸入錯誤以原位訊息顯示；示範設重設動作。
+The first version uses four fictional people and a small number of editable expenses, and supports only the split methods the product already has. Amounts use integer minor units or BigInt; total spending, payments, shares, balances, and suggested payments must be consistent. Invalid amount input is reported with an in-place message, and the demo has a reset action.
 
-可先用固定 fixture 完成視覺，再加入即時計算。互動只能宣稱已在官網實作且通過測試的行為。
+The visuals can be completed first with fixed fixtures, with live calculation added afterwards. The interaction may only claim behavior that is implemented on the website and covered by tests.
 
-## 4. 功能文案與實作核對
+## 4. Feature copy and implementation checks
 
-| 官網可介紹的內容 | 依據 | 必須保留的界線 |
+| What the website may describe | Basis | Boundary to keep |
 | --- | --- | --- |
-| 等分、指定金額、依份數分攤；多人付款 | `app/lib/features/expense/expense_editor_page.dart`、domain split | 不加入未實作的百分比分攤模式 |
-| 結算建議減少轉帳 | `docs/PLAN.md`、`server/internal/domain/` | n 個非零餘額最多 n−1 筆；不宣稱全域最少 |
-| 外幣支出、群組統一幣別 | expense editor、`docs/PLAN.md` | 手動匯率或實際入帳額；不抓即時匯率；週期支出與轉帳用群組幣別 |
-| Android 離線查看 | `app/lib/core/offline_cache.dart` | 已快取的資料、唯讀；不宣稱離線新增/同步寫入，也不宣稱 Web 離線 |
-| 分享連結或 QR code | `app/lib/features/group/share_sheet.dart` | 免註冊適用連結模式；帳號模式受伺服器與群組設定影響 |
-| 密碼、Google、OIDC 登入 | account features、server configuration | 由架設者啟用，不保證每個公開伺服器都有 |
-| 即時更新、Android UnifiedPush | live / push implementation | Web 推播尚未實作；通知依伺服器與裝置配置 |
-| 分類/成員/月份統計 | `app/lib/features/group/spending_tab.dart` | 真實介面目前是長條圖；不把概念圖描述成已實作圓餅圖 |
-| CSV 匯出、Settle Up 匯入 | import page、API、`docs/PLAN.md` | 不宣稱所有同類 App 格式皆可匯入 |
-| 週期性支出、收據、地點 | recurring page、receipt / location | 地圖與服務設定由架設者管理 |
-| 自行架設、開源 | README、`docs/SELF_HOSTING.md` | 雲端/主機仍可能有成本；不說資料端到端加密或完全沒有第三方連線 |
-| Android 與 Web | README、pubspec、平台目錄 | 不放未驗證的 iOS / App Store / Play 商店下載徽章 |
+| Equal, exact-amount, and share-based splitting; multiple payers | `app/lib/features/expense/expense_editor_page.dart`, domain split | Do not add a percentage split mode that is not implemented |
+| Settlement suggestions that reduce transfers | `docs/PLAN.md`, `server/internal/domain/` | n non-zero balances need at most n−1 payments; do not claim a global minimum |
+| Foreign-currency expenses, one currency per group | expense editor, `docs/PLAN.md` | Manual rate or actual received amount; no live exchange rates; recurring expenses and transfers use the group currency |
+| Viewing offline on Android | `app/lib/core/offline_cache.dart` | Cached data, read-only; do not claim offline creation or sync of writes, or offline Web |
+| Share link or QR code | `app/lib/features/group/share_sheet.dart` | No signup applies to link mode; account mode depends on the server and group settings |
+| Password, Google, and OIDC sign-in | account features, server configuration | Enabled by the host; not guaranteed on every public server |
+| Live updates, Android UnifiedPush | live / push implementation | Web push is not implemented; notifications depend on server and device configuration |
+| Category / member / month statistics | `app/lib/features/group/spending_tab.dart` | The real UI is currently a bar chart; do not describe the concept pie chart as implemented |
+| CSV export, Settle Up import | import page, API, `docs/PLAN.md` | Do not claim that every similar app's format can be imported |
+| Recurring expenses, receipts, locations | recurring page, receipt / location | Map and service settings are managed by the host |
+| Self-hosting, open source | README, `docs/SELF_HOSTING.md` | Cloud or hosting may still cost money; do not say data is end-to-end encrypted or that there are no third-party connections |
+| Android and Web | README, pubspec, platform directories | Do not show unverified iOS / App Store / Play Store download badges |
 
-下載連結、版本號、線上示範主機與實際網域目前不預設。第一版用確定存在的 [GitHub 專案](https://github.com/willie6666/balnana) 及其架設說明；正式發佈時再核實 release assets 與相容性。
+Download links, version numbers, a live demo host, and a real domain are not assumed for now. The first version uses the [GitHub project](https://github.com/willie6666/balnana), which is known to exist, and its self-hosting instructions; verify release assets and compatibility when the app is actually released.
 
-## 5. 多語系：與 App 一致的 20 個語系
+## 5. Localization: the same 20 languages as the app
 
-已核對 20 份 ARB，每份目前有 784 個非 metadata 訊息項目。網站需要獨立撰寫行銷文案，不能把 App 的 UI 翻譯直接視為官網翻譯。
+The 20 ARB files were checked, and each currently has 784 non-metadata message entries. The website needs its own marketing copy; the app's UI translations cannot simply be treated as the website's translations.
 
-| App locale | 網址 tag | 語言選單名稱 |
+| App locale | URL tag | Language menu name |
 | --- | --- | --- |
 | `en` | `en` | English |
 | `zh` | `zh` | 简体中文 |
@@ -123,36 +123,36 @@
 | `ar` | `ar` | العربية |
 | `hi` | `hi` | हिन्दी |
 
-規則：
+Rules:
 
-- 使用 Flutter 官方 ARB / `gen-l10n` 流程，英文為 template，翻譯涵蓋所有可見文字、無障礙標籤、FAQ、錯誤訊息及分享 metadata。
-- 首次到根目錄：明確 URL 語系 > 已儲存語系 > 瀏覽器偏好 > 英文。具語系的分享網址優先，不因裝置設定自動覆蓋。
-- `zh-TW`、`zh-HK`、`zh-MO` 對應 `zh-Hant`；`zh-CN` 與無 script 的一般 `zh` 對應簡體，與 App 邏輯一致。
-- 語言選單顯示原文名稱，不用國旗；桌面選單支援捲動/搜尋，手機使用 sheet。
-- 阿拉伯文採 RTL，使用 directional padding/alignment；貨幣碼、網址與程式碼維持正確 LTR 顯示。
-- 使用區域化日期/數字格式，不強行把 JPY 示範資料轉成使用者當地幣別。
-- 不一次載入全部文字系統的大型字型；先驗證系統 fallback 與逐語系必要的 font subsets。
-- CI 比對官網語系列表與可取得的 App locale inventory，檢查缺字串、placeholder 及 plural；20 語系 smoke check 不等於母語校稿。
+- Use Flutter's official ARB / `gen-l10n` workflow, with English as the template. Translations cover all visible text, accessibility labels, the FAQ, error messages, and share metadata.
+- On the first visit to the root: explicit URL language > saved language > browser preference > English. A shared URL that names a language takes priority and is not overridden by device settings.
+- `zh-TW`, `zh-HK`, and `zh-MO` map to `zh-Hant`; `zh-CN` and a plain `zh` without a script map to Simplified Chinese, consistent with the app's logic.
+- The language menu shows native names and no flags; the desktop menu supports scrolling/search, and mobile uses a sheet.
+- Arabic uses RTL with directional padding/alignment; currency codes, URLs, and code keep correct LTR display.
+- Use localized date and number formats, and do not force the JPY demo data into the user's local currency.
+- Do not load large fonts for every writing system at once; first validate system fallbacks and the per-language font subsets that are actually needed.
+- CI compares the website's language list with the available app locale inventory and checks for missing strings, placeholders, and plurals; a 20-language smoke check is not the same as native-speaker proofreading.
 
-## 6. 外觀、版型與無障礙
+## 6. Appearance, layout, and accessibility
 
-外觀選項：**跟隨系統 / 淺色 / 深色**。首次跟隨系統，明確選擇保存在瀏覽器；系統模式須即時回應瀏覽器外觀變更。載入畫面與 Flutter 使用同一選擇，避免白屏閃爍。
+Appearance options: **Follow system / Light / Dark**. The first visit follows the system, and an explicit choice is saved in the browser; system mode must respond live to browser appearance changes. The loading screen uses the same choice as Flutter to avoid a white flash.
 
-| 寬度 | 版型 |
+| Width | Layout |
 | --- | --- |
-| 360–599 | 單欄，Hero 文字先於示範卡；CTA 可換行；無強制橫向滑動 |
-| 600–959 | 混合一/兩欄，導覽收合，展示卡不超出內容欄 |
-| 960 以上 | Hero 雙欄，功能圖文交錯，頁面內容有最大寬度 |
+| 360–599 | Single column, hero text before the demo card; CTAs can wrap; no forced horizontal scrolling |
+| 600–959 | Mixed one/two columns, collapsed navigation, demo cards stay within the content column |
+| 960 and up | Two-column hero, alternating image and text for features, a maximum content width |
 
-驗收涵蓋 360 / 390 / 768 / 1024 / 1440；補 320px 溢位檢查。長德文、阿拉伯文、泰文與 200% 文字縮放不得遮擋 CTA。文字不轉成圖片。
+Acceptance covers 360 / 390 / 768 / 1024 / 1440, plus a 320px overflow check. Long German, Arabic, Thai, and 200% text scaling must not cover the CTAs. Text is never converted to images.
 
-以 WCAG AA 對比、可見鍵盤焦點、合理閱讀順序、至少 48px 主要操作目標為設計驗收目標；使用 Flutter Semantics 驗證螢幕閱讀器。數值同時有文字、正負號，不能只靠紅綠。這是待驗證目標，不宣稱現有 App 或概念稿已全面通過。
+The design acceptance targets are WCAG AA contrast, visible keyboard focus, a sensible reading order, and primary action targets of at least 48px; screen reader behavior is verified with Flutter Semantics. Values carry text and a sign, so meaning never depends on red/green alone. These are targets still to be verified; the plan does not claim the existing app or the concept mockups fully pass.
 
-## 7. Flutter 實作架構
+## 7. Flutter implementation architecture
 
-官網獨立放在 `/home/willie/storage/balnana-offical-web`，維持純前端、可靜態部署。採用與 App 相容、鎖定版本的 Flutter SDK；正式開始實作時從 SDK 與 pubspec 確認套件版本。
+The website lives separately in `/home/willie/storage/balnana-offical-web`, stays frontend-only, and can be deployed statically. Use a pinned Flutter SDK version compatible with the app; when implementation starts, confirm package versions from the SDK and pubspec.
 
-建議結構：
+Suggested structure:
 
 ```text
 lib/
@@ -172,74 +172,74 @@ tool/            # locale inventory checks, metadata/sitemap generation
 test/            # demo maths, locale/theme persistence, critical layout checks
 ```
 
-品牌 token、Logo 與 OFL 字型可沿用，但不將原 App 全部業務程式引入官網。網站不需 PostgreSQL、Go API、認證或真實帳目資料。示範計算只抽取必要的純函式或有共同測試向量的精簡實作；涉及原碼重用時保留授權與出處。
+Brand tokens, the logo, and OFL fonts can be reused, but the app's business code is not brought into the website wholesale. The website needs no PostgreSQL, Go API, authentication, or real ledger data. The demo calculation extracts only the necessary pure functions or a trimmed implementation with shared test vectors; where original code is reused, keep the license and attribution.
 
-網址方向：`/en/`、`/zh-Hant/` 等語系路徑；首頁段落可用可分享的 section 狀態，實作時驗證返回/前進/重新整理與捲動定位。未知路徑顯示有導覽的找不到頁面，未知語系合理 fallback，不能把所有錯誤路徑當作正確語系首頁。
+URL direction: language paths such as `/en/` and `/zh-Hant/`; homepage sections can use shareable section state, and implementation should verify back/forward/refresh and scroll positioning. Unknown paths show a not-found page with navigation, an unknown language falls back sensibly, and not every bad path is treated as a valid language homepage.
 
-## 8. Cloudflare Pages 部署方案
+## 8. Cloudflare Pages deployment plan
 
-Flutter 官網先建置成靜態產物，再部署到 Pages；官方建置輸出為 `build/web`。這是依 Flutter 與 Cloudflare 的靜態部署能力組合出的方案，不假設 Cloudflare 內建 Flutter preset。
+Build the Flutter website into static output first, then deploy it to Pages; the official build output is `build/web`. This plan is composed from Flutter's and Cloudflare's static deployment capabilities, and does not assume a built-in Flutter preset in Cloudflare.
 
-建議流程：
+Suggested flow:
 
-1. 本機完成 Flutter QA，鎖定 SDK 與依賴。
-2. CI 執行語系檢查、必要測試、`flutter analyze`、`flutter build web --release`。
-3. 將 metadata、sitemap、robots 與需要的 hosting 檔案放入最終輸出，確認語系路徑與靜態資源可解析。
-4. 以 Cloudflare Pages Direct Upload 部署同一份 `build/web` 產物；可由 CI 管理建置，後續再配置網域。
-5. 正式網域與帳戶資訊由實際設定提供；preview 與 production 的 canonical/noindex 分開驗證。
+1. Finish Flutter QA locally and pin the SDK and dependencies.
+2. CI runs the locale checks, the necessary tests, `flutter analyze`, and `flutter build web --release`.
+3. Put the metadata, sitemap, robots, and any needed hosting files into the final output, and confirm that language paths and static assets resolve.
+4. Deploy the same `build/web` output with Cloudflare Pages Direct Upload; CI can manage the build, and the domain can be configured later.
+5. The real domain and account information come from the actual setup; verify canonical/noindex separately for preview and production.
 
-備選是 Pages Git integration 加明確的 Flutter SDK 安裝/建置步驟。建立 Pages 專案前決定採哪一種：Cloudflare 說明 Direct Upload 專案之後不能直接切成 Git integration，需新建專案。
+The alternative is Pages Git integration with explicit Flutter SDK install/build steps. Decide which to use before creating the Pages project: Cloudflare's documentation says a Direct Upload project cannot later be switched to Git integration directly, and a new project is needed.
 
-不要將 Balnana 帳目伺服器放進官網部署：Go + PostgreSQL 的自架服務繼續獨立運作。
+Do not put the Balnana ledger server into the website deployment: the Go + PostgreSQL self-hosted service keeps running independently.
 
-部署驗收：
+Deployment acceptance:
 
-- 語系深層路徑可直接開啟與重新整理；遵循 Pages SPA fallback 規則，若加入 root `404.html`，必須重新確認路由策略。
-- 預設先採 Pages 的快取機制，不替未帶內容雜湊的 JS/HTML 套上長期 immutable cache；連續部署後驗證不會混用版本。
-- 檢查手機首屏、字型、Flutter engine/JS/Wasm 的請求體積與啟動時間，再決定是否採 Wasm；不因桌面流暢就宣告手機通過。
-- 截圖準備適當解析度與壓縮，第二屏以下延後載入；不在首屏預載四張完整實機大圖。
-- 檢查 404、外部連結、分享縮圖、所有語系與兩種主題。
+- Deep language paths open and refresh directly; follow the Pages SPA fallback rules, and if a root `404.html` is added, reconfirm the routing strategy.
+- Start with Pages' default caching and do not put long-lived immutable cache headers on JS/HTML without content hashes; after consecutive deployments, verify that versions are not mixed.
+- Check the mobile first screen, fonts, and the request sizes and startup time of the Flutter engine/JS/Wasm before deciding whether to adopt Wasm; do not declare mobile a pass just because desktop is smooth.
+- Prepare screenshots at an appropriate resolution and compression, and defer loading below the second screen; do not preload four full-size device images on the first screen.
+- Check 404s, external links, share thumbnails, all languages, and both themes.
 
-## 9. 搜尋與分享的實際限制
+## 9. Practical limits of search and sharing
 
-Flutter 官方說明其 Web 輸出偏向互動 App，搜尋引擎不容易像一般文件型 HTML 一樣索引內容。因此採 Flutter 能滿足品牌與互動需求，但不能把它當作完整的 SEO 解法。
+Flutter's documentation says its web output favors interactive apps, and search engines do not index its content as easily as regular document-style HTML. Using Flutter satisfies the brand and interaction needs, but it should not be treated as a complete SEO solution.
 
-在維持 Flutter 主介面的前提下，第一版先做：逐語系實體入口頁的 title/description、`lang`/`dir`、canonical、hreflang、Open Graph/Twitter metadata、可公開網址、sitemap 與真實可讀的載入/錯誤狀態。網址與 metadata 在建置時產生；只在 Flutter 啟動後修改 head 不足以支援多數分享預覽機器人。
+While keeping the Flutter main UI, the first version covers: a physical entry page per language with title/description, `lang`/`dir`, canonical, hreflang, Open Graph/Twitter metadata, public URLs, a sitemap, and genuinely readable loading/error states. URLs and metadata are generated at build time; changing the head only after Flutter starts is not enough for most share-preview bots.
 
-這些措施改善分享與基本發現，不保證完整正文被索引；Semantics 也不能直接當作 SEO。若後續把自然搜尋列為主要流量來源，再評估公開 HTML 內容層或文章頁與 Flutter 互動嵌入的組合，另行決定範圍，不在此階段擅自更換技術。
+These measures improve sharing and basic discovery, but do not guarantee the full body text is indexed; Semantics cannot be treated as SEO either. If organic search later becomes a main traffic source, evaluate a combination of a public HTML content layer or article pages with embedded Flutter interaction, and decide its scope separately; do not change the technology unilaterally at this stage.
 
-## 10. 實作順序與完成標準
+## 10. Implementation order and completion criteria
 
-| 階段 | 交付內容 | 完成標準 |
+| Phase | Deliverable | Completion criteria |
 | --- | --- | --- |
-| A — 設計基準 | 本計畫、locale inventory、桌面/手機深淺色方向稿 | 功能主張有依據、資訊架構清楚、視覺可評估 |
-| B — Flutter 首頁 | Theme、響應式導覽、Hero、展示卡、主要內容，先完成英文與繁中 | 桌面/手機可操作；外觀與語言可保存；沒有假 CTA |
-| C — 互動與素材 | 分帳示範、完整功能/FAQ、兩種主題實機素材 | 計算正確、重設可用；所有展示資料為虛構；真實截圖有出處 |
-| D — 全語系與 QA | 20 語系、RTL、縮放、鍵盤/讀屏、效能與 build | 缺譯檢查通過；各語系可切換；重要版型無溢位 |
-| E — Pages 上線準備 | CI、靜態產物、metadata、快取/路由驗證、部署說明 | 可重現 release build 與可部署的 `build/web`；實際部署待後續工作 |
+| A — Design baseline | This plan, the locale inventory, desktop/mobile light and dark direction mockups | Feature claims are grounded, the information architecture is clear, the visuals can be evaluated |
+| B — Flutter homepage | Theme, responsive navigation, hero, demo cards, main content, English and Traditional Chinese first | Usable on desktop/mobile; appearance and language persist; no fake CTAs |
+| C — Interaction and assets | Splitting demo, full features/FAQ, real-device assets for both themes | Calculations are correct and reset works; all demo data is fictional; real screenshots have sources |
+| D — All languages and QA | 20 languages, RTL, scaling, keyboard/screen reader, performance and build | Missing-translation check passes; every language can be switched to; no overflow in key layouts |
+| E — Pages launch prep | CI, static output, metadata, cache/routing verification, deployment notes | A reproducible release build and a deployable `build/web`; the actual deployment is future work |
 
-第一輪實作先集中完成桌面及手機的 Hero + 一個可用示範，再向下完成頁面。不要先翻譯 20 份尚未定稿的長文。
+The first round of implementation concentrates on the desktop and mobile hero plus one working demo, then completes the rest of the page downward. Do not translate 20 copies of long text that is not yet final.
 
-尚待後續確定的產品資訊：正式網域、已發佈的 Android 安裝來源、是否有公開示範伺服器、問題回報/聯絡入口。這些不阻礙設計與本機實作；使用可配置的真實 GitHub 入口即可先完成第一版。
+Product information still to be determined: the real domain, the published Android install source, whether there is a public demo server, and the issue reporting/contact entry point. None of these block design and local implementation; a configurable real GitHub entry point is enough for the first version.
 
-## 11. 研究與素材
+## 11. Research and assets
 
-- App 品牌：`app/lib/ui/theme.dart`、`colors.dart`、`tokens.dart`、`app/web/icons/logo.svg`。
-- 功能/限制：README、`docs/PLAN.md`、`docs/SELF_HOSTING.md` 與對應實作。
-- 20 語系來源：`app/lib/l10n/app_*.arb`、`app_localizations.dart`；快照見 [locale-inventory.json](dev-docs/locale-inventory.json)。
-- 既有示範截圖：`assets/screenshots/{expenses,balances,statistics,foreign}.png`，README 明確標示為虛構資料。
-- 2026-10-30 模擬器觀察：目前前景為 `me.devvillie.balnana`，畫面為 Group not found，不能直接用作首頁功能圖；未更動群組、語言或主題。後續重新連至專用 demo server 再補拍。
-- 沿用 App 字型需保留 OFL；沿用原碼/品牌素材需核對原專案 AGPL-3.0-only 與相關素材授權，網站自己的使用條款/隱私說明應描述網站實際行為。
+- App brand: `app/lib/ui/theme.dart`, `colors.dart`, `tokens.dart`, `app/web/icons/logo.svg`.
+- Features and limits: README, `docs/PLAN.md`, `docs/SELF_HOSTING.md`, and the corresponding implementation.
+- Source of the 20 languages: `app/lib/l10n/app_*.arb`, `app_localizations.dart`; see the snapshot in [locale-inventory.json](dev-docs/locale-inventory.json).
+- Existing demo screenshots: `assets/screenshots/{expenses,balances,statistics,foreign}.png`; the README states clearly that they use fictional data.
+- Emulator observation on 2026-10-30: the foreground app was `me.devvillie.balnana` showing "Group not found", so it cannot be used directly as a homepage feature image; no group, language, or theme was changed. Reconnect to a dedicated demo server and capture again later.
+- Reusing the app's fonts requires keeping the OFL; reusing original code or brand assets requires checking the original project's AGPL-3.0-only license and the related asset licenses, and the website's own terms of use / privacy notice should describe what the website actually does.
 
-## 12. 文件查核
+## 12. Documentation check
 
-2026-10-30 以 Context7 CLI 查詢官方 Flutter 文件，並核對以下官方頁面：
+On 2026-10-30 the official Flutter documentation was queried with the Context7 CLI, and the following official pages were checked:
 
-- [Flutter Web FAQ：適用情境與 SEO](https://docs.flutter.dev/platform-integration/web/faq)
-- [Flutter Web 建置與部署](https://docs.flutter.dev/deployment/web)
-- [Flutter 國際化](https://docs.flutter.dev/ui/internationalization)
+- [Flutter Web FAQ: use cases and SEO](https://docs.flutter.dev/platform-integration/web/faq)
+- [Build and release a web app (Flutter)](https://docs.flutter.dev/deployment/web)
+- [Flutter internationalization](https://docs.flutter.dev/ui/internationalization)
 - [Cloudflare Pages Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/)
-- [Cloudflare Pages 建置設定](https://developers.cloudflare.com/pages/configuration/build-configuration/)
-- [Cloudflare Pages SPA、路由與快取](https://developers.cloudflare.com/pages/configuration/serving-pages/)
+- [Cloudflare Pages build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/)
+- [Cloudflare Pages SPA, routing, and caching](https://developers.cloudflare.com/pages/configuration/serving-pages/)
 
-本階段只完成設計文件與靜態視覺稿；沒有宣稱 Flutter build、互動測試、全語系翻譯或線上部署已完成。
+This phase only produced the design document and static mockups; it does not claim that the Flutter build, interaction tests, full translation, or online deployment is complete.
