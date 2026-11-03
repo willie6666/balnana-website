@@ -13,6 +13,7 @@ description: /admin 頁面、管理員密碼，以及環境變數設定如何與
 - Google 與 OpenID Connect 登入；
 - Android App 連結；
 - 地圖與隱私權聲明；
+- [方案與付款](/docs/zh-hant/self-hosting/plans-and-payments/)（開啟時）；
 - 帳號，管理員可以搜尋並刪除。
 
 變更會立即套用到所有共用同一個資料庫的伺服器程式。App 中沒有任何連到 `/admin` 的連結：請自行輸入網址開啟。
@@ -33,8 +34,24 @@ docker compose exec balnana /balnana reset-admin
 
 ## 備份
 
-所有資料都在 PostgreSQL 資料庫裡：群組、支出、收據、帳號與設定。請定期備份：
+所有資料都在 PostgreSQL 資料庫裡：群組、支出、收據、帳號、在 `/admin` 所做的設定，以及簽署推播通知的金鑰。只有 `.env` 不在資料庫內，請一併保留副本。請定期備份資料庫：
 
 ```bash
-docker compose exec db pg_dump -U balnana balnana > backup.sql
+docker compose exec -T db pg_dump -U balnana -Fc balnana > balnana.dump
 ```
+
+要還原備份時，可以在這台伺服器上，或在用相同 `.env` 架設的新伺服器上執行：
+
+```bash
+docker compose stop balnana
+docker compose exec -T db pg_restore -U balnana -d balnana --clean --if-exists --no-owner < balnana.dump
+docker compose up -d
+```
+
+:::caution
+備份含有所有人的資料與密碼雜湊，請像保護伺服器一樣保護它。如果遺失推播金鑰，手機要重新訂閱後才會再收到通知。
+:::
+
+## 執行多個伺服器
+
+請只執行一個。多個伺服器可以共用資料庫，但各自計算請求次數、密碼嘗試次數、認領付款的嘗試次數與即時連線數，所以 N 個伺服器時，這些上限會變成設定值的 N 倍。
