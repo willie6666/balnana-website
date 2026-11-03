@@ -48,6 +48,7 @@ export default defineConfig({
 						'self-hosting/access-and-sign-in',
 						'self-hosting/configuration',
 						'self-hosting/data-and-privacy',
+						'self-hosting/plans-and-payments',
 					],
 				},
 				{

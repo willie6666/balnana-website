@@ -13,6 +13,7 @@ description: /admin 頁面、管理員密碼，以及環境變數設定如何與
 - Google 與 OpenID Connect 登入；
 - Android App 連結；
 - 地圖與隱私權聲明；
+- [方案與付款](/docs/zh-hant/self-hosting/plans-and-payments/)（開啟時）；
 - 帳號，管理員可以搜尋並刪除。
 
 變更會立即套用到所有共用同一個資料庫的伺服器程式。App 中沒有任何連到 `/admin` 的連結：請自行輸入網址開啟。

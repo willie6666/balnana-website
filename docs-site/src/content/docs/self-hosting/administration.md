@@ -13,6 +13,7 @@ description: The /admin page, the administrator password and how settings from t
 - Google and OpenID Connect sign-in;
 - Android app links;
 - maps and the privacy notice;
+- [plans and payments](/docs/self-hosting/plans-and-payments/), when turned on;
 - accounts, which the administrator can find and delete.
 
 Changes apply at once, on every server process that shares the database. Nothing in the app links to `/admin`: open it by typing the address.
