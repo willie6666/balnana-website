@@ -1,6 +1,6 @@
 ---
 title: Configuration
-description: Email, maps, push notifications, the privacy notice and other server settings.
+description: Email, maps, exchange rates, push notifications, the privacy notice and other server settings.
 ---
 
 Every setting lives in `.env` (read by `docker-compose.yml`). Settings marked **admin** can also be changed at `/admin`; a variable you set in `.env` wins over `/admin`.
@@ -41,11 +41,24 @@ Expenses can carry a place, shown on a map. `BALNANA_MAP_SOURCE` (**admin**) pic
 
 `BALNANA_MAP_ATTRIBUTION` sets the credit shown on every map, as the provider asks.
 
+## Exchange rates
+
+When an expense is paid in another currency, the app starts its rate from the latest one the server looks up. Whatever someone types still wins, and when the server has no rate the app starts from the rate the group used last.
+
+- `BALNANA_EXCHANGE_RATES` (**admin**, default `true`): set `false` to stop looking rates up. People then type every rate themselves.
+- `BALNANA_OXR_APP_ID` (**admin**, secret): an [Open Exchange Rates](https://openexchangerates.org/) app ID. Without one, rates come from [Frankfurter](https://frankfurter.dev/), the European Central Bank's free reference rates, which need no key but cover about 30 currencies and change once a working day. With one, they come from Open Exchange Rates, which covers about 170.
+
+The server asks its source at most once an hour, and only when someone picks a currency, so the Open Exchange Rates free plan (1,000 requests a month) is enough. It keeps the last rates in the database, so a restart doesn't ask again, and keeps using them when the source can't be reached.
+
+To get an app ID, sign up for the free plan at [openexchangerates.org/signup/free](https://openexchangerates.org/signup/free), copy the App ID from the dashboard and paste it at `/admin` or set it in `.env`.
+
 ## Push notifications
 
-The server notifies phones when someone adds, changes or deletes an expense they are in. There is nothing to set up: the server makes its own VAPID key the first time it starts and keeps it in the database. `BALNANA_PUSH=false` turns notifications off.
+The server notifies phones and browsers when someone adds, changes or deletes an expense or payment they are in, and when someone reminds them to pay. There is nothing to set up: the server makes its own VAPID key the first time it starts and keeps it in the database. `BALNANA_PUSH=false` turns notifications off.
 
 Notifications are standard Web Push messages, encrypted end to end and delivered over [UnifiedPush](https://unifiedpush.org/). A phone with a UnifiedPush distributor such as [ntfy](https://ntfy.sh/) gets them through it. Otherwise the app uses its built-in distributor, which goes through Google's Firebase Cloud Messaging on phones with Google Play services; the app contains no Firebase SDK and needs no Firebase project. People turn notifications on and off per device under Settings → Notifications.
+
+The web app gets them through the browser's own push service, also while no tab is open. It needs the server on `https` (or `localhost`), and is off until someone turns it on under Settings → Notifications, since browsers ask for permission only then. Someone who blocked notifications allows them again in the browser's site settings. On iPhone and iPad, Safari only gets them in the web app added to the Home Screen.
 
 The server only sends to public `https` addresses. A distributor on your own network, such as a self-hosted ntfy at `http://192.168.1.2`, needs `BALNANA_PUSH_PRIVATE_ENDPOINTS=true`.
 

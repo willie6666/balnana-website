@@ -39,6 +39,10 @@ Open apps pick it up on their next reload.
 Groups deleted together with an account, those nobody else could reach, are not archived. They can only come back from a [database backup](/docs/self-hosting/administration/#backups).
 :::
 
+## Payment details
+
+Each member can add up to five payment details in a group, such as a bank account, a payment app or a link, so the others know how to pay them. Everyone in the group can see them. In accounts mode only the member's own account can change them; in link mode anyone with the link can, as with names. They are deleted with the group.
+
 ## Privacy notice
 
 The app links a privacy notice from its sign-in page and Settings → About. Set `BALNANA_PRIVACY_URL`, or the field under `/admin`, to your own policy. Without it the app shows a short built-in description of what the server stores, also reachable at `/privacy`.

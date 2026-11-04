@@ -7,7 +7,8 @@ Plans are off unless you turn them on, and a server with them off limits nothing
 
 - **Receipt photos per group** and **recurring expenses per group**;
 - **groups an account is in**, whoever made them, and **people per group**;
-- **groups sharing the plan**: how many groups an account can lift to its own plan.
+- **groups sharing the plan**: how many groups an account can lift to its own plan;
+- **payment reminders**: whether people in a group can remind someone who owes them with a notification. Sharing a reminder as a message through another app is always free, and with plans off everyone can send them.
 
 Leave a limit empty for none. Exactly one plan is the default, for every account with no other. An account with several plans gets the one with the highest rank.
 

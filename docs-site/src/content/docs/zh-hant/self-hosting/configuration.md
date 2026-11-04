@@ -1,6 +1,6 @@
 ---
 title: 設定
-description: 電子郵件、地圖、推播通知、隱私權聲明與其他伺服器設定。
+description: 電子郵件、地圖、匯率、推播通知、隱私權聲明與其他伺服器設定。
 ---
 
 所有設定都放在 `.env`（由 `docker-compose.yml` 讀取）。標示 **admin** 的設定也能在 `/admin` 修改；在 `.env` 設定的變數優先於 `/admin`。
@@ -41,11 +41,24 @@ BALNANA_SMTP_FROM=Balnana <balnana@example.com>
 
 `BALNANA_MAP_ATTRIBUTION` 設定每張地圖上顯示的出處標示，依供應商要求填寫。
 
+## 匯率
+
+支出以其他貨幣支付時，App 會以伺服器查到的最新匯率作為起始值。使用者自行輸入的數字仍然優先；伺服器查不到匯率時，App 會沿用群組上次使用的匯率。
+
+- `BALNANA_EXCHANGE_RATES`（**admin**，預設 `true`）：設為 `false` 就不查詢匯率，每個匯率都要手動輸入。
+- `BALNANA_OXR_APP_ID`（**admin**，機密）：[Open Exchange Rates](https://openexchangerates.org/) 的 App ID。沒有設定時，匯率來自 [Frankfurter](https://frankfurter.dev/)，也就是歐洲中央銀行的免費參考匯率，不需金鑰，但只涵蓋約 30 種貨幣，且每個工作日更新一次。設定後改由 Open Exchange Rates 提供，涵蓋約 170 種貨幣。
+
+伺服器最多每小時向來源查詢一次，而且只在有人選了貨幣時才查詢，所以 Open Exchange Rates 的免費方案（每月 1,000 次）就足夠。最後一次取得的匯率會存在資料庫裡，重新啟動不會再查詢一次，來源連不上時也會繼續使用。
+
+申請 App ID：到 [openexchangerates.org/signup/free](https://openexchangerates.org/signup/free) 註冊免費方案，從控制台複製 App ID，貼到 `/admin` 或寫進 `.env`。
+
 ## 推播通知
 
-當有人新增、修改或刪除與某人有關的支出時，伺服器會通知他的手機。不需要任何設定：伺服器第一次啟動時會自行產生 VAPID 金鑰並存在資料庫中。`BALNANA_PUSH=false` 可關閉通知。
+當有人新增、修改或刪除與某人有關的支出或轉帳，或提醒對方付款時，伺服器會通知對方的手機和瀏覽器。不需要任何設定：伺服器第一次啟動時會自行產生 VAPID 金鑰並存在資料庫中。`BALNANA_PUSH=false` 可關閉通知。
 
 通知是標準的 Web Push 訊息，端對端加密，透過 [UnifiedPush](https://unifiedpush.org/) 傳送。裝有 UnifiedPush 分發器（例如 [ntfy](https://ntfy.sh/)）的手機會透過它接收。否則 App 會使用內建的分發器，在有 Google Play 服務的手機上經由 Google 的 Firebase Cloud Messaging 傳送；App 不含 Firebase SDK，也不需要 Firebase 專案。使用者可以在每台裝置的設定 → 通知中開關通知。
+
+網頁版透過瀏覽器本身的推播服務接收通知，沒有開著分頁時也收得到。伺服器必須使用 `https`（或 `localhost`）；網頁版預設關閉，要在設定 → 通知中開啟，因為瀏覽器只會在那時詢問權限。封鎖過通知的人，要到瀏覽器的網站設定中重新允許。在 iPhone 和 iPad 上，Safari 只有把網頁版加入主畫面後才收得到。
 
 伺服器只會傳送到公開的 `https` 位址。位於你自己網路中的分發器，例如自架在 `http://192.168.1.2` 的 ntfy，需要設定 `BALNANA_PUSH_PRIVATE_ENDPOINTS=true`。
 
