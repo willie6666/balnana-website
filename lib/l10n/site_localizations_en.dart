@@ -16,9 +16,6 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get navDemo => 'Try it';
 
   @override
-  String get navHosting => 'Self-host';
-
-  @override
   String get navFaq => 'FAQ';
 
   @override
@@ -38,9 +35,6 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get tryDemo => 'Try the demo';
 
   @override
-  String get selfHost => 'Self-host';
-
-  @override
   String get development => 'In development · Android + Web';
 
   @override
@@ -51,9 +45,6 @@ class SiteLocalizationsEn extends SiteLocalizations {
 
   @override
   String get trustOpen => 'Open source, no ads';
-
-  @override
-  String get trustServer => 'Runs on your own server';
 
   @override
   String get demoLabel => 'Sample group';
@@ -193,22 +184,14 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get hostingLabel => 'Self-host';
 
   @override
-  String get hostingTitle => 'Your server.\nYour group\'s data.';
+  String get hostingTitle => 'Prefer to run\nyour own server?';
 
   @override
   String get hostingBody =>
-      'Balnana runs with Docker Compose and keeps its data in PostgreSQL on your own server. The Docs walk you through the setup.';
+      'You can. Balnana is open source and runs with Docker Compose, with your data in PostgreSQL, and the Docs cover the setup. But if you just want to split bills with friends, we\'d suggest the official server at app.balnana.com. There\'s nothing to install or keep up to date.';
 
   @override
   String get hostingLink => 'Self-host guide';
-
-  @override
-  String get hostingModeLink =>
-      'Send friends a private link or QR code, and they can join without signing up.';
-
-  @override
-  String get hostingModeAccounts =>
-      'If you\'d rather use accounts, turn on sign-in with a password, Google or OIDC.';
 
   @override
   String get faqTitle => 'FAQ';
@@ -218,7 +201,7 @@ class SiteLocalizationsEn extends SiteLocalizations {
 
   @override
   String get faqAccountA =>
-      'Not in link mode: a private link or QR code is all anyone needs to join. In accounts mode people sign in, and your server settings decide who can get in.';
+      'You sign up on the official server to create a group. Turn on link sharing for the group, and friends can join with a private link or QR code without an account.';
 
   @override
   String get faqOfflineQ => 'Can I use it offline?';
@@ -232,7 +215,7 @@ class SiteLocalizationsEn extends SiteLocalizations {
 
   @override
   String get faqCurrencyA =>
-      'If your server has exchange-rate lookup turned on, a reference rate is filled in when you pick a foreign currency. You can change it, or enter what your card was actually charged.';
+      'Yes. When you pick a foreign currency, a reference rate is filled in for you. You can change it, or enter what your card was actually charged.';
 
   @override
   String get faqPlatformQ => 'Which platforms are supported?';
@@ -245,14 +228,13 @@ class SiteLocalizationsEn extends SiteLocalizations {
 
   @override
   String get faqCostA =>
-      'Yes. Balnana is open source (AGPL-3.0) and there\'s no subscription. If you host it yourself, you pay for the server.';
+      'Yes. Sign up on the official server and you can use it for free, with no ads. Balnana is also open source (AGPL-3.0).';
 
   @override
   String get endTitle => 'Want to try it with your friends?';
 
   @override
-  String get endBody =>
-      'Set up a server using the Docs, create a group and send everyone the link.';
+  String get endBody => 'Sign up at app.balnana.com, create a group and send everyone the link.';
 
   @override
   String get github => 'View source';
@@ -318,6 +300,28 @@ class SiteLocalizationsEn extends SiteLocalizations {
 
   @override
   String get amountTooLarge => 'That amount is too large.';
+
+  @override
+  String get openApp => 'Open the web app';
+
+  @override
+  String get openAppShort => 'Open app';
+
+  @override
+  String get trustOfficial => 'Official server, ready to use';
+
+  @override
+  String get hostingOfficial => 'Use the official server';
+
+  @override
+  String get donateTitle => 'Like Balnana?';
+
+  @override
+  String get donateBody =>
+      'If it\'s made splitting bills a bit easier for your group, you can support us on Ko-fi. It helps pay for the official server and keeps the project going.';
+
+  @override
+  String get donateLink => 'Support us on Ko-fi';
 
   @override
   String get expensesLabel => 'Expenses';

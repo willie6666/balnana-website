@@ -7,6 +7,8 @@ import '../core/preferences.dart';
 import 'theme.dart';
 
 const sourceUrl = 'https://github.com/willie6666/balnana';
+const appUrl = 'https://app.balnana.com';
+const donateUrl = 'https://ko-fi.com/c/4fac5eeb95';
 const memberNames = ['Alex', 'Jamie', 'Morgan', 'Sam'];
 
 /// The Starlight docs live beside the app under /docs, with both Chinese scripts translated.

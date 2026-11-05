@@ -124,10 +124,17 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Link(
+              uri: Uri.parse(appUrl),
+              builder: (context, follow) => ListTile(
+                leading: const Icon(Icons.open_in_new_rounded),
+                title: Text(context.l.openAppShort),
+                onTap: follow,
+              ),
+            ),
             for (final (section, label, icon) in [
               ('features', context.l.navFeatures, Icons.widgets_outlined),
               ('demo', context.l.navDemo, Icons.touch_app_outlined),
-              ('hosting', context.l.navHosting, Icons.dns_outlined),
               ('faq', context.l.navFaq, Icons.help_outline_rounded),
             ])
               ListTile(
@@ -192,10 +199,6 @@ class _HomePageState extends State<HomePage> {
                             child: Text(context.l.navDemo),
                           ),
                           TextButton(
-                            onPressed: () => goSection('hosting'),
-                            child: Text(context.l.navHosting),
-                          ),
-                          TextButton(
                             onPressed: () => goSection('faq'),
                             child: Text(context.l.navFaq),
                           ),
@@ -203,6 +206,18 @@ class _HomePageState extends State<HomePage> {
                             uri: Uri.parse(docsUrl(context)),
                             builder: (context, follow) =>
                                 TextButton(onPressed: follow, child: Text(context.l.navDocs)),
+                          ),
+                          const SizedBox(width: 10),
+                          Link(
+                            uri: Uri.parse(appUrl),
+                            builder: (context, follow) => FilledButton(
+                              onPressed: follow,
+                              style: FilledButton.styleFrom(
+                                minimumSize: const Size(48, 44),
+                                padding: const EdgeInsets.symmetric(horizontal: 22),
+                              ),
+                              child: Text(context.l.openAppShort),
+                            ),
                           ),
                           const SizedBox(width: 14),
                         ],
@@ -325,20 +340,21 @@ class _HomePageState extends State<HomePage> {
             spacing: 12,
             runSpacing: 12,
             children: [
-              FilledButton.icon(
-                onPressed: () => goSection('demo'),
-                label: Text(context.l.tryDemo),
-                icon: const Icon(Icons.arrow_forward_rounded, size: 19),
-                iconAlignment: IconAlignment.end,
+              ExternalButton(
+                label: context.l.openApp,
+                url: appUrl,
+                filled: true,
+                icon: Icons.arrow_forward_rounded,
+                newTab: false,
               ),
               TextButton(
-                onPressed: () => goSection('hosting'),
+                onPressed: () => goSection('demo'),
                 style: TextButton.styleFrom(
                   backgroundColor: context.c.surfaceContainerHigh,
                   padding: const EdgeInsets.symmetric(horizontal: 28),
                   minimumSize: const Size(48, 56),
                 ),
-                child: Text(context.l.selfHost),
+                child: Text(context.l.tryDemo),
               ),
             ],
           ),
@@ -426,7 +442,7 @@ class _HomePageState extends State<HomePage> {
                   (Icons.call_split_rounded, context.l.trustSplit),
                   (Icons.language_rounded, context.l.trustLanguages),
                   (Icons.code_rounded, context.l.trustOpen),
-                  (Icons.dns_outlined, context.l.trustServer),
+                  (Icons.cloud_done_outlined, context.l.trustOfficial),
                 ]
                 .map(
                   (entry) => SizedBox(

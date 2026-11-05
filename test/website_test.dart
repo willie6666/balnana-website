@@ -175,7 +175,7 @@ void main() {
   testWidgets('hosting band text stays light on a light page', (tester) async {
     await tester.pumpWidget(localized(const HostingSection(), 'en'));
     final l = lookupSiteLocalizations(const Locale('en'));
-    for (final text in [l.hostingTitle, 'PostgreSQL']) {
+    for (final text in [l.hostingTitle, l.donateTitle]) {
       final color = tester.renderObject<RenderParagraph>(find.text(text)).text.style!.color!;
       expect(color.computeLuminance(), greaterThan(.6), reason: text);
     }

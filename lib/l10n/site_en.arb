@@ -2,19 +2,16 @@
   "@@locale": "en",
   "navFeatures": "Features",
   "navDemo": "Try it",
-  "navHosting": "Self-host",
   "navFaq": "FAQ",
   "navDocs": "Docs",
   "heroEyebrow": "Open-source expense splitting",
   "heroTitle": "Pay now,\nsort it out later.",
   "heroBody": "On a trip, in a shared flat or out for dinner, whoever's handy pays and adds it to the group. At the end, Balnana adds everything up and tells each person who to pay and how much.",
   "tryDemo": "Try the demo",
-  "selfHost": "Self-host",
   "development": "In development · Android + Web",
   "trustSplit": "Flexible splits",
   "trustLanguages": "20 languages",
   "trustOpen": "Open source, no ads",
-  "trustServer": "Runs on your own server",
   "demoLabel": "Sample group",
   "demoTitle": "Lots of bills.\nJust a few transfers.",
   "demoBody": "Four friends, four expenses, each paid by someone different. Tap an expense to change the amount, who paid or how it's split, and see how the balances and transfers change.",
@@ -56,24 +53,22 @@
   "exportTitle": "Import and export",
   "exportBody": "Export your expenses to CSV, or import a group from Settle Up.",
   "hostingLabel": "Self-host",
-  "hostingTitle": "Your server.\nYour group's data.",
-  "hostingBody": "Balnana runs with Docker Compose and keeps its data in PostgreSQL on your own server. The Docs walk you through the setup.",
+  "hostingTitle": "Prefer to run\nyour own server?",
+  "hostingBody": "You can. Balnana is open source and runs with Docker Compose, with your data in PostgreSQL, and the Docs cover the setup. But if you just want to split bills with friends, we'd suggest the official server at app.balnana.com. There's nothing to install or keep up to date.",
   "hostingLink": "Self-host guide",
-  "hostingModeLink": "Send friends a private link or QR code, and they can join without signing up.",
-  "hostingModeAccounts": "If you'd rather use accounts, turn on sign-in with a password, Google or OIDC.",
   "faqTitle": "FAQ",
   "faqAccountQ": "Does everyone need an account?",
-  "faqAccountA": "Not in link mode: a private link or QR code is all anyone needs to join. In accounts mode people sign in, and your server settings decide who can get in.",
+  "faqAccountA": "You sign up on the official server to create a group. Turn on link sharing for the group, and friends can join with a private link or QR code without an account.",
   "faqOfflineQ": "Can I use it offline?",
   "faqOfflineA": "Mostly, on Android. You can look through cached expenses and add new expenses or payments, which upload once you're back online. Editing existing expenses and uploading receipts need a connection.",
   "faqCurrencyQ": "Are exchange rates automatic?",
-  "faqCurrencyA": "If your server has exchange-rate lookup turned on, a reference rate is filled in when you pick a foreign currency. You can change it, or enter what your card was actually charged.",
+  "faqCurrencyA": "Yes. When you pick a foreign currency, a reference rate is filled in for you. You can change it, or enter what your card was actually charged.",
   "faqPlatformQ": "Which platforms are supported?",
   "faqPlatformA": "Android and the web. There's no iOS app yet.",
   "faqCostQ": "Is Balnana free?",
-  "faqCostA": "Yes. Balnana is open source (AGPL-3.0) and there's no subscription. If you host it yourself, you pay for the server.",
+  "faqCostA": "Yes. Sign up on the official server and you can use it for free, with no ads. Balnana is also open source (AGPL-3.0).",
   "endTitle": "Want to try it with your friends?",
-  "endBody": "Set up a server using the Docs, create a group and send everyone the link.",
+  "endBody": "Sign up at app.balnana.com, create a group and send everyone the link.",
   "github": "View source",
   "reportIssue": "Report an issue",
   "footerNote": "Balnana is an open-source app for splitting shared expenses.",
@@ -101,9 +96,6 @@
   "@navDemo": {
     "description": "Official website: navDemo. Keep product names and named services unchanged."
   },
-  "@navHosting": {
-    "description": "Official website: navHosting. Keep product names and named services unchanged."
-  },
   "@heroEyebrow": {
     "description": "Official website: heroEyebrow. Keep product names and named services unchanged."
   },
@@ -116,8 +108,13 @@
   "@tryDemo": {
     "description": "Official website: tryDemo. Keep product names and named services unchanged."
   },
-  "@selfHost": {
-    "description": "Official website: selfHost. Keep product names and named services unchanged."
+  "openApp": "Open the web app",
+  "@openApp": {
+    "description": "Official website: openApp. Keep product names and named services unchanged."
+  },
+  "openAppShort": "Open app",
+  "@openAppShort": {
+    "description": "Official website: openAppShort. Keep product names and named services unchanged."
   },
   "@development": {
     "description": "Official website: development. Keep product names and named services unchanged."
@@ -131,8 +128,9 @@
   "@trustOpen": {
     "description": "Official website: trustOpen. Keep product names and named services unchanged."
   },
-  "@trustServer": {
-    "description": "Official website: trustServer. Keep product names and named services unchanged."
+  "trustOfficial": "Official server, ready to use",
+  "@trustOfficial": {
+    "description": "Official website: trustOfficial. Keep product names and named services unchanged."
   },
   "@demoLabel": {
     "description": "Official website: demoLabel. Keep product names and named services unchanged."
@@ -270,14 +268,24 @@
   "@hostingBody": {
     "description": "Official website: hostingBody. Keep product names and named services unchanged."
   },
+  "hostingOfficial": "Use the official server",
+  "@hostingOfficial": {
+    "description": "Official website: hostingOfficial. Keep product names and named services unchanged."
+  },
   "@hostingLink": {
     "description": "Official website: hostingLink. Keep product names and named services unchanged."
   },
-  "@hostingModeLink": {
-    "description": "Official website: hostingModeLink. Keep product names and named services unchanged."
+  "donateTitle": "Like Balnana?",
+  "@donateTitle": {
+    "description": "Official website: donateTitle. Keep product names and named services unchanged."
   },
-  "@hostingModeAccounts": {
-    "description": "Official website: hostingModeAccounts. Keep product names and named services unchanged."
+  "donateBody": "If it's made splitting bills a bit easier for your group, you can support us on Ko-fi. It helps pay for the official server and keeps the project going.",
+  "@donateBody": {
+    "description": "Official website: donateBody. Keep product names and named services unchanged."
+  },
+  "donateLink": "Support us on Ko-fi",
+  "@donateLink": {
+    "description": "Official website: donateLink. Keep product names and named services unchanged."
   },
   "@faqTitle": {
     "description": "Official website: faqTitle. Keep product names and named services unchanged."

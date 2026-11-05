@@ -109,12 +109,6 @@ abstract class SiteLocalizations {
   /// **'Try it'**
   String get navDemo;
 
-  /// Official website: navHosting. Keep product names and named services unchanged.
-  ///
-  /// In en, this message translates to:
-  /// **'Self-host'**
-  String get navHosting;
-
   /// Official website: short navigation label for the FAQ section.
   ///
   /// In en, this message translates to:
@@ -151,12 +145,6 @@ abstract class SiteLocalizations {
   /// **'Try the demo'**
   String get tryDemo;
 
-  /// Official website: selfHost. Keep product names and named services unchanged.
-  ///
-  /// In en, this message translates to:
-  /// **'Self-host'**
-  String get selfHost;
-
   /// Official website: development. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
@@ -180,12 +168,6 @@ abstract class SiteLocalizations {
   /// In en, this message translates to:
   /// **'Open source, no ads'**
   String get trustOpen;
-
-  /// Official website: trustServer. Keep product names and named services unchanged.
-  ///
-  /// In en, this message translates to:
-  /// **'Runs on your own server'**
-  String get trustServer;
 
   /// Official website: demoLabel. Keep product names and named services unchanged.
   ///
@@ -436,13 +418,13 @@ abstract class SiteLocalizations {
   /// Official website: hostingTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Your server.\nYour group\'s data.'**
+  /// **'Prefer to run\nyour own server?'**
   String get hostingTitle;
 
   /// Official website: hostingBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Balnana runs with Docker Compose and keeps its data in PostgreSQL on your own server. The Docs walk you through the setup.'**
+  /// **'You can. Balnana is open source and runs with Docker Compose, with your data in PostgreSQL, and the Docs cover the setup. But if you just want to split bills with friends, we\'d suggest the official server at app.balnana.com. There\'s nothing to install or keep up to date.'**
   String get hostingBody;
 
   /// Official website: hostingLink. Keep product names and named services unchanged.
@@ -450,18 +432,6 @@ abstract class SiteLocalizations {
   /// In en, this message translates to:
   /// **'Self-host guide'**
   String get hostingLink;
-
-  /// Official website: hostingModeLink. Keep product names and named services unchanged.
-  ///
-  /// In en, this message translates to:
-  /// **'Send friends a private link or QR code, and they can join without signing up.'**
-  String get hostingModeLink;
-
-  /// Official website: hostingModeAccounts. Keep product names and named services unchanged.
-  ///
-  /// In en, this message translates to:
-  /// **'If you\'d rather use accounts, turn on sign-in with a password, Google or OIDC.'**
-  String get hostingModeAccounts;
 
   /// Official website: faqTitle. Keep product names and named services unchanged.
   ///
@@ -478,7 +448,7 @@ abstract class SiteLocalizations {
   /// Official website: faqAccountA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Not in link mode: a private link or QR code is all anyone needs to join. In accounts mode people sign in, and your server settings decide who can get in.'**
+  /// **'You sign up on the official server to create a group. Turn on link sharing for the group, and friends can join with a private link or QR code without an account.'**
   String get faqAccountA;
 
   /// Official website: faqOfflineQ. Keep product names and named services unchanged.
@@ -502,7 +472,7 @@ abstract class SiteLocalizations {
   /// Official website: faqCurrencyA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'If your server has exchange-rate lookup turned on, a reference rate is filled in when you pick a foreign currency. You can change it, or enter what your card was actually charged.'**
+  /// **'Yes. When you pick a foreign currency, a reference rate is filled in for you. You can change it, or enter what your card was actually charged.'**
   String get faqCurrencyA;
 
   /// Official website: faqPlatformQ. Keep product names and named services unchanged.
@@ -526,7 +496,7 @@ abstract class SiteLocalizations {
   /// Official website: faqCostA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Yes. Balnana is open source (AGPL-3.0) and there\'s no subscription. If you host it yourself, you pay for the server.'**
+  /// **'Yes. Sign up on the official server and you can use it for free, with no ads. Balnana is also open source (AGPL-3.0).'**
   String get faqCostA;
 
   /// Official website: endTitle. Keep product names and named services unchanged.
@@ -538,7 +508,7 @@ abstract class SiteLocalizations {
   /// Official website: endBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Set up a server using the Docs, create a group and send everyone the link.'**
+  /// **'Sign up at app.balnana.com, create a group and send everyone the link.'**
   String get endBody;
 
   /// Official website: github. Keep product names and named services unchanged.
@@ -666,6 +636,48 @@ abstract class SiteLocalizations {
   /// In en, this message translates to:
   /// **'That amount is too large.'**
   String get amountTooLarge;
+
+  /// Official website: openApp. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the web app'**
+  String get openApp;
+
+  /// Official website: openAppShort. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Open app'**
+  String get openAppShort;
+
+  /// Official website: trustOfficial. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Official server, ready to use'**
+  String get trustOfficial;
+
+  /// Official website: hostingOfficial. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the official server'**
+  String get hostingOfficial;
+
+  /// Official website: donateTitle. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Like Balnana?'**
+  String get donateTitle;
+
+  /// Official website: donateBody. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'If it\'s made splitting bills a bit easier for your group, you can support us on Ko-fi. It helps pay for the official server and keeps the project going.'**
+  String get donateBody;
+
+  /// Official website: donateLink. Keep product names and named services unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Support us on Ko-fi'**
+  String get donateLink;
 
   /// Official website: heading above the list of sample expenses in the demo.
   ///

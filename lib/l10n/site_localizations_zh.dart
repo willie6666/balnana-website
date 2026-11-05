@@ -16,9 +16,6 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get navDemo => '试算一下';
 
   @override
-  String get navHosting => 'Self-host';
-
-  @override
   String get navFaq => '常见问题';
 
   @override
@@ -37,9 +34,6 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get tryDemo => '试算一下';
 
   @override
-  String get selfHost => 'Self-host';
-
-  @override
   String get development => '开发中 · Android 和 Web';
 
   @override
@@ -50,9 +44,6 @@ class SiteLocalizationsZh extends SiteLocalizations {
 
   @override
   String get trustOpen => '开源、没有广告';
-
-  @override
-  String get trustServer => '可以部署在自己的服务器';
 
   @override
   String get demoLabel => '示例群组';
@@ -184,19 +175,14 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get hostingLabel => 'Self-host';
 
   @override
-  String get hostingTitle => '部署在自己的服务器，\n账目留在自己手上。';
+  String get hostingTitle => '想自己部署，\n也可以。';
 
   @override
-  String get hostingBody => 'Balnana 用 Docker Compose 就能跑起来，数据存在你服务器上的 PostgreSQL。设置步骤写在 Docs 里。';
+  String get hostingBody =>
+      'Balnana 是开源的，用 Docker Compose 就能部署，数据存在你自己的 PostgreSQL 数据库中，步骤都写在 Docs 里。不过如果只是想和朋友分账，我们更推荐直接用官方服务器 app.balnana.com，不用安装，也不用自己维护更新。';
 
   @override
   String get hostingLink => 'Self-host 指南';
-
-  @override
-  String get hostingModeLink => '把私人链接或二维码发给朋友，不用注册就能加入。';
-
-  @override
-  String get hostingModeAccounts => '想用账号登录的话，可以开启密码、Google 或 OIDC 登录。';
 
   @override
   String get faqTitle => '常见问题';
@@ -205,7 +191,7 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get faqAccountQ => '每个人都需要账号吗？';
 
   @override
-  String get faqAccountA => '用链接模式的话不用，拿到私人链接或二维码就能加入。账号模式要先登录，谁能进来由服务器设置决定。';
+  String get faqAccountA => '在官方服务器上，创建群组要先注册。群组开启链接分享后，朋友用私人链接或二维码就能加入，不用注册。';
 
   @override
   String get faqOfflineQ => '可以离线使用吗？';
@@ -217,7 +203,7 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get faqCurrencyQ => '会自动获取汇率吗？';
 
   @override
-  String get faqCurrencyA => '服务器开了汇率查询的话，选了外币会自动填入参考汇率。你可以自己改，或直接填刷卡实际扣的金额。';
+  String get faqCurrencyA => '会。选了外币就会自动带入参考汇率，你可以自己改，或者直接填刷卡实际扣的金额。';
 
   @override
   String get faqPlatformQ => '支持哪些平台？';
@@ -229,13 +215,13 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get faqCostQ => 'Balnana 免费吗？';
 
   @override
-  String get faqCostA => '免费。Balnana 是开源项目（AGPL-3.0），没有订阅费。自己部署的话，服务器费用要自己出。';
+  String get faqCostA => '免费。在官方服务器注册就能用，也没有广告。Balnana 是开源项目（AGPL-3.0）。';
 
   @override
   String get endTitle => '想跟朋友一起用？';
 
   @override
-  String get endBody => '照着 Docs 部署好服务器，建个群组，把链接发给大家就行了。';
+  String get endBody => '到 app.balnana.com 注册，建个群组，把链接发给大家就行了。';
 
   @override
   String get github => '查看源代码';
@@ -301,6 +287,27 @@ class SiteLocalizationsZh extends SiteLocalizations {
 
   @override
   String get amountTooLarge => '金额过大。';
+
+  @override
+  String get openApp => '打开网页版';
+
+  @override
+  String get openAppShort => '开始使用';
+
+  @override
+  String get trustOfficial => '官方服务器，注册就能用';
+
+  @override
+  String get hostingOfficial => '使用官方服务器';
+
+  @override
+  String get donateTitle => '喜欢 Balnana 吗？';
+
+  @override
+  String get donateBody => '如果它让你们分账轻松了一点，欢迎到 Ko-fi 支持我们。这些钱会用来支付官方服务器的费用，也让这个项目能继续做下去。';
+
+  @override
+  String get donateLink => '到 Ko-fi 支持我们';
 
   @override
   String get expensesLabel => '支出';
@@ -376,9 +383,6 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get navDemo => '試算看看';
 
   @override
-  String get navHosting => 'Self-host';
-
-  @override
   String get navFaq => '常見問題';
 
   @override
@@ -397,9 +401,6 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get tryDemo => '試算看看';
 
   @override
-  String get selfHost => 'Self-host';
-
-  @override
   String get development => '開發中 · Android 與 Web';
 
   @override
@@ -410,9 +411,6 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
 
   @override
   String get trustOpen => '開源、沒有廣告';
-
-  @override
-  String get trustServer => '可以架在自己的伺服器';
 
   @override
   String get demoLabel => '範例群組';
@@ -544,19 +542,14 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get hostingLabel => 'Self-host';
 
   @override
-  String get hostingTitle => '架在自己的伺服器，\n帳目留在自己手上。';
+  String get hostingTitle => '想自己架，\n也可以。';
 
   @override
-  String get hostingBody => 'Balnana 用 Docker Compose 就能跑起來，資料存在你伺服器上的 PostgreSQL。設定步驟寫在 Docs 裡。';
+  String get hostingBody =>
+      'Balnana 是開源的，用 Docker Compose 就能架起來，資料存在你自己的 PostgreSQL，步驟都寫在 Docs 裡。不過如果只是想跟朋友分帳，我們比較推薦直接用官方伺服器 app.balnana.com，不用安裝，也不用自己顧更新。';
 
   @override
   String get hostingLink => 'Self-host 指南';
-
-  @override
-  String get hostingModeLink => '把私人連結或 QR code 傳給朋友，不用註冊就能加入。';
-
-  @override
-  String get hostingModeAccounts => '想用帳號登入的話，可以開密碼、Google 或 OIDC 登入。';
 
   @override
   String get faqTitle => '常見問題';
@@ -565,7 +558,7 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get faqAccountQ => '每個人都需要帳號嗎？';
 
   @override
-  String get faqAccountA => '用連結模式的話不用，拿到私人連結或 QR code 就能加入。帳號模式要先登入，誰能進來由伺服器設定決定。';
+  String get faqAccountA => '在官方伺服器上，建立群組要先註冊。群組開啟連結分享後，朋友拿私人連結或 QR code 就能加入，不用註冊。';
 
   @override
   String get faqOfflineQ => '可以離線使用嗎？';
@@ -577,7 +570,7 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get faqCurrencyQ => '會自動取得匯率嗎？';
 
   @override
-  String get faqCurrencyA => '伺服器有開匯率查詢的話，選了外幣會自動帶入參考匯率。你可以自己改，或直接填刷卡實際扣的金額。';
+  String get faqCurrencyA => '會。選了外幣就會自動帶入參考匯率，你可以自己改，或直接填刷卡實際扣的金額。';
 
   @override
   String get faqPlatformQ => '支援哪些平台？';
@@ -589,13 +582,13 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get faqCostQ => 'Balnana 免費嗎？';
 
   @override
-  String get faqCostA => '免費。Balnana 是開源專案（AGPL-3.0），沒有訂閱費。自己架的話，主機費用要自己出。';
+  String get faqCostA => '免費。在官方伺服器註冊就能用，也沒有廣告。Balnana 是開源專案（AGPL-3.0）。';
 
   @override
   String get endTitle => '想跟朋友一起用？';
 
   @override
-  String get endBody => '照著 Docs 架好伺服器，開個群組，把連結傳給大家就行了。';
+  String get endBody => '到 app.balnana.com 註冊，開個群組，把連結傳給大家就行了。';
 
   @override
   String get github => '查看原始碼';
@@ -661,6 +654,27 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
 
   @override
   String get amountTooLarge => '金額太大。';
+
+  @override
+  String get openApp => '打開網頁版';
+
+  @override
+  String get openAppShort => '開始使用';
+
+  @override
+  String get trustOfficial => '官方伺服器，註冊就能用';
+
+  @override
+  String get hostingOfficial => '使用官方伺服器';
+
+  @override
+  String get donateTitle => '喜歡 Balnana 嗎？';
+
+  @override
+  String get donateBody => '如果它讓你們分帳輕鬆了一點，歡迎到 Ko-fi 贊助我們。這些錢會拿去付官方伺服器的費用，也讓這個專案能繼續做下去。';
+
+  @override
+  String get donateLink => '到 Ko-fi 贊助';
 
   @override
   String get expensesLabel => '支出';
