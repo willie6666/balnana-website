@@ -8,11 +8,7 @@ const siteLocalizationDelegates = [
   ...GlobalMaterialLocalizations.delegates,
 ];
 
-const languageNames = <String, String>{
-  'en': 'English',
-  'zh-Hant': '繁體中文',
-  'zh': '简体中文',
-};
+const languageNames = <String, String>{'en': 'English', 'zh-Hant': '繁體中文', 'zh': '简体中文'};
 
 String? supportedTag(String? tag) {
   if (tag == null) return null;

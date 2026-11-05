@@ -23,7 +23,7 @@ During development you can also run `flutter run -d web-server` and preview at t
 ## What is implemented
 
 - Brand homepage, feature overview, an enlarged viewer for real Android screenshots, self-hosting notes, an FAQ, and source code links.
-- Travel / housemates / dining demos where you can edit amounts, switch the payer, split equally or by shares, and reset. Amounts are computed in integer minor units and produce suggested payments that settle every balance.
+- Travel / housemates / dining sample groups, each with four expenses paid by different people. Pick an expense to edit its amount, switch the payer, or split it equally or by shares; the balances add up across all expenses and the demo compares paying back each bill separately with the combined transfers. Everything can be reset. Amounts are computed in integer minor units and produce suggested payments that settle every balance.
 - English, Traditional Chinese and Simplified Chinese, with separate ARB files for the website copy. `/zh` is Simplified and `/zh-Hant` is Traditional.
 - Per-language URLs, browser back/forward support, and section links. At the root, the language is chosen from the saved preference, then the browser language, then English.
 - System / light / dark themes. The preference is stored in the browser, and the loading screen follows the chosen theme.

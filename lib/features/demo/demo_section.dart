@@ -81,19 +81,16 @@ class BalancePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = ledger;
-    final values = data?.balances ?? [35113, -10287, -20888, -3938];
-    final transfers =
-        data?.transfers ??
-        const [Transfer(2, 0, 20888), Transfer(1, 0, 10287), Transfer(3, 0, 3938)];
-    final recipient = data?.payer ?? 0;
-    final title = switch (data?.scenario ?? Scenario.travel) {
+    final data = ledger ?? const DemoLedger();
+    final values = data.balances;
+    final transfers = data.transfers;
+    final recipient = data.topCreditor;
+    final title = switch (data.scenario) {
       Scenario.travel => context.l.groupTravel,
       Scenario.home => context.l.groupHome,
       Scenario.dinner => context.l.groupDinner,
     };
-    String format(int value) =>
-        money(context, value, currency: data?.currency ?? 'JPY', digits: data?.digits ?? 0);
+    String format(int value) => money(context, value, currency: data.currency, digits: data.digits);
     return Semantics(
       container: true,
       child: Panel(
@@ -110,7 +107,7 @@ class BalancePreview extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
-                    switch (data?.scenario ?? Scenario.travel) {
+                    switch (data.scenario) {
                       Scenario.travel => Icons.local_florist_outlined,
                       Scenario.home => Icons.home_outlined,
                       Scenario.dinner => Icons.restaurant_outlined,
@@ -262,6 +259,20 @@ class BalancePreview extends StatelessWidget {
                         style: TextStyle(fontSize: 14, color: context.c.onSurfaceVariant),
                       ),
                     ),
+                  if (!hero &&
+                      transfers.isNotEmpty &&
+                      data.separateTransfers > transfers.length) ...[
+                    const SizedBox(height: 12),
+                    Text(
+                      context.l.demoSummary(data.separateTransfers, transfers.length),
+                      key: const ValueKey('demo-summary'),
+                      style: TextStyle(
+                        fontSize: 14,
+                        height: 1.5,
+                        color: context.c.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -303,10 +314,90 @@ class _DemoSectionState extends State<DemoSection> {
     });
   }
 
+  void select(int index) {
+    setState(() {
+      ledger = ledger.select(index);
+      amount.text = formattedAmount();
+      error = null;
+    });
+  }
+
   String formattedAmount() => NumberFormat.decimalPatternDigits(
     locale: Localizations.localeOf(context).toLanguageTag(),
     decimalDigits: ledger.digits,
-  ).format(ledger.amount / math.pow(10, ledger.digits));
+  ).format(ledger.current.amount / math.pow(10, ledger.digits));
+
+  String format(int minor) =>
+      money(context, minor, currency: ledger.currency, digits: ledger.digits);
+
+  Widget expenseRow(int index) {
+    final expense = ledger.expenses[index];
+    final picked = ledger.selected == index;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Semantics(
+        selected: picked,
+        button: true,
+        child: Material(
+          color: context.c.surface.withValues(alpha: picked ? 1 : .45),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+            side: pickedSide(picked),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            key: ValueKey('expense-$index'),
+            onTap: () => select(index),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              child: Row(
+                children: [
+                  Icon(expenseIcon(ledger.scenario, index), size: 22, color: context.c.primary),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // The amount drops below the title when a narrow row can't fit both.
+                        SizedBox(
+                          width: double.infinity,
+                          child: Wrap(
+                            alignment: WrapAlignment.spaceBetween,
+                            spacing: 10,
+                            children: [
+                              Text(
+                                expenseTitle(context, ledger.scenario, index),
+                                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                              ),
+                              Text(
+                                format(expense.amount),
+                                textDirection: TextDirection.ltr,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                  fontFeatures: [FontFeature.tabularFigures()],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          '${context.l.paidBy(memberNames[expense.payer])} · '
+                          '${expense.mode == SplitMode.equal ? context.l.splitWays(expense.people) : context.l.splitByShares}',
+                          style: TextStyle(fontSize: 13, color: context.c.onSurfaceVariant),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   // On the banana panel a lighter fill alone barely shows which chip is picked; outline it too.
   BorderSide pickedSide(bool picked) =>
@@ -323,8 +414,8 @@ class _DemoSectionState extends State<DemoSection> {
       tooltip: delta < 0
           ? context.l.fewerShares(memberNames[member])
           : context.l.moreShares(memberNames[member]),
-      onPressed: ledger.canAdjustShares(member, delta)
-          ? () => setState(() => ledger = ledger.adjustShares(member, delta))
+      onPressed: ledger.current.canAdjustShares(member, delta)
+          ? () => setState(() => ledger = ledger.edit((e) => e.adjustShares(member, delta)))
           : null,
       icon: Icon(delta < 0 ? Icons.remove_rounded : Icons.add_rounded, size: 20),
       style: IconButton.styleFrom(
@@ -352,7 +443,7 @@ class _DemoSectionState extends State<DemoSection> {
           SizedBox(
             width: 36,
             child: Text(
-              '${ledger.shareCounts[member]}',
+              '${ledger.current.shareCounts[member]}',
               key: ValueKey('shares-$member'),
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -408,7 +499,26 @@ class _DemoSectionState extends State<DemoSection> {
                       )
                       .toList(),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 26),
+                Text(
+                  context.l.expensesLabel,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: context.c.onPrimaryContainer,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                for (var i = 0; i < ledger.expenses.length; i++) expenseRow(i),
+                const SizedBox(height: 22),
+                Text(
+                  context.l.editing(expenseTitle(context, ledger.scenario, ledger.selected)),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                    color: context.c.onPrimaryContainer,
+                  ),
+                ),
+                const SizedBox(height: 14),
                 TextField(
                   key: const ValueKey('demo-amount'),
                   controller: amount,
@@ -441,7 +551,9 @@ class _DemoSectionState extends State<DemoSection> {
                     );
                     setState(() {
                       error = parsed.error;
-                      if (parsed.minor case final minor?) ledger = ledger.copyWith(amount: minor);
+                      if (parsed.minor case final minor?) {
+                        ledger = ledger.edit((e) => e.copyWith(amount: minor));
+                      }
                     });
                   },
                 ),
@@ -463,13 +575,14 @@ class _DemoSectionState extends State<DemoSection> {
                       key: ValueKey('payer-$i'),
                       avatar: PersonAvatar(i, radius: 13),
                       label: Text(memberNames[i]),
-                      selected: ledger.payer == i,
+                      selected: ledger.current.payer == i,
                       showCheckmark: false,
-                      onSelected: (_) => setState(() => ledger = ledger.copyWith(payer: i)),
+                      onSelected: (_) =>
+                          setState(() => ledger = ledger.edit((e) => e.copyWith(payer: i))),
                       selectedColor: context.c.surface,
                       backgroundColor: context.c.surface.withValues(alpha: .4),
-                      side: pickedSide(ledger.payer == i),
-                      labelStyle: pickedLabel(ledger.payer == i),
+                      side: pickedSide(ledger.current.payer == i),
+                      labelStyle: pickedLabel(ledger.current.payer == i),
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                     ),
                   ),
@@ -485,19 +598,20 @@ class _DemoSectionState extends State<DemoSection> {
                           label: Text(
                             mode == SplitMode.equal ? context.l.splitEqual : context.l.splitShares,
                           ),
-                          selected: ledger.mode == mode,
+                          selected: ledger.current.mode == mode,
                           showCheckmark: false,
-                          onSelected: (_) => setState(() => ledger = ledger.copyWith(mode: mode)),
+                          onSelected: (_) =>
+                              setState(() => ledger = ledger.edit((e) => e.copyWith(mode: mode))),
                           selectedColor: context.c.surface,
                           backgroundColor: context.c.surface.withValues(alpha: .4),
-                          side: pickedSide(ledger.mode == mode),
-                          labelStyle: pickedLabel(ledger.mode == mode),
+                          side: pickedSide(ledger.current.mode == mode),
+                          labelStyle: pickedLabel(ledger.current.mode == mode),
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                         ),
                       )
                       .toList(),
                 ),
-                if (ledger.mode == SplitMode.shares) ...[
+                if (ledger.current.mode == SplitMode.shares) ...[
                   const SizedBox(height: 16),
                   for (var i = 0; i < memberNames.length; i++) shareCounter(i),
                   const SizedBox(height: 6),
@@ -543,3 +657,34 @@ class _DemoSectionState extends State<DemoSection> {
     ],
   );
 }
+
+String expenseTitle(BuildContext context, Scenario scenario, int index) =>
+    switch ((scenario, index)) {
+      (Scenario.travel, 0) => context.l.expenseHotel,
+      (Scenario.travel, 1) => context.l.expenseCar,
+      (Scenario.travel, 2) => context.l.expenseGionDinner,
+      (Scenario.travel, _) => context.l.expenseTea,
+      (Scenario.home, 0) => context.l.expenseRent,
+      (Scenario.home, 1) => context.l.expenseGroceries,
+      (Scenario.home, 2) => context.l.expensePower,
+      (Scenario.home, _) => context.l.expenseInternet,
+      (Scenario.dinner, 0) => context.l.expenseDinner,
+      (Scenario.dinner, 1) => context.l.expenseDrinks,
+      (Scenario.dinner, 2) => context.l.expenseDessert,
+      (Scenario.dinner, _) => context.l.expenseTaxi,
+    };
+
+IconData expenseIcon(Scenario scenario, int index) => switch ((scenario, index)) {
+  (Scenario.travel, 0) => Icons.hotel_outlined,
+  (Scenario.travel, 1) => Icons.directions_car_outlined,
+  (Scenario.travel, 2) => Icons.ramen_dining_outlined,
+  (Scenario.travel, _) => Icons.emoji_food_beverage_outlined,
+  (Scenario.home, 0) => Icons.key_outlined,
+  (Scenario.home, 1) => Icons.shopping_basket_outlined,
+  (Scenario.home, 2) => Icons.bolt_outlined,
+  (Scenario.home, _) => Icons.wifi_rounded,
+  (Scenario.dinner, 0) => Icons.restaurant_outlined,
+  (Scenario.dinner, 1) => Icons.local_bar_outlined,
+  (Scenario.dinner, 2) => Icons.icecream_outlined,
+  (Scenario.dinner, _) => Icons.local_taxi_outlined,
+};

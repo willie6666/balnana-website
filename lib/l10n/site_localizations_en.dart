@@ -13,7 +13,7 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get navFeatures => 'Features';
 
   @override
-  String get navDemo => 'Try it out';
+  String get navDemo => 'Try it';
 
   @override
   String get navHosting => 'Self-host';
@@ -28,11 +28,11 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get heroEyebrow => 'Open-source expense splitting';
 
   @override
-  String get heroTitle => 'Keep track of\nwho paid what.';
+  String get heroTitle => 'Pay now,\nsort it out later.';
 
   @override
   String get heroBody =>
-      'Away for the weekend or sharing a flat? Add what everyone paid, and Balnana works out each person\'s share and who owes whom.';
+      'On a trip, in a shared flat or out for dinner, whoever\'s handy pays and adds it to the group. At the end, Balnana adds everything up and tells each person who to pay and how much.';
 
   @override
   String get tryDemo => 'Try the demo';
@@ -53,17 +53,17 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get trustOpen => 'Open source, no ads';
 
   @override
-  String get trustServer => 'Run on your own server';
+  String get trustServer => 'Runs on your own server';
 
   @override
-  String get demoLabel => 'Try splitting a bill';
+  String get demoLabel => 'Sample group';
 
   @override
-  String get demoTitle => 'How would you\nsplit this one?';
+  String get demoTitle => 'Lots of bills.\nJust a few transfers.';
 
   @override
   String get demoBody =>
-      'Change the amount, pick who paid, or adjust each person\'s shares. The balances below update as you go.';
+      'Four friends, four expenses, each paid by someone different. Tap an expense to change the amount, who paid or how it\'s split, and see how the balances and transfers change.';
 
   @override
   String get scenarioTravel => 'Travel';
@@ -84,13 +84,13 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get groupDinner => 'Friday dinner';
 
   @override
-  String get demoNotice => 'Sample data — change anything you like';
+  String get demoNotice => 'Sample data. Change whatever you like.';
 
   @override
   String get payer => 'Who paid?';
 
   @override
-  String get balances => 'Everyone\'s balance';
+  String get balances => 'Balances';
 
   @override
   String get payments => 'Who pays whom';
@@ -101,11 +101,11 @@ class SiteLocalizationsEn extends SiteLocalizations {
   }
 
   @override
-  String get reset => 'Reset demo';
+  String get reset => 'Reset';
 
   @override
   String get weightedHelp =>
-      'Choose how many shares each person pays. Set it to 0 if they\'re sitting this one out.';
+      'Give someone more shares if they had more, or 0 if they weren\'t there.';
 
   @override
   String fewerShares(String name) {
@@ -118,34 +118,34 @@ class SiteLocalizationsEn extends SiteLocalizations {
   }
 
   @override
-  String get featureLabel => 'Ways to split';
+  String get featureLabel => 'Splitting';
 
   @override
-  String get featureTitle => 'You don\'t have to\nsplit every bill equally.';
+  String get featureTitle => 'Not every bill\nis split evenly.';
 
   @override
-  String get featureSplitTitle => 'Equal shares or different amounts';
+  String get featureSplitTitle => 'Equally, by shares or exact amounts';
 
   @override
   String get featureSplitBody =>
-      'Someone had a smaller meal? Adjust their share or enter an exact amount. You can also record several people paying for one expense.';
+      'Leave someone off the drinks if they didn\'t have any, or give the bigger room more shares of the rent. If two people paid for the same thing, you can record that too.';
 
   @override
-  String get featureSettleTitle => 'See who needs to pay whom';
+  String get featureSettleTitle => 'Fewer transfers at the end';
 
   @override
   String get featureSettleBody =>
-      'When it is time to settle up, Balnana suggests payments so everyone can make fewer transfers.';
+      'Balnana nets out everything the group owes each other before it suggests payments, so nobody has to pay back bill by bill.';
 
   @override
-  String get travelLabel => 'For trips abroad';
+  String get travelLabel => 'Travelling abroad';
 
   @override
-  String get travelTitle => 'Keep different currencies\nin the same group.';
+  String get travelTitle => 'Yen, euros and dollars\nin one group.';
 
   @override
   String get travelBody =>
-      'Record an expense in the currency you paid, then enter the exchange rate or the amount charged to your card. Balances use the group\'s currency.';
+      'Enter each expense in the currency you paid in, along with the exchange rate or what your card was charged. Balances are shown in the group\'s currency.';
 
   @override
   String get screenshotsNote => 'Screens from the Android app, in English with sample data';
@@ -160,98 +160,99 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get screenshotStats => 'Spending statistics';
 
   @override
-  String get extraTitle => 'A few more useful things';
+  String get extraTitle => 'And a few other things';
 
   @override
   String get recurringTitle => 'Recurring expenses';
 
   @override
   String get recurringBody =>
-      'Schedule rent and other regular bills instead of adding them each time.';
+      'Set up rent and other regular bills once instead of adding them every month.';
 
   @override
   String get receiptsTitle => 'Receipts and places';
 
   @override
   String get receiptsBody =>
-      'Attach a receipt to find it later, and save where you spent the money.';
+      'Attach a photo of the receipt and note where you spent the money, so it\'s easy to find later.';
 
   @override
   String get liveTitle => 'Live updates';
 
   @override
-  String get liveBody => 'While your group is open, new expenses appear as others add them.';
+  String get liveBody =>
+      'If someone adds an expense while you have the group open, it shows up straight away.';
 
   @override
   String get exportTitle => 'Import and export';
 
   @override
-  String get exportBody => 'Export your expenses as CSV, or bring over a group from Settle Up.';
+  String get exportBody => 'Export your expenses to CSV, or import a group from Settle Up.';
 
   @override
   String get hostingLabel => 'Self-host';
 
   @override
-  String get hostingTitle => 'Run your own server.\nInvite your friends.';
+  String get hostingTitle => 'Your server.\nYour group\'s data.';
 
   @override
   String get hostingBody =>
-      'Start Balnana with Docker Compose. Expenses are stored in PostgreSQL on your server, and the setup steps are in the Docs.';
+      'Balnana runs with Docker Compose and keeps its data in PostgreSQL on your own server. The Docs walk you through the setup.';
 
   @override
   String get hostingLink => 'Self-host guide';
 
   @override
   String get hostingModeLink =>
-      'Share a private link or QR code so people can join without signing up.';
+      'Send friends a private link or QR code, and they can join without signing up.';
 
   @override
   String get hostingModeAccounts =>
-      'Prefer accounts? Enable sign-in with a password, Google or OIDC.';
+      'If you\'d rather use accounts, turn on sign-in with a password, Google or OIDC.';
 
   @override
-  String get faqTitle => 'Common questions';
+  String get faqTitle => 'FAQ';
 
   @override
   String get faqAccountQ => 'Does everyone need an account?';
 
   @override
   String get faqAccountA =>
-      'With link mode, a private link or QR code is enough to join. Accounts mode requires sign-in, with access controlled by your server\'s settings.';
+      'Not in link mode: a private link or QR code is all anyone needs to join. In accounts mode people sign in, and your server settings decide who can get in.';
 
   @override
   String get faqOfflineQ => 'Can I use it offline?';
 
   @override
   String get faqOfflineA =>
-      'On Android, you can read cached expenses and add new expenses or payments offline. They upload when you reconnect. Editing existing expenses and uploading receipts still need a connection.';
+      'Mostly, on Android. You can look through cached expenses and add new expenses or payments, which upload once you\'re back online. Editing existing expenses and uploading receipts need a connection.';
 
   @override
   String get faqCurrencyQ => 'Are exchange rates automatic?';
 
   @override
   String get faqCurrencyA =>
-      'If your server has exchange-rate lookup enabled, Balnana fills in a reference rate when you pick a foreign currency. You can change it or enter the amount charged to your card.';
+      'If your server has exchange-rate lookup turned on, a reference rate is filled in when you pick a foreign currency. You can change it, or enter what your card was actually charged.';
 
   @override
   String get faqPlatformQ => 'Which platforms are supported?';
 
   @override
-  String get faqPlatformA => 'There is an Android app and a web app. There is no iOS app yet.';
+  String get faqPlatformA => 'Android and the web. There\'s no iOS app yet.';
 
   @override
   String get faqCostQ => 'Is Balnana free?';
 
   @override
   String get faqCostA =>
-      'Balnana is open source under AGPL-3.0, with no app subscription. You cover any hosting costs when you run your own server.';
+      'Yes. Balnana is open source (AGPL-3.0) and there\'s no subscription. If you host it yourself, you pay for the server.';
 
   @override
-  String get endTitle => 'Want to give it a go?';
+  String get endTitle => 'Want to try it with your friends?';
 
   @override
   String get endBody =>
-      'Follow the Docs to start your server, then invite your friends to a group.';
+      'Set up a server using the Docs, create a group and send everyone the link.';
 
   @override
   String get github => 'View source';
@@ -260,7 +261,7 @@ class SiteLocalizationsEn extends SiteLocalizations {
   String get reportIssue => 'Report an issue';
 
   @override
-  String get footerNote => 'Balnana is an open-source app for shared expenses.';
+  String get footerNote => 'Balnana is an open-source app for splitting shared expenses.';
 
   @override
   String get backHome => 'Back to home';
@@ -317,4 +318,66 @@ class SiteLocalizationsEn extends SiteLocalizations {
 
   @override
   String get amountTooLarge => 'That amount is too large.';
+
+  @override
+  String get expensesLabel => 'Expenses';
+
+  @override
+  String editing(String expense) {
+    return 'Editing: $expense';
+  }
+
+  @override
+  String paidBy(String name) {
+    return '$name paid';
+  }
+
+  @override
+  String splitWays(int count) {
+    return 'split $count ways';
+  }
+
+  @override
+  String get splitByShares => 'split by shares';
+
+  @override
+  String demoSummary(int separate, int payments) {
+    return 'Paying back each bill on its own would take $separate transfers. Added up, it\'s $payments.';
+  }
+
+  @override
+  String get expenseHotel => 'Hotel, 2 nights';
+
+  @override
+  String get expenseCar => 'Car rental';
+
+  @override
+  String get expenseGionDinner => 'Dinner in Gion';
+
+  @override
+  String get expenseTea => 'Tea ceremony';
+
+  @override
+  String get expenseRent => 'Rent';
+
+  @override
+  String get expenseGroceries => 'Groceries';
+
+  @override
+  String get expensePower => 'Electricity';
+
+  @override
+  String get expenseInternet => 'Internet';
+
+  @override
+  String get expenseDinner => 'Dinner';
+
+  @override
+  String get expenseDrinks => 'Drinks';
+
+  @override
+  String get expenseDessert => 'Dessert';
+
+  @override
+  String get expenseTaxi => 'Taxi home';
 }

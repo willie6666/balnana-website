@@ -73,49 +73,57 @@ void main() {
     }
   });
   testWidgets('demo edits recalculate and reset without accepting invalid money', (tester) async {
-    tester.view.physicalSize = const Size(1200, 1000);
+    tester.view.physicalSize = const Size(1200, 1400);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(localized(const DemoSection(), 'en'));
     await tester.pumpAndSettle();
-    expect(find.text('¥9,000'), findsOneWidget);
-    await tester.enterText(find.byKey(const ValueKey('demo-amount')), '16000');
+    expect(find.text('Alex is owed'), findsOneWidget);
+    expect(
+      find.text("Paying back each bill on its own would take 11 transfers. Added up, it's 3."),
+      findsOneWidget,
+    );
+    await tester.tap(find.byKey(const ValueKey('expense-1')));
     await tester.pumpAndSettle();
-    expect(find.text('¥12,000'), findsOneWidget);
-    await tester.tap(find.byKey(const ValueKey('payer-1')));
+    expect(find.text('Editing: Car rental'), findsOneWidget);
+    await tester.enterText(find.byKey(const ValueKey('demo-amount')), '80000');
     await tester.pumpAndSettle();
     expect(find.text('Jamie is owed'), findsOneWidget);
+    expect(find.text('+¥40,350'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('expense-0')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('payer-3')));
+    await tester.pumpAndSettle();
+    expect(find.text('Sam paid · split 4 ways'), findsOneWidget);
     await tester.enterText(find.byKey(const ValueKey('demo-amount')), '0');
     await tester.pump();
     expect(find.text('Enter an amount greater than zero.'), findsOneWidget);
     await tester.ensureVisible(find.byKey(const ValueKey('demo-reset')));
     await tester.tap(find.byKey(const ValueKey('demo-reset')));
     await tester.pumpAndSettle();
-    expect(find.text('¥9,000'), findsOneWidget);
-    await tester.enterText(find.byKey(const ValueKey('demo-amount')), '1');
-    await tester.pumpAndSettle();
-    expect(find.text('Everyone is settled up.'), findsNWidgets(2));
+    expect(find.text('Alex is owed'), findsOneWidget);
+    expect(find.text('+¥19,350'), findsOneWidget);
   });
   testWidgets('custom shares change the split and fit a narrow, enlarged layout', (tester) async {
-    tester.view.physicalSize = const Size(320, 3000);
+    tester.view.physicalSize = const Size(320, 4000);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(localized(const DemoSection(), 'zh', scale: 2));
     await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const ValueKey('split-shares')));
     await tester.tap(find.byKey(const ValueKey('split-shares')));
     await tester.pumpAndSettle();
     String count(int member) => tester.widget<Text>(find.byKey(ValueKey('shares-$member'))).data!;
-    expect([for (var i = 0; i < 4; i++) count(i)], ['2', '1', '1', '1']);
+    expect([for (var i = 0; i < 4; i++) count(i)], ['1', '1', '1', '1']);
     for (final key in ['shares-fewer-1', 'shares-fewer-2', 'shares-fewer-3']) {
       await tester.ensureVisible(find.byKey(ValueKey(key)));
       await tester.tap(find.byKey(ValueKey(key)));
       await tester.pumpAndSettle();
     }
-    // Alex now pays the whole bill they paid for, so nobody owes anything.
-    expect(find.text('所有人都已结清。'), findsWidgets);
-    await tester.tap(find.byKey(const ValueKey('shares-fewer-0')));
+    // Alex now covers the whole hotel they paid for, and still owes for the other three bills.
+    expect(find.text('−¥16,650'), findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('shares-fewer-0')));
     await tester.pumpAndSettle();
     expect(count(0), '1');
@@ -142,7 +150,7 @@ void main() {
     await tester.tap(find.text('繁體中文'));
     await tester.pumpAndSettle();
     expect(storage.getString('site.locale'), 'zh-Hant');
-    expect(find.text('一起花的錢，\n一筆筆算清楚。'), findsOneWidget);
+    expect(find.text('先付再說，\n回頭一次算清。'), findsOneWidget);
   });
   testWidgets('docs links are absolute and pick the translated docs', (tester) async {
     final urls = <String, String>{};

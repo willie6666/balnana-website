@@ -5,24 +5,42 @@ import 'package:balnana_website/core/preferences.dart';
 
 void main() {
   test('rounding distributes minor units without losing money', () {
-    expect(const DemoLedger(amount: 1).shares, [1, 0, 0, 0]);
-    expect(const DemoLedger(amount: 7, mode: SplitMode.shares).shares, [3, 2, 1, 1]);
-    expect(const DemoLedger(amount: 1).transfers, isEmpty);
+    expect(const Expense(amount: 1).shares, [1, 0, 0, 0]);
+    expect(const Expense(amount: 7, mode: SplitMode.shares, shareCounts: [2, 1, 1, 1]).shares, [
+      3,
+      2,
+      1,
+      1,
+    ]);
+    expect(const DemoLedger(expenses: [Expense(amount: 1)]).transfers, isEmpty);
   });
   test('share counts stay between 0 and the limit and never all reach 0', () {
-    const ledger = DemoLedger(mode: SplitMode.shares, shareCounts: [1, 0, 0, 10]);
-    expect(ledger.adjustShares(1, -1).shareCounts, [1, 0, 0, 10]);
-    expect(ledger.adjustShares(3, 1).shareCounts, [1, 0, 0, 10]);
-    expect(ledger.adjustShares(1, 1).shareCounts, [1, 1, 0, 10]);
-    const last = DemoLedger(mode: SplitMode.shares, shareCounts: [0, 0, 1, 0]);
+    const expense = Expense(mode: SplitMode.shares, shareCounts: [1, 0, 0, 10]);
+    expect(expense.adjustShares(1, -1).shareCounts, [1, 0, 0, 10]);
+    expect(expense.adjustShares(3, 1).shareCounts, [1, 0, 0, 10]);
+    expect(expense.adjustShares(1, 1).shareCounts, [1, 1, 0, 10]);
+    const last = Expense(mode: SplitMode.shares, shareCounts: [0, 0, 1, 0]);
     expect(last.canAdjustShares(2, -1), isFalse);
-    expect(const DemoLedger(amount: 9, mode: SplitMode.shares, shareCounts: [0, 2, 1, 0]).shares, [
+    expect(const Expense(amount: 9, mode: SplitMode.shares, shareCounts: [0, 2, 1, 0]).shares, [
       0,
       6,
       3,
       0,
     ]);
-    expect(const DemoLedger(amount: 9, shareCounts: [0, 2, 1, 0]).shares, [3, 2, 2, 2]);
+    expect(const Expense(amount: 9, shareCounts: [0, 2, 1, 0]).shares, [3, 2, 2, 2]);
+  });
+  test('the sample trip nets four bills down to three transfers', () {
+    const ledger = DemoLedger();
+    expect(ledger.balances, [19350, 7350, -7050, -19650]);
+    expect(ledger.topCreditor, 0);
+    expect(ledger.separateTransfers, 11);
+    expect(
+      [for (final t in ledger.transfers) (t.from, t.to, t.amount)],
+      [(3, 0, 19350), (2, 1, 7050), (3, 1, 300)],
+    );
+    final edited = ledger.select(1).edit((e) => e.copyWith(payer: 2));
+    expect(edited.expenses[1].payer, 2);
+    expect(edited.expenses[0].payer, 0);
   });
   test('every demo result preserves money and its suggested payments settle every balance', () {
     for (final amount in [1, 2, 3, 5, 7, 99, 12000, 999999, 1000000]) {
@@ -34,17 +52,20 @@ void main() {
         (SplitMode.shares, const [7, 9, 10, 3]),
       ]) {
         for (var payer = 0; payer < 4; payer++) {
-          final ledger = DemoLedger(amount: amount, mode: mode, payer: payer, shareCounts: counts);
-          expect(ledger.shares.reduce((a, b) => a + b), amount);
-          expect(ledger.balances.reduce((a, b) => a + b), 0);
-          final balances = ledger.balances.toList();
-          for (final transfer in ledger.transfers) {
-            expect(transfer.amount, greaterThan(0));
-            balances[transfer.from] += transfer.amount;
-            balances[transfer.to] -= transfer.amount;
+          final expense = Expense(amount: amount, mode: mode, payer: payer, shareCounts: counts);
+          expect(expense.shares.reduce((a, b) => a + b), amount);
+          for (final scenario in Scenario.values) {
+            final ledger = DemoLedger.forScenario(scenario).edit((_) => expense);
+            expect(ledger.balances.reduce((a, b) => a + b), 0);
+            final balances = ledger.balances.toList();
+            for (final transfer in ledger.transfers) {
+              expect(transfer.amount, greaterThan(0));
+              balances[transfer.from] += transfer.amount;
+              balances[transfer.to] -= transfer.amount;
+            }
+            expect(balances, [0, 0, 0, 0]);
+            expect(ledger.transfers.length, lessThanOrEqualTo(3));
           }
-          expect(balances, [0, 0, 0, 0]);
-          expect(ledger.transfers.length, lessThanOrEqualTo(3));
         }
       }
     }

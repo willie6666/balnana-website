@@ -1,82 +1,82 @@
 {
   "@@locale": "en",
   "navFeatures": "Features",
-  "navDemo": "Try it out",
+  "navDemo": "Try it",
   "navHosting": "Self-host",
   "navFaq": "FAQ",
   "navDocs": "Docs",
   "heroEyebrow": "Open-source expense splitting",
-  "heroTitle": "Keep track of\nwho paid what.",
-  "heroBody": "Away for the weekend or sharing a flat? Add what everyone paid, and Balnana works out each person's share and who owes whom.",
+  "heroTitle": "Pay now,\nsort it out later.",
+  "heroBody": "On a trip, in a shared flat or out for dinner, whoever's handy pays and adds it to the group. At the end, Balnana adds everything up and tells each person who to pay and how much.",
   "tryDemo": "Try the demo",
   "selfHost": "Self-host",
   "development": "In development · Android + Web",
   "trustSplit": "Flexible splits",
   "trustLanguages": "20 languages",
   "trustOpen": "Open source, no ads",
-  "trustServer": "Run on your own server",
-  "demoLabel": "Try splitting a bill",
-  "demoTitle": "How would you\nsplit this one?",
-  "demoBody": "Change the amount, pick who paid, or adjust each person's shares. The balances below update as you go.",
+  "trustServer": "Runs on your own server",
+  "demoLabel": "Sample group",
+  "demoTitle": "Lots of bills.\nJust a few transfers.",
+  "demoBody": "Four friends, four expenses, each paid by someone different. Tap an expense to change the amount, who paid or how it's split, and see how the balances and transfers change.",
   "scenarioTravel": "Travel",
   "scenarioHome": "Flatmates",
   "scenarioDinner": "Dinner",
   "groupTravel": "Kyoto weekend",
   "groupHome": "Our apartment",
   "groupDinner": "Friday dinner",
-  "demoNotice": "Sample data — change anything you like",
+  "demoNotice": "Sample data. Change whatever you like.",
   "payer": "Who paid?",
-  "balances": "Everyone's balance",
+  "balances": "Balances",
   "payments": "Who pays whom",
   "morePayments": "+{count} more",
-  "reset": "Reset demo",
-  "weightedHelp": "Choose how many shares each person pays. Set it to 0 if they're sitting this one out.",
+  "reset": "Reset",
+  "weightedHelp": "Give someone more shares if they had more, or 0 if they weren't there.",
   "fewerShares": "Fewer shares for {name}",
   "moreShares": "More shares for {name}",
-  "featureLabel": "Ways to split",
-  "featureTitle": "You don't have to\nsplit every bill equally.",
-  "featureSplitTitle": "Equal shares or different amounts",
-  "featureSplitBody": "Someone had a smaller meal? Adjust their share or enter an exact amount. You can also record several people paying for one expense.",
-  "featureSettleTitle": "See who needs to pay whom",
-  "featureSettleBody": "When it is time to settle up, Balnana suggests payments so everyone can make fewer transfers.",
-  "travelLabel": "For trips abroad",
-  "travelTitle": "Keep different currencies\nin the same group.",
-  "travelBody": "Record an expense in the currency you paid, then enter the exchange rate or the amount charged to your card. Balances use the group's currency.",
+  "featureLabel": "Splitting",
+  "featureTitle": "Not every bill\nis split evenly.",
+  "featureSplitTitle": "Equally, by shares or exact amounts",
+  "featureSplitBody": "Leave someone off the drinks if they didn't have any, or give the bigger room more shares of the rent. If two people paid for the same thing, you can record that too.",
+  "featureSettleTitle": "Fewer transfers at the end",
+  "featureSettleBody": "Balnana nets out everything the group owes each other before it suggests payments, so nobody has to pay back bill by bill.",
+  "travelLabel": "Travelling abroad",
+  "travelTitle": "Yen, euros and dollars\nin one group.",
+  "travelBody": "Enter each expense in the currency you paid in, along with the exchange rate or what your card was charged. Balances are shown in the group's currency.",
   "screenshotsNote": "Screens from the Android app, in English with sample data",
   "screenshotExpenses": "Expense history",
   "screenshotForeign": "Foreign currency expenses",
   "screenshotStats": "Spending statistics",
-  "extraTitle": "A few more useful things",
+  "extraTitle": "And a few other things",
   "recurringTitle": "Recurring expenses",
-  "recurringBody": "Schedule rent and other regular bills instead of adding them each time.",
+  "recurringBody": "Set up rent and other regular bills once instead of adding them every month.",
   "receiptsTitle": "Receipts and places",
-  "receiptsBody": "Attach a receipt to find it later, and save where you spent the money.",
+  "receiptsBody": "Attach a photo of the receipt and note where you spent the money, so it's easy to find later.",
   "liveTitle": "Live updates",
-  "liveBody": "While your group is open, new expenses appear as others add them.",
+  "liveBody": "If someone adds an expense while you have the group open, it shows up straight away.",
   "exportTitle": "Import and export",
-  "exportBody": "Export your expenses as CSV, or bring over a group from Settle Up.",
+  "exportBody": "Export your expenses to CSV, or import a group from Settle Up.",
   "hostingLabel": "Self-host",
-  "hostingTitle": "Run your own server.\nInvite your friends.",
-  "hostingBody": "Start Balnana with Docker Compose. Expenses are stored in PostgreSQL on your server, and the setup steps are in the Docs.",
+  "hostingTitle": "Your server.\nYour group's data.",
+  "hostingBody": "Balnana runs with Docker Compose and keeps its data in PostgreSQL on your own server. The Docs walk you through the setup.",
   "hostingLink": "Self-host guide",
-  "hostingModeLink": "Share a private link or QR code so people can join without signing up.",
-  "hostingModeAccounts": "Prefer accounts? Enable sign-in with a password, Google or OIDC.",
-  "faqTitle": "Common questions",
+  "hostingModeLink": "Send friends a private link or QR code, and they can join without signing up.",
+  "hostingModeAccounts": "If you'd rather use accounts, turn on sign-in with a password, Google or OIDC.",
+  "faqTitle": "FAQ",
   "faqAccountQ": "Does everyone need an account?",
-  "faqAccountA": "With link mode, a private link or QR code is enough to join. Accounts mode requires sign-in, with access controlled by your server's settings.",
+  "faqAccountA": "Not in link mode: a private link or QR code is all anyone needs to join. In accounts mode people sign in, and your server settings decide who can get in.",
   "faqOfflineQ": "Can I use it offline?",
-  "faqOfflineA": "On Android, you can read cached expenses and add new expenses or payments offline. They upload when you reconnect. Editing existing expenses and uploading receipts still need a connection.",
+  "faqOfflineA": "Mostly, on Android. You can look through cached expenses and add new expenses or payments, which upload once you're back online. Editing existing expenses and uploading receipts need a connection.",
   "faqCurrencyQ": "Are exchange rates automatic?",
-  "faqCurrencyA": "If your server has exchange-rate lookup enabled, Balnana fills in a reference rate when you pick a foreign currency. You can change it or enter the amount charged to your card.",
+  "faqCurrencyA": "If your server has exchange-rate lookup turned on, a reference rate is filled in when you pick a foreign currency. You can change it, or enter what your card was actually charged.",
   "faqPlatformQ": "Which platforms are supported?",
-  "faqPlatformA": "There is an Android app and a web app. There is no iOS app yet.",
+  "faqPlatformA": "Android and the web. There's no iOS app yet.",
   "faqCostQ": "Is Balnana free?",
-  "faqCostA": "Balnana is open source under AGPL-3.0, with no app subscription. You cover any hosting costs when you run your own server.",
-  "endTitle": "Want to give it a go?",
-  "endBody": "Follow the Docs to start your server, then invite your friends to a group.",
+  "faqCostA": "Yes. Balnana is open source (AGPL-3.0) and there's no subscription. If you host it yourself, you pay for the server.",
+  "endTitle": "Want to try it with your friends?",
+  "endBody": "Set up a server using the Docs, create a group and send everyone the link.",
   "github": "View source",
   "reportIssue": "Report an issue",
-  "footerNote": "Balnana is an open-source app for shared expenses.",
+  "footerNote": "Balnana is an open-source app for splitting shared expenses.",
   "backHome": "Back to home",
   "notFound": "We couldn't find that page.",
   "screenshotOpen": "View screenshot",
@@ -399,5 +399,100 @@
         "type": "int"
       }
     }
+  },
+  "expensesLabel": "Expenses",
+  "editing": "Editing: {expense}",
+  "paidBy": "{name} paid",
+  "splitWays": "split {count} ways",
+  "splitByShares": "split by shares",
+  "demoSummary": "Paying back each bill on its own would take {separate} transfers. Added up, it's {payments}.",
+  "expenseHotel": "Hotel, 2 nights",
+  "expenseCar": "Car rental",
+  "expenseGionDinner": "Dinner in Gion",
+  "expenseTea": "Tea ceremony",
+  "expenseRent": "Rent",
+  "expenseGroceries": "Groceries",
+  "expensePower": "Electricity",
+  "expenseInternet": "Internet",
+  "expenseDinner": "Dinner",
+  "expenseDrinks": "Drinks",
+  "expenseDessert": "Dessert",
+  "expenseTaxi": "Taxi home",
+  "@expensesLabel": {
+    "description": "Official website: heading above the list of sample expenses in the demo."
+  },
+  "@editing": {
+    "description": "Official website: heading above the demo's editor, naming the expense being edited.",
+    "placeholders": {
+      "expense": {
+        "type": "String"
+      }
+    }
+  },
+  "@paidBy": {
+    "description": "Official website: who paid a sample expense, in the demo's expense list.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@splitWays": {
+    "description": "Official website: a sample expense split equally between this many people.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@splitByShares": {
+    "description": "Official website: a sample expense split by shares."
+  },
+  "@demoSummary": {
+    "description": "Official website: compares transfers needed when each bill is paid back on its own with the suggested payments.",
+    "placeholders": {
+      "separate": {
+        "type": "int"
+      },
+      "payments": {
+        "type": "int"
+      }
+    }
+  },
+  "@expenseHotel": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseCar": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseGionDinner": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseTea": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseRent": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseGroceries": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expensePower": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseInternet": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseDinner": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseDrinks": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseDessert": {
+    "description": "Official website: name of a sample expense in the demo."
+  },
+  "@expenseTaxi": {
+    "description": "Official website: name of a sample expense in the demo."
   }
 }
