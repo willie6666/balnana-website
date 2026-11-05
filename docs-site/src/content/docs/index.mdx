@@ -1,12 +1,12 @@
 ---
-title: Balnana documentation
-description: Run Balnana on a server you own, connect the web and Android apps, and bring your groups along.
+title: Balnana Docs
+description: Install and configure Balnana, connect the apps and import your groups.
 template: splash
 hero:
-  title: Your server, your group's money
-  tagline: Everything you need to run Balnana yourself, from one Docker command to a public server with sign-in, email and push notifications.
+  title: Get Balnana running
+  tagline: Setup instructions for your server, plus guides for connecting the apps and importing groups. New here? Start with the quick start guide.
   actions:
-    - text: Start self-hosting
+    - text: Self-host
       link: /docs/self-hosting/quick-start/
       icon: right-arrow
     - text: Back to the website
@@ -17,25 +17,25 @@ hero:
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 <CardGrid>
-	<Card title="Up in minutes" icon="rocket">
-		One Docker Compose file and a PostgreSQL database. Migrations run on startup.
+	<Card title="Start with Docker" icon="rocket">
+		Docker Compose runs Balnana and PostgreSQL together. Database migrations run automatically on startup.
 	</Card>
-	<Card title="Configured from the browser" icon="setting">
-		A password-protected `/admin` page changes most settings while the server runs.
+	<Card title="Change settings in your browser" icon="setting">
+		Open `/admin` to adjust most settings without restarting. You will need your administrator password.
 	</Card>
-	<Card title="Link or accounts" icon="open-book">
-		Share a private group link with no sign-up, or turn on accounts with a password, Google or OpenID Connect.
+	<Card title="Choose how people join" icon="open-book">
+		Invite friends with a private link, no sign-up needed. Or turn on accounts with password, Google or OpenID Connect sign-in.
 	</Card>
-	<Card title="Free software" icon="github">
-		Balnana is licensed under the AGPL-3.0. Run it, change it and share it.
+	<Card title="Read and change the source" icon="github">
+		Balnana is licensed under AGPL-3.0. You can read, modify and share the code.
 	</Card>
 </CardGrid>
 
-## Where to next
+## Start here
 
 <CardGrid>
 	<LinkCard title="Quick start" description="Start a server with Docker and set the administrator password." href="/docs/self-hosting/quick-start/" />
-	<LinkCard title="Reverse proxy and limits" description="Put Balnana on the internet safely, behind TLS." href="/docs/self-hosting/reverse-proxy/" />
+	<LinkCard title="Reverse proxy and limits" description="Set up HTTPS so others can reach your server." href="/docs/self-hosting/reverse-proxy/" />
 	<LinkCard title="Connect the apps" description="Point the Android and web apps at your server." href="/docs/apps/connecting/" />
 	<LinkCard title="Import from Settle Up" description="Bring a group over with its balances intact." href="/docs/guides/import-settle-up/" />
 </CardGrid>

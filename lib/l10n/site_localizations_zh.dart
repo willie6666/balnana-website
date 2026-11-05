@@ -13,55 +13,55 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get navFeatures => '功能';
 
   @override
-  String get navDemo => '体验分账';
+  String get navDemo => '试算一下';
 
   @override
-  String get navHosting => '自行部署';
+  String get navHosting => 'Self-host';
 
   @override
   String get navFaq => '常见问题';
 
   @override
-  String get navDocs => '文档';
+  String get navDocs => 'Docs';
 
   @override
-  String get heroEyebrow => '开源自由，由你掌握。';
+  String get heroEyebrow => '开源分账 App';
 
   @override
-  String get heroTitle => '一起玩，\n轻松算清。';
+  String get heroTitle => '一起花的钱，\n一笔笔算清楚。';
 
   @override
-  String get heroBody => '旅行、聚餐、合租，让共同开销一目了然。分账更轻松，数据也由你掌握。';
+  String get heroBody => '朋友出游、室友分房租，先把谁付了多少记下来。Balnana 会算好每个人该出多少、最后要付给谁。';
 
   @override
-  String get tryDemo => '体验分账';
+  String get tryDemo => '试算一下';
 
   @override
-  String get selfHost => '自行部署 Balnana';
+  String get selfHost => 'Self-host';
 
   @override
   String get development => '开发中 · Android 和 Web';
 
   @override
-  String get trustSplit => '分法由你决定';
+  String get trustSplit => '多种分账方式';
 
   @override
-  String get trustLanguages => '20 种语言';
+  String get trustLanguages => '支持 20 种语言';
 
   @override
-  String get trustOpen => '开源，没有广告';
+  String get trustOpen => '开源、无广告';
 
   @override
-  String get trustServer => '你的服务器';
+  String get trustServer => '可用自己的服务器';
 
   @override
-  String get demoLabel => '一起试试看';
+  String get demoLabel => '分账演示';
 
   @override
-  String get demoTitle => '尽情安排，\n算账交给我们。';
+  String get demoTitle => '先试试看，\n这笔要怎么分。';
 
   @override
-  String get demoBody => '改个金额，选择付款人，看看账目如何平衡。';
+  String get demoBody => '改改金额、换个付款人，或调整每个人的份数，下方会跟着重新计算。';
 
   @override
   String get scenarioTravel => '旅行';
@@ -82,16 +82,16 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get groupDinner => '周五聚餐';
 
   @override
-  String get demoNotice => '交互演示 · 虚构数据';
+  String get demoNotice => '这是演示数据，可以随意调整';
 
   @override
   String get payer => '谁先付款？';
 
   @override
-  String get balances => '大家的余额';
+  String get balances => '每个人的余额';
 
   @override
-  String get payments => '建议付款';
+  String get payments => '谁要付给谁';
 
   @override
   String morePayments(int count) {
@@ -102,7 +102,7 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get reset => '重置演示';
 
   @override
-  String get weightedHelp => '设置每个人分摊几份；0 份表示不参与。';
+  String get weightedHelp => '调整每个人要分几份，设成 0 就不用分这笔。';
 
   @override
   String fewerShares(String name) {
@@ -115,127 +115,128 @@ class SiteLocalizationsZh extends SiteLocalizations {
   }
 
   @override
-  String get featureLabel => '小细节，大不同';
+  String get featureLabel => '分账方式';
 
   @override
-  String get featureTitle => '少一点计算，\n多一点相聚。';
+  String get featureTitle => '不用每笔钱\n都平均分。';
 
   @override
-  String get featureSplitTitle => '公平，不一定要平均。';
+  String get featureSplitTitle => '平分、按金额，或按份数';
 
   @override
-  String get featureSplitBody => '均分、指定金额或按份数分摊，同一笔支出也能由多人付款。';
+  String get featureSplitBody => '吃得比较少就少付一点，或直接填好每个人的金额。同一笔支出也能记录多位付款人。';
 
   @override
-  String get featureSettleTitle => '结算，少一点麻烦。';
+  String get featureSettleTitle => '算好谁要付给谁';
 
   @override
-  String get featureSettleBody => '清楚看到谁该付给谁，通过结算建议减少转账次数。';
+  String get featureSettleBody => '结算时会列出建议的付款方式，让大家少转几笔账。';
 
   @override
-  String get travelLabel => '为下一趟旅行准备';
+  String get travelLabel => '出国也能用';
 
   @override
-  String get travelTitle => '币种不同，\n好伙伴依旧。';
+  String get travelTitle => '不同币种，\n记在同一个群组。';
 
   @override
-  String get travelBody => '保留原始币种，填入汇率或信用卡实际入账额。群组余额仍用同一种币种计算。';
+  String get travelBody => '用什么币种付款就记什么币种，再填入汇率或信用卡实际入账金额。结算时，统一用群组设置的币种。';
 
   @override
-  String get screenshotsNote => '真实 Android 界面 · 虚构数据 · 英文';
+  String get screenshotsNote => 'Android App 实际画面，使用英文和演示数据';
 
   @override
-  String get screenshotExpenses => '每一笔开销';
+  String get screenshotExpenses => '支出记录';
 
   @override
-  String get screenshotForeign => '原始币种';
+  String get screenshotForeign => '外币支出';
 
   @override
-  String get screenshotStats => '支出一目了然';
+  String get screenshotStats => '支出统计';
 
   @override
-  String get extraTitle => '群组需要的，都想到了。';
+  String get extraTitle => '还有这些常用功能';
 
   @override
-  String get recurringTitle => '日常开销，自动接续。';
+  String get recurringTitle => '定期支出';
 
   @override
-  String get recurringBody => '安排房租等周期性支出。';
+  String get recurringBody => '设置房租等固定支出，不用每次重新添加。';
 
   @override
-  String get receiptsTitle => '把细节一起留下。';
+  String get receiptsTitle => '收据与地点';
 
   @override
-  String get receiptsBody => '为支出附上收据，记录花费地点。';
+  String get receiptsBody => '把收据附在支出里，之后对账比较好找，也能记下消费地点。';
 
   @override
-  String get liveTitle => '大家看到同一本账。';
+  String get liveTitle => '实时更新';
 
   @override
-  String get liveBody => '其他人新增支出时，打开的群组会实时更新。';
+  String get liveBody => '群组开着时，其他人添加的支出会实时出现。';
 
   @override
-  String get exportTitle => '账目，随你带走。';
+  String get exportTitle => '导入与导出';
 
   @override
-  String get exportBody => '导出 CSV，也能从 Settle Up 导入群组。';
+  String get exportBody => '账目可以导出成 CSV。原本用 Settle Up 的话，也能把群组导入。';
 
   @override
-  String get hostingLabel => '你的伙伴，你的服务器';
+  String get hostingLabel => 'Self-host';
 
   @override
-  String get hostingTitle => '你的账目，\n由你做主。';
+  String get hostingTitle => '用自己的服务器，\n和朋友一起记账。';
 
   @override
-  String get hostingBody => '使用 Docker Compose 和 PostgreSQL 部署 Balnana。群组账目放在哪里，由你决定。';
+  String get hostingBody =>
+      '用 Docker Compose 启动 Balnana，账目会保存在你服务器上的 PostgreSQL 数据库。设置步骤都放在 Docs 里。';
 
   @override
-  String get hostingLink => '阅读部署指南';
+  String get hostingLink => 'Self-host 指南';
 
   @override
-  String get hostingModeLink => '分享私人链接，链接模式无需注册。';
+  String get hostingModeLink => '只想分享链接？用私人链接或二维码就能加入，不用注册。';
 
   @override
-  String get hostingModeAccounts => '也能启用账户，以密码、Google 或 OIDC 登录。';
+  String get hostingModeAccounts => '想用账号管理，也能开启密码、Google 或 OIDC 登录。';
 
   @override
-  String get faqTitle => '你可能想知道';
+  String get faqTitle => '你可能会想问';
 
   @override
-  String get faqAccountQ => '每个人都需要账户吗？';
+  String get faqAccountQ => '每个人都需要账号吗？';
 
   @override
-  String get faqAccountA => '链接模式只需私人链接或二维码即可加入。账户模式则按服务器设置管理访问。';
+  String get faqAccountA => '使用链接模式时，有私人链接或二维码就能加入，不用注册。账号模式则需要登录，加入方式取决于服务器设置。';
 
   @override
   String get faqOfflineQ => '可以离线使用吗？';
 
   @override
-  String get faqOfflineA => 'Android 在服务器无法连接时，仍能读取之前缓存的群组和支出。新增或修改支出需要网络。';
+  String get faqOfflineA => 'Android 可以离线查看已缓存的账目，也能先添加支出和转账，连上服务器后再上传。修改已有支出和上传收据仍需要联网。';
 
   @override
   String get faqCurrencyQ => '会自动获取汇率吗？';
 
   @override
-  String get faqCurrencyA => '你可以自行输入汇率，或填写信用卡实际入账金额。Balnana 不会获取实时汇率。';
+  String get faqCurrencyA => '服务器开启汇率查询时，选外币会先填入参考汇率。你也可以改成自己的汇率，或填信用卡实际入账金额。';
 
   @override
   String get faqPlatformQ => '支持哪些平台？';
 
   @override
-  String get faqPlatformA => '目前支持 Android 和网页版，尚未提供 iOS 版本。';
+  String get faqPlatformA => '目前有 Android 和网页版，还没有 iOS App。';
 
   @override
   String get faqCostQ => 'Balnana 免费吗？';
 
   @override
-  String get faqCostA => 'Balnana 是采用 AGPL-3.0 许可的开源软件，App 没有订阅费用；自行部署服务器仍可能产生主机费用。';
+  String get faqCostA => 'Balnana 开源，采用 AGPL-3.0 许可证，App 本身不用付订阅费。Self-host 的主机费用则要自己承担。';
 
   @override
-  String get endTitle => '下一场相聚，\n从这里开始。';
+  String get endTitle => '想试试吗？';
 
   @override
-  String get endBody => '叫上你的伙伴，账目让我们一起算清。';
+  String get endBody => '跟着 Docs 把 Balnana 跑起来，再邀朋友一起记账。';
 
   @override
   String get github => '查看源代码';
@@ -244,13 +245,13 @@ class SiteLocalizationsZh extends SiteLocalizations {
   String get reportIssue => '报告问题';
 
   @override
-  String get footerNote => '为分享而生的开源项目。';
+  String get footerNote => 'Balnana，一个开源的分账 App。';
 
   @override
   String get backHome => '返回首页';
 
   @override
-  String get notFound => '这个页面不在这里。';
+  String get notFound => '找不到这个页面。';
 
   @override
   String get screenshotOpen => '查看截图';
@@ -311,55 +312,55 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get navFeatures => '功能';
 
   @override
-  String get navDemo => '體驗分帳';
+  String get navDemo => '試算看看';
 
   @override
-  String get navHosting => '自行架設';
+  String get navHosting => 'Self-host';
 
   @override
   String get navFaq => '常見問題';
 
   @override
-  String get navDocs => '文件';
+  String get navDocs => 'Docs';
 
   @override
-  String get heroEyebrow => '開源自由，由你掌握。';
+  String get heroEyebrow => '開源分帳 App';
 
   @override
-  String get heroTitle => '一起玩，\n輕鬆算清。';
+  String get heroTitle => '一起花的錢，\n一筆筆算清楚。';
 
   @override
-  String get heroBody => '旅行、聚餐、合租，讓共同開銷一目了然。分帳更輕鬆，資料也由你掌握。';
+  String get heroBody => '朋友出遊、室友分房租，先把誰付了多少記下來。Balnana 會算好每個人該出多少、最後要付給誰。';
 
   @override
-  String get tryDemo => '體驗分帳';
+  String get tryDemo => '試算看看';
 
   @override
-  String get selfHost => '自行架設 Balnana';
+  String get selfHost => 'Self-host';
 
   @override
   String get development => '開發中 · Android 與 Web';
 
   @override
-  String get trustSplit => '分法由你決定';
+  String get trustSplit => '多種分帳方式';
 
   @override
-  String get trustLanguages => '20 個語系';
+  String get trustLanguages => '支援 20 種語言';
 
   @override
-  String get trustOpen => '開源，沒有廣告';
+  String get trustOpen => '開源、無廣告';
 
   @override
-  String get trustServer => '你的伺服器';
+  String get trustServer => '可用自己的伺服器';
 
   @override
-  String get demoLabel => '一起試試看';
+  String get demoLabel => '分帳示範';
 
   @override
-  String get demoTitle => '盡情安排，\n算帳交給我們。';
+  String get demoTitle => '先試試看，\n這筆要怎麼分。';
 
   @override
-  String get demoBody => '改個金額，選擇付款人，看看帳目如何平衡。';
+  String get demoBody => '改改金額、換個付款人，或調整每個人的份數，下方會跟著重新計算。';
 
   @override
   String get scenarioTravel => '旅行';
@@ -380,16 +381,16 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get groupDinner => '週五聚餐';
 
   @override
-  String get demoNotice => '互動示範 · 虛構資料';
+  String get demoNotice => '這是示範資料，可以隨意調整';
 
   @override
   String get payer => '誰先付款？';
 
   @override
-  String get balances => '大家的餘額';
+  String get balances => '每個人的餘額';
 
   @override
-  String get payments => '建議付款';
+  String get payments => '誰要付給誰';
 
   @override
   String morePayments(int count) {
@@ -400,7 +401,7 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get reset => '重設示範';
 
   @override
-  String get weightedHelp => '設定每個人分攤幾份；0 份代表不參與。';
+  String get weightedHelp => '調整每個人要分幾份，設成 0 就不用分這筆。';
 
   @override
   String fewerShares(String name) {
@@ -413,127 +414,128 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   }
 
   @override
-  String get featureLabel => '小細節，大不同';
+  String get featureLabel => '分帳方式';
 
   @override
-  String get featureTitle => '少一點計算，\n多一點相聚。';
+  String get featureTitle => '不用每筆錢\n都平均分。';
 
   @override
-  String get featureSplitTitle => '公平，不一定要平均。';
+  String get featureSplitTitle => '平分、按金額，或按份數';
 
   @override
-  String get featureSplitBody => '等分、指定金額或依份數分攤，同一筆支出也能由多人付款。';
+  String get featureSplitBody => '吃得比較少就少付一點，或直接填好每個人的金額。同一筆支出也能記錄多位付款人。';
 
   @override
-  String get featureSettleTitle => '結算，少一點麻煩。';
+  String get featureSettleTitle => '算好誰要付給誰';
 
   @override
-  String get featureSettleBody => '清楚看見誰該付給誰，透過結算建議減少轉帳次數。';
+  String get featureSettleBody => '結算時會列出建議的付款方式，讓大家少轉幾筆帳。';
 
   @override
-  String get travelLabel => '為下一趟旅行準備';
+  String get travelLabel => '出國也能用';
 
   @override
-  String get travelTitle => '幣別不同，\n好夥伴依舊。';
+  String get travelTitle => '不同幣別，\n記在同一個群組。';
 
   @override
-  String get travelBody => '保留原始幣別，填入匯率或信用卡實際入帳額。群組餘額依然用同一種幣別計算。';
+  String get travelBody => '用什麼幣別付款就記什麼幣別，再填入匯率或信用卡實際入帳金額。結算時，統一用群組設定的幣別。';
 
   @override
-  String get screenshotsNote => '真實 Android 介面 · 虛構資料 · 英文';
+  String get screenshotsNote => 'Android App 實際畫面，使用英文與示範資料';
 
   @override
-  String get screenshotExpenses => '每一筆開銷';
+  String get screenshotExpenses => '支出紀錄';
 
   @override
-  String get screenshotForeign => '原始幣別';
+  String get screenshotForeign => '外幣支出';
 
   @override
-  String get screenshotStats => '支出一目了然';
+  String get screenshotStats => '支出統計';
 
   @override
-  String get extraTitle => '群組需要的，都想到了。';
+  String get extraTitle => '還有這些常用功能';
 
   @override
-  String get recurringTitle => '日常開銷，自動接續。';
+  String get recurringTitle => '定期支出';
 
   @override
-  String get recurringBody => '排定房租等週期性支出。';
+  String get recurringBody => '設定房租等固定支出，不用每次重新新增。';
 
   @override
-  String get receiptsTitle => '把細節一起留下。';
+  String get receiptsTitle => '收據與地點';
 
   @override
-  String get receiptsBody => '為支出附上收據，記下花費地點。';
+  String get receiptsBody => '把收據附在支出裡，之後對帳比較好找，也能記下消費地點。';
 
   @override
-  String get liveTitle => '大家看到同一本帳。';
+  String get liveTitle => '即時更新';
 
   @override
-  String get liveBody => '其他人新增支出時，開啟中的群組會即時更新。';
+  String get liveBody => '群組開著時，其他人新增的支出會即時出現。';
 
   @override
-  String get exportTitle => '帳目，隨你帶走。';
+  String get exportTitle => '匯入與匯出';
 
   @override
-  String get exportBody => '匯出 CSV，也能從 Settle Up 匯入群組。';
+  String get exportBody => '帳目可以匯出成 CSV。原本用 Settle Up 的話，也能把群組匯入。';
 
   @override
-  String get hostingLabel => '你的夥伴，你的伺服器';
+  String get hostingLabel => 'Self-host';
 
   @override
-  String get hostingTitle => '你的帳目，\n由你作主。';
+  String get hostingTitle => '用自己的伺服器，\n和朋友一起記帳。';
 
   @override
-  String get hostingBody => '使用 Docker Compose 與 PostgreSQL 架設 Balnana。群組帳目放在哪裡，由你決定。';
+  String get hostingBody =>
+      '用 Docker Compose 啟動 Balnana，帳目會存在你伺服器上的 PostgreSQL 資料庫。設定步驟都放在 Docs 裡。';
 
   @override
-  String get hostingLink => '閱讀架設指南';
+  String get hostingLink => 'Self-host 指南';
 
   @override
-  String get hostingModeLink => '分享私人連結，連結模式無須註冊。';
+  String get hostingModeLink => '只想分享連結？用私人連結或 QR code 就能加入，不用註冊。';
 
   @override
-  String get hostingModeAccounts => '也能啟用帳號，以密碼、Google 或 OIDC 登入。';
+  String get hostingModeAccounts => '想用帳號管理，也能開啟密碼、Google 或 OIDC 登入。';
 
   @override
-  String get faqTitle => '你可能想知道';
+  String get faqTitle => '你可能會想問';
 
   @override
   String get faqAccountQ => '每個人都需要帳號嗎？';
 
   @override
-  String get faqAccountA => '連結模式只要私人連結或 QR code 即可加入。帳號模式則依照伺服器設定管理存取。';
+  String get faqAccountA => '使用連結模式時，有私人連結或 QR code 就能加入，不用註冊。帳號模式則需要登入，加入方式依伺服器設定而定。';
 
   @override
   String get faqOfflineQ => '可以離線使用嗎？';
 
   @override
-  String get faqOfflineA => 'Android 在伺服器無法連線時，仍能讀取先前快取的群組與支出。新增或修改支出需要網路。';
+  String get faqOfflineA => 'Android 可以離線查看已快取的帳目，也能先新增支出和轉帳，連上伺服器後再上傳。修改既有支出和上傳收據仍需要連線。';
 
   @override
   String get faqCurrencyQ => '會自動取得匯率嗎？';
 
   @override
-  String get faqCurrencyA => '你可以自行輸入匯率，或填寫信用卡實際入帳金額。Balnana 不會抓取即時匯率。';
+  String get faqCurrencyA => '伺服器開啟匯率查詢時，選外幣會先帶入參考匯率。你也可以改成自己的匯率，或填信用卡實際入帳金額。';
 
   @override
   String get faqPlatformQ => '支援哪些平台？';
 
   @override
-  String get faqPlatformA => '目前支援 Android 與網頁版，尚未提供 iOS 版本。';
+  String get faqPlatformA => '目前有 Android 和網頁版，還沒有 iOS App。';
 
   @override
   String get faqCostQ => 'Balnana 免費嗎？';
 
   @override
-  String get faqCostA => 'Balnana 是採 AGPL-3.0 授權的開源軟體，App 沒有訂閱費用；自行架設伺服器仍可能產生主機費用。';
+  String get faqCostA => 'Balnana 開源，採用 AGPL-3.0 授權，App 本身不用付訂閱費。Self-host 的主機費用則要自己負擔。';
 
   @override
-  String get endTitle => '下一場相聚，\n從這裡開始。';
+  String get endTitle => '想用看看？';
 
   @override
-  String get endBody => '揪上你的夥伴，帳目讓我們一起算清。';
+  String get endBody => '跟著 Docs 把 Balnana 跑起來，再邀朋友一起記帳。';
 
   @override
   String get github => '查看原始碼';
@@ -542,13 +544,13 @@ class SiteLocalizationsZhHant extends SiteLocalizationsZh {
   String get reportIssue => '回報問題';
 
   @override
-  String get footerNote => '為分享而生的開源專案。';
+  String get footerNote => 'Balnana，一個開源的分帳 App。';
 
   @override
   String get backHome => '回到首頁';
 
   @override
-  String get notFound => '這個頁面不在這裡。';
+  String get notFound => '找不到這個頁面。';
 
   @override
   String get screenshotOpen => '檢視截圖';

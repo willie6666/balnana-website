@@ -1,6 +1,6 @@
 ---
 title: 管理
-description: /admin 頁面、管理員密碼，以及環境變數設定如何與它互動。
+description: 使用 /admin 管理伺服器、重設管理員密碼與備份資料。
 ---
 
 ## 管理頁面
@@ -16,7 +16,7 @@ description: /admin 頁面、管理員密碼，以及環境變數設定如何與
 - [方案與付款](/docs/zh-hant/self-hosting/plans-and-payments/)（開啟時）；
 - 帳號，管理員可以搜尋並刪除。
 
-變更會立即套用到所有共用同一個資料庫的伺服器程式。App 中沒有任何連到 `/admin` 的連結：請自行輸入網址開啟。
+變更會立即套用到所有共用同一個資料庫的伺服器程式。要開啟管理頁面，請在伺服器網址後面加上 `/admin`，App 裡沒有這個入口。
 
 ## 來自環境變數的設定
 
@@ -34,7 +34,7 @@ docker compose exec balnana /balnana reset-admin
 
 ## 備份
 
-所有資料都在 PostgreSQL 資料庫裡：群組、支出、收據、帳號、在 `/admin` 所做的設定，以及簽署推播通知的金鑰。只有 `.env` 不在資料庫內，請一併保留副本。請定期備份資料庫：
+群組、支出、收據、帳號、管理頁面的設定和推播簽署金鑰，都存在 PostgreSQL 資料庫裡。請定期備份資料庫，也另外留一份 `.env` 的副本：
 
 ```bash
 docker compose exec -T db pg_dump -U balnana -Fc balnana > balnana.dump

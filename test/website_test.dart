@@ -142,7 +142,7 @@ void main() {
     await tester.tap(find.text('繁體中文'));
     await tester.pumpAndSettle();
     expect(storage.getString('site.locale'), 'zh-Hant');
-    expect(find.text('一起玩，\n輕鬆算清。'), findsOneWidget);
+    expect(find.text('一起花的錢，\n一筆筆算清楚。'), findsOneWidget);
   });
   testWidgets('docs links are absolute and pick the translated docs', (tester) async {
     final urls = <String, String>{};

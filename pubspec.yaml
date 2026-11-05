@@ -1,5 +1,5 @@
 name: balnana_website
-description: Balnana — good times, clear balances. The official product website.
+description: Balnana — keep track of who paid what. The official product website.
 publish_to: none
 version: 1.0.0+1
 environment:

@@ -1,9 +1,9 @@
 ---
 title: 從 Settle Up 匯入
-description: 把群組從 Settle Up 搬到 Balnana，連同支出、付款與餘額。
+description: 把 Settle Up 群組匯入 Balnana，保留原本的支出、付款與餘額。
 ---
 
-從 Settle Up 過來的嗎？你的群組可以連同歷史紀錄一起搬過來。
+已經在用 Settle Up 的話，可以直接匯入原本的群組，不用重新記帳。
 
 1. 在 Settle Up 中，把群組匯出為 **CSV**。
 2. 在 Balnana 中，選擇**新增群組 → 匯入**，再選取該檔案。

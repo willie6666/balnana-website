@@ -1,7 +1,7 @@
 ---
 // The wordmark goes back to the main site, as on the Flutter pages; "Docs" goes to the docs home.
 const { siteTitleHref, lang } = Astro.locals.starlightRoute;
-const zh = { 'zh-TW': { home: '/zh-Hant', label: 'Balnana 首頁', docs: '文件' }, 'zh-CN': { home: '/zh', label: 'Balnana 首页', docs: '文档' } }[lang];
+const zh = { 'zh-TW': { home: '/zh-Hant', label: 'Balnana 首頁' }, 'zh-CN': { home: '/zh', label: 'Balnana 首页' } }[lang];
 ---
 
 <div class="site-title sl-flex">
@@ -13,7 +13,7 @@ const zh = { 'zh-TW': { home: '/zh-Hant', label: 'Balnana 首頁', docs: '文件
 		</svg>
 		<span translate="no">balnana</span>
 	</a>
-	<a href={siteTitleHref} class="docs">{zh?.docs ?? 'Docs'}</a>
+	<a href={siteTitleHref} class="docs" translate="no">Docs</a>
 </div>
 
 <style>

@@ -1,11 +1,11 @@
 ---
 title: 快速开始
-description: 用 Docker Compose 启动 Balnana 服务器，并设置管理员密码取得控制权。
+description: 用 Docker Compose 启动 Balnana，再设置管理员密码。
 ---
 
 import { Aside, Steps } from '@astrojs/starlight/components';
 
-Balnana 由一个服务器程序和一个 PostgreSQL 数据库组成。仓库附带一个 Docker Compose 文件，会同时运行两者，并内置网页版 App。
+Balnana 需要一个服务器程序和 PostgreSQL 数据库。项目里的 Docker Compose 文件会一起启动这两个服务，网页版 App 也已经包含在里面。
 
 ## 需要准备
 
@@ -42,11 +42,11 @@ Balnana 由一个服务器程序和一个 PostgreSQL 数据库组成。仓库附
 
 </Steps>
 
-## 立即取得服务器控制权
+## 设置管理员密码
 
 新服务器第一次被打开时，App 会把用户带到 `/admin` 设置管理员密码。请在服务器启动后马上完成这一步。
 
-在密码设置好之前，`/admin` 还会要求输入服务器日志中打印出的**设置码**，这样先找到服务器的访客也无法抢走它：
+设置密码时，还需要输入服务器日志中的**设置码**，避免其他访客先设好密码。用以下命令查看设置码：
 
 ```bash
 docker compose logs balnana
@@ -58,6 +58,6 @@ docker compose logs balnana
 
 ## 下一步
 
-- 不只在自己的电脑上用？请把它放在[反向代理](/docs/zh-hans/self-hosting/reverse-proxy/)后面。
-- 在[链接模式与账号模式](/docs/zh-hans/self-hosting/access-and-sign-in/)之间做选择。
-- 让 [Android App 连到](/docs/zh-hans/apps/connecting/)你的服务器。
+- 要让其他设备连接，先设置[反向代理](/docs/zh-hans/self-hosting/reverse-proxy/)。
+- 选择要用[链接模式或账号模式](/docs/zh-hans/self-hosting/access-and-sign-in/)。
+- [让 Android App 连到你的服务器](/docs/zh-hans/apps/connecting/)。

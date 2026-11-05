@@ -15,7 +15,7 @@ export default defineConfig({
 	vite: { server: { fs: { allow: ['..'] } } },
 	integrations: [
 		starlight({
-			title: { en: 'Balnana Docs', 'zh-TW': 'Balnana 文件', 'zh-CN': 'Balnana 文档' },
+			title: 'Balnana Docs',
 			description: 'Run Balnana on your own server and connect the apps.',
 			logo: { src: './src/assets/logo.svg', alt: 'Balnana' },
 			favicon: '/favicon.svg',
@@ -40,8 +40,7 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Self-hosting',
-					translations: { 'zh-TW': '自行架設', 'zh-CN': '自托管' },
+					label: 'Self-host',
 					items: [
 						'self-hosting/quick-start',
 						'self-hosting/administration',

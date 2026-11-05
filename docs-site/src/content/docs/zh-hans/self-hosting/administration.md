@@ -1,6 +1,6 @@
 ---
 title: 管理
-description: /admin 页面、管理员密码，以及环境变量设置如何与它配合。
+description: 使用 /admin 管理服务器、重置管理员密码与备份数据。
 ---
 
 ## 管理页面
@@ -16,7 +16,7 @@ description: /admin 页面、管理员密码，以及环境变量设置如何与
 - [方案与付款](/docs/zh-hans/self-hosting/plans-and-payments/)（开启时）；
 - 账号，管理员可以搜索并删除。
 
-更改会立即应用到所有共用同一个数据库的服务器程序。App 中没有任何指向 `/admin` 的链接：请自行输入网址打开。
+更改会立即应用到所有共用同一个数据库的服务器程序。要打开管理页面，请在服务器网址后面加上 `/admin`，App 里没有这个入口。
 
 ## 来自环境变量的设置
 
@@ -34,7 +34,7 @@ docker compose exec balnana /balnana reset-admin
 
 ## 备份
 
-所有数据都在 PostgreSQL 数据库里：群组、支出、收据、账号、在 `/admin` 所做的设置，以及签署推送通知的密钥。只有 `.env` 不在数据库内，请一并保留副本。请定期备份数据库：
+群组、支出、收据、账号、管理页面的设置和推送签名密钥，都保存在 PostgreSQL 数据库里。请定期备份数据库，也另外留一份 `.env` 的副本：
 
 ```bash
 docker compose exec -T db pg_dump -U balnana -Fc balnana > balnana.dump

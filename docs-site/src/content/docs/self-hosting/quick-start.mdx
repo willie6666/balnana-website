@@ -1,6 +1,6 @@
 ---
 title: Quick start
-description: Start a Balnana server with Docker Compose and claim it with an administrator password.
+description: Start Balnana with Docker Compose and set your administrator password.
 ---
 
 import { Aside, Steps } from '@astrojs/starlight/components';
@@ -42,11 +42,11 @@ Balnana is one server process and a PostgreSQL database. The repository ships a 
 
 </Steps>
 
-## Claim the server right away
+## Set the administrator password
 
 The first time anyone opens a new server, the app sends them to `/admin` to choose the administrator password. Do this straight after starting the server.
 
-Until the password is set, `/admin` also asks for a **setup code** that the server prints in its log, so a visitor who finds the server first cannot take it over:
+You will also need the **setup code** from the server log. This prevents another visitor from setting the password before you do. To find the code, run:
 
 ```bash
 docker compose logs balnana
@@ -58,6 +58,6 @@ docker compose logs balnana
 
 ## Next steps
 
-- Running it for more than your own machine? Put it behind a [reverse proxy](/docs/self-hosting/reverse-proxy/).
+- To connect from other devices, set up a [reverse proxy](/docs/self-hosting/reverse-proxy/).
 - Choose between [link mode and accounts](/docs/self-hosting/access-and-sign-in/).
 - [Connect the Android app](/docs/apps/connecting/) to your server.

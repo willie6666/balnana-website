@@ -3,7 +3,7 @@ title: Import from Settle Up
 description: Move a group from Settle Up to Balnana with its expenses, payments and balances.
 ---
 
-Coming from Settle Up? Your group can come along with its history.
+Already using Settle Up? Import your existing group instead of adding everything again.
 
 1. In Settle Up, export the group as **CSV**.
 2. In Balnana, choose **New group → Import** and pick the file.

@@ -15,7 +15,7 @@ class MetadataTests(unittest.TestCase):
             self.assertIn('lang="zh" dir="ltr"',(output/'zh.html').read_text())
             prepare('https://website.example',output)
             text=(output/'zh-Hant.html').read_text()
-            self.assertIn('一起玩',text)
+            self.assertIn('一起花的錢',text)
             self.assertIn('<link rel="canonical" href="https://website.example/zh-Hant">',text)
             self.assertIn('<meta property="og:locale" content="zh_TW">',text)
             self.assertIn('content="https://website.example/social-preview.png"',text)

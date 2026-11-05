@@ -130,19 +130,19 @@ abstract class SiteLocalizations {
   /// Official website: heroEyebrow. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'OPEN SOURCE. YOURS TO RUN.'**
+  /// **'Open-source expense splitting'**
   String get heroEyebrow;
 
   /// Official website: heroTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Good times.\nClear balances.'**
+  /// **'Keep track of\nwho paid what.'**
   String get heroTitle;
 
   /// Official website: heroBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Trips, dinners, everyday life. Keep shared expenses clear and your group\'s data on a server you own.'**
+  /// **'Away for the weekend or sharing a flat? Add what everyone paid, and Balnana works out each person\'s share and who owes whom.'**
   String get heroBody;
 
   /// Official website: tryDemo. Keep product names and named services unchanged.
@@ -154,7 +154,7 @@ abstract class SiteLocalizations {
   /// Official website: selfHost. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Self-host Balnana'**
+  /// **'Self-host'**
   String get selfHost;
 
   /// Official website: development. Keep product names and named services unchanged.
@@ -178,31 +178,31 @@ abstract class SiteLocalizations {
   /// Official website: trustOpen. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Open source. No ads.'**
+  /// **'Open source, no ads'**
   String get trustOpen;
 
   /// Official website: trustServer. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Your own server'**
+  /// **'Run on your own server'**
   String get trustServer;
 
   /// Official website: demoLabel. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'TRY IT TOGETHER'**
+  /// **'Try splitting a bill'**
   String get demoLabel;
 
   /// Official website: demoTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Make plans.\nWe\'ll do the maths.'**
+  /// **'How would you\nsplit this one?'**
   String get demoTitle;
 
   /// Official website: demoBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Change the amount. Choose who paid. Watch it all balance out.'**
+  /// **'Change the amount, pick who paid, or adjust each person\'s shares. The balances below update as you go.'**
   String get demoBody;
 
   /// Official website: scenarioTravel. Keep product names and named services unchanged.
@@ -244,7 +244,7 @@ abstract class SiteLocalizations {
   /// Official website: demoNotice. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Interactive demo · fictional data'**
+  /// **'Sample data — change anything you like'**
   String get demoNotice;
 
   /// Official website: payer. Keep product names and named services unchanged.
@@ -262,7 +262,7 @@ abstract class SiteLocalizations {
   /// Official website: payments. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Suggested payments'**
+  /// **'Who pays whom'**
   String get payments;
 
   /// Official website: shown after the first suggested payment when more are hidden.
@@ -280,7 +280,7 @@ abstract class SiteLocalizations {
   /// Official website: help under the share counters in the demo's Shares mode.
   ///
   /// In en, this message translates to:
-  /// **'Set each person\'s shares. 0 leaves someone out.'**
+  /// **'Choose how many shares each person pays. Set it to 0 if they\'re sitting this one out.'**
   String get weightedHelp;
 
   /// Official website: accessibility label of the demo button that removes one share from a member.
@@ -298,175 +298,175 @@ abstract class SiteLocalizations {
   /// Official website: featureLabel. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'LITTLE DETAILS. BIG DIFFERENCE.'**
+  /// **'Ways to split'**
   String get featureLabel;
 
   /// Official website: featureTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Less figuring out.\nMore being together.'**
+  /// **'You don\'t have to\nsplit every bill equally.'**
   String get featureTitle;
 
   /// Official website: featureSplitTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Fair doesn\'t always mean equal.'**
+  /// **'Equal shares or different amounts'**
   String get featureSplitTitle;
 
   /// Official website: featureSplitBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Split equally, by exact amounts or by shares. Several people can pay for the same expense.'**
+  /// **'Someone had a smaller meal? Adjust their share or enter an exact amount. You can also record several people paying for one expense.'**
   String get featureSplitBody;
 
   /// Official website: featureSettleTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'A clearer way to settle.'**
+  /// **'See who needs to pay whom'**
   String get featureSettleTitle;
 
   /// Official website: featureSettleBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Know who owes whom, with suggestions that reduce the number of payments.'**
+  /// **'When it is time to settle up, Balnana suggests payments so everyone can make fewer transfers.'**
   String get featureSettleBody;
 
   /// Official website: travelLabel. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'BUILT FOR THE NEXT TRIP'**
+  /// **'For trips abroad'**
   String get travelLabel;
 
   /// Official website: travelTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Different currencies.\nSame good company.'**
+  /// **'Keep different currencies\nin the same group.'**
   String get travelTitle;
 
   /// Official website: travelBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Keep the original currency. Enter the rate or your card\'s actual charge. Balances stay in the group\'s currency.'**
+  /// **'Record an expense in the currency you paid, then enter the exchange rate or the amount charged to your card. Balances use the group\'s currency.'**
   String get travelBody;
 
   /// Official website: screenshotsNote. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Actual Android screens · fictional data · English'**
+  /// **'Screens from the Android app, in English with sample data'**
   String get screenshotsNote;
 
   /// Official website: screenshotExpenses. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Every expense'**
+  /// **'Expense history'**
   String get screenshotExpenses;
 
   /// Official website: screenshotForeign. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Original currency'**
+  /// **'Foreign currency expenses'**
   String get screenshotForeign;
 
   /// Official website: screenshotStats. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Spending insights'**
+  /// **'Spending statistics'**
   String get screenshotStats;
 
   /// Official website: extraTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Everything your group needs.'**
+  /// **'A few more useful things'**
   String get extraTitle;
 
   /// Official website: recurringTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'The everyday, on repeat.'**
+  /// **'Recurring expenses'**
   String get recurringTitle;
 
   /// Official website: recurringBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Schedule rent and other recurring expenses.'**
+  /// **'Schedule rent and other regular bills instead of adding them each time.'**
   String get recurringBody;
 
   /// Official website: receiptsTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Keep the little details.'**
+  /// **'Receipts and places'**
   String get receiptsTitle;
 
   /// Official website: receiptsBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Attach receipts and save places alongside expenses.'**
+  /// **'Attach a receipt to find it later, and save where you spent the money.'**
   String get receiptsBody;
 
   /// Official website: liveTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Stay on the same page.'**
+  /// **'Live updates'**
   String get liveTitle;
 
   /// Official website: liveBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Open groups refresh as others add expenses.'**
+  /// **'While your group is open, new expenses appear as others add them.'**
   String get liveBody;
 
   /// Official website: exportTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Take your history with you.'**
+  /// **'Import and export'**
   String get exportTitle;
 
   /// Official website: exportBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Export CSV or import your group from Settle Up.'**
+  /// **'Export your expenses as CSV, or bring over a group from Settle Up.'**
   String get exportBody;
 
   /// Official website: hostingLabel. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'YOUR PEOPLE. YOUR SERVER.'**
+  /// **'Self-host'**
   String get hostingLabel;
 
   /// Official website: hostingTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Your balance.\nOn your terms.'**
+  /// **'Run your own server.\nInvite your friends.'**
   String get hostingTitle;
 
   /// Official website: hostingBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Run Balnana with Docker Compose and PostgreSQL. You choose where your group\'s accounts live.'**
+  /// **'Start Balnana with Docker Compose. Expenses are stored in PostgreSQL on your server, and the setup steps are in the Docs.'**
   String get hostingBody;
 
   /// Official website: hostingLink. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Read the setup guide'**
+  /// **'Self-host guide'**
   String get hostingLink;
 
   /// Official website: hostingModeLink. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Share a private link. No sign-up in link mode.'**
+  /// **'Share a private link or QR code so people can join without signing up.'**
   String get hostingModeLink;
 
   /// Official website: hostingModeAccounts. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Or enable accounts with password, Google or OIDC.'**
+  /// **'Prefer accounts? Enable sign-in with a password, Google or OIDC.'**
   String get hostingModeAccounts;
 
   /// Official website: faqTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'A few things worth knowing.'**
+  /// **'Common questions'**
   String get faqTitle;
 
   /// Official website: faqAccountQ. Keep product names and named services unchanged.
@@ -478,7 +478,7 @@ abstract class SiteLocalizations {
   /// Official website: faqAccountA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'In link mode, a private link or QR code is enough. In accounts mode, access depends on your server\'s settings.'**
+  /// **'With link mode, a private link or QR code is enough to join. Accounts mode requires sign-in, with access controlled by your server\'s settings.'**
   String get faqAccountA;
 
   /// Official website: faqOfflineQ. Keep product names and named services unchanged.
@@ -490,7 +490,7 @@ abstract class SiteLocalizations {
   /// Official website: faqOfflineA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'On Android, previously cached groups and expenses remain readable when the server is unreachable. Adding or changing expenses needs a connection.'**
+  /// **'On Android, you can read cached expenses and add new expenses or payments offline. They upload when you reconnect. Editing existing expenses and uploading receipts still need a connection.'**
   String get faqOfflineA;
 
   /// Official website: faqCurrencyQ. Keep product names and named services unchanged.
@@ -502,7 +502,7 @@ abstract class SiteLocalizations {
   /// Official website: faqCurrencyA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Enter a rate yourself, or the actual amount charged to your card. Balnana does not fetch live exchange rates.'**
+  /// **'If your server has exchange-rate lookup enabled, Balnana fills in a reference rate when you pick a foreign currency. You can change it or enter the amount charged to your card.'**
   String get faqCurrencyA;
 
   /// Official website: faqPlatformQ. Keep product names and named services unchanged.
@@ -514,7 +514,7 @@ abstract class SiteLocalizations {
   /// Official website: faqPlatformA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Android and the web are supported today. An iOS release is not currently available.'**
+  /// **'There is an Android app and a web app. There is no iOS app yet.'**
   String get faqPlatformA;
 
   /// Official website: faqCostQ. Keep product names and named services unchanged.
@@ -526,19 +526,19 @@ abstract class SiteLocalizations {
   /// Official website: faqCostA. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Balnana is open-source software under AGPL-3.0. There is no app subscription; running your own server may have hosting costs.'**
+  /// **'Balnana is open source under AGPL-3.0, with no app subscription. You cover any hosting costs when you run your own server.'**
   String get faqCostA;
 
   /// Official website: endTitle. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Your next good time\nstarts here.'**
+  /// **'Want to give it a go?'**
   String get endTitle;
 
   /// Official website: endBody. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'Bring your people. We\'ll help with the numbers.'**
+  /// **'Follow the Docs to start your server, then invite your friends to a group.'**
   String get endBody;
 
   /// Official website: github. Keep product names and named services unchanged.
@@ -556,7 +556,7 @@ abstract class SiteLocalizations {
   /// Official website: footerNote. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'An open-source project, made for sharing.'**
+  /// **'Balnana is an open-source app for shared expenses.'**
   String get footerNote;
 
   /// Official website: backHome. Keep product names and named services unchanged.
@@ -568,7 +568,7 @@ abstract class SiteLocalizations {
   /// Official website: notFound. Keep product names and named services unchanged.
   ///
   /// In en, this message translates to:
-  /// **'That page isn\'t here.'**
+  /// **'We couldn\'t find that page.'**
   String get notFound;
 
   /// Official website: screenshotOpen. Keep product names and named services unchanged.
