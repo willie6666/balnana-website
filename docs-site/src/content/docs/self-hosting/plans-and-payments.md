@@ -36,6 +36,7 @@ To pay, someone buys one of the shop items on your Ko-fi page, or sends a tip. T
 3. Copy the webhook's ID into **PayPal webhook ID**. PayPal stays off until the client ID, secret and webhook ID are all set.
 4. Under **Plans**, add a product with **Paid through** set to PayPal for each thing you sell. Its **Plan ID or name** decides what it is:
    - A PayPal subscription plan's ID, starting with `P-`, makes it a subscription. PayPal sets its price, and the plan lasts as long as the subscription is paid for.
+     - If the PayPal plan has a free trial, set **Plan ID without the trial** to the ID of the same plan with no trial. PayPal gives the trial to every new subscription, so accounts that have already had a trial subscribe to that plan instead. Each account gets access during a trial once.
    - Any other name makes it a one-off payment of the product's amount and currency, which adds its days to what is left.
 
 To try it out first, turn on **PayPal sandbox** and use a sandbox app's credentials: nothing is really paid.
