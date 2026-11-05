@@ -29,9 +29,50 @@ You can use the Cloudflare dashboard's Direct Upload flow or Wrangler:
 npx wrangler@4 pages deploy build/web --project-name=YOUR_PAGES_PROJECT
 ```
 
-Use your real project name. This command publishes to the selected Pages project; it has not been run as part of the local implementation. Authenticate with your own Cloudflare account. For CI, store API credentials in the CI secret store, never in tracked files. The included GitHub workflow checks/builds/uploads an artifact only; it does not deploy.
+Use your real project name. This command publishes to the selected Pages project. Authenticate with your own Cloudflare account. For CI, store API credentials in the CI secret store, never in tracked files.
 
 Cloudflare says a Direct Upload project cannot later be switched directly to Git integration; a new Pages project would be needed for that mode. Decide the project type before creating it.
+
+## Automatic deployment with GitHub Actions
+
+The workflow in `.github/workflows/ci.yml` checks and builds on pushes and pull requests. Only a push to `main`, or a manual workflow run selecting `main`, deploys to Cloudflare Pages. Deployment depends on the entire verification job succeeding and downloads its `balnana-website` artifact, so the deployed files are the exact build that passed CI. Other branches and pull requests do not receive Cloudflare credentials and produce noindex preview artifacts without `SITE_URL`.
+
+### One-time Cloudflare setup
+
+The planned production origin is `https://balnana.com` and the chosen Pages project name is `balnana-website`. Create that project once using your Cloudflare account:
+
+```bash
+npx wrangler@4 login
+npx wrangler@4 pages project create balnana-website --production-branch=main
+```
+
+Use a Direct Upload project with `main` as its production branch. Builds run on GitHub, so Cloudflare does not need a build command or Flutter installation. If you use an existing Git-integrated Pages project instead, disable its automatic builds to avoid deploying twice.
+
+Create a Cloudflare API token with **Account > Cloudflare Pages > Edit**, scoped to the account that owns the project. Get that account's Account ID from the Cloudflare dashboard. Add these as repository secrets under **GitHub > Settings > Secrets and variables > Actions > Secrets**:
+
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | The Cloudflare API token with Pages Edit permission. |
+| `CLOUDFLARE_ACCOUNT_ID` | The Account ID that owns the Pages project. |
+
+Under the **Variables** tab, add these repository variables:
+
+| Variable | Value |
+| --- | --- |
+| `CLOUDFLARE_PAGES_PROJECT_NAME` | `balnana-website`, or the exact name of your existing Pages project. |
+| `SITE_URL` | `https://balnana.com`, or your final production origin. No subpath, query or credentials. |
+
+Production builds fail if `SITE_URL` is missing, and the deploy job reports missing credentials or the project name without printing their values. `GITHUB_TOKEN` is provided automatically; the deploy job grants it `deployments: write` so Wrangler can record the deployment in GitHub.
+
+### First deployment and subsequent updates
+
+Commit and push the workflow changes to `main` after the one-time setup. Subsequent pushes to `main` run verification, build the Flutter homepage and Starlight docs together, and deploy `build/web` using `cloudflare/wrangler-action@v4`. The workflow summary includes the deployment URL. To redeploy manually, open **GitHub > Actions > Website checks, build and deploy > Run workflow** and select `main`.
+
+Workflow runs for the same branch or pull request share a concurrency group; a newer run cancels the older run. A failing test or build prevents deployment. The workflow does not automatically publish other branches or pull requests.
+
+In Cloudflare Pages, add `balnana.com` under **Custom domains** and follow the DNS setup. `SITE_URL` controls generated metadata; it does not register a domain, configure DNS or attach a custom domain. Verify the deployed site and custom domain after the first successful run. No production deployment has been verified as part of the workflow implementation.
+
+The implementation follows Cloudflare's [CI deployment guide](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/) and the [Wrangler action documentation](https://github.com/cloudflare/wrangler-action), checked on 2026-11-05.
 
 ## Routing and caching
 

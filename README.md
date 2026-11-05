@@ -54,11 +54,11 @@ bash tool/build.sh
 
 The tests cover integer splitting, balances and settlement, amount input in each language, the 360 / 390 / 768 / 1024 / 1440 widths for all three languages, 320px with 200% text scaling, theme and language persistence, and metadata generation. They are not a comprehensive screen reader or cross-browser compatibility certification.
 
-CI is defined in `.github/workflows/ci.yml`. It installs the pinned Flutter SDK and Node.js, runs the checks and tests, builds the homepage and docs, and stores the site output. It does not deploy automatically.
+CI is defined in `.github/workflows/ci.yml`. It installs the pinned Flutter SDK and Node.js, runs the checks and tests, builds the homepage and docs, and stores the site output. After verification succeeds, pushes to `main` automatically deploy that exact output to Cloudflare Pages using Wrangler. Manual workflow runs on `main` also deploy; pull requests and other branches only verify and build a noindex preview artifact. See the deployment guide for the required GitHub settings.
 
 ## Cloudflare Pages
 
-The output folder is `build/web`. Follow the [deployment guide](dev-docs/DEPLOYMENT.md) to use Cloudflare Pages Direct Upload. No Cloudflare account has been connected and nothing has been deployed yet.
+The output folder is `build/web`. Follow the [deployment guide](dev-docs/DEPLOYMENT.md) to create the Cloudflare Pages Direct Upload project and configure GitHub Actions credentials. The workflow supports automatic deployment once this one-time setup is complete; a live deployment has not been verified yet.
 
 Without a real domain, the build defaults to **preview / noindex**. Before going live, set the real domain and build again:
 
