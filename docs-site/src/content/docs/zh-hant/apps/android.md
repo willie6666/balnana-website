@@ -7,7 +7,7 @@ description: 依 App 要上架的地方選擇建置，用自己的金鑰簽署�
 
 App 有兩個 flavor，使用相同的應用程式 ID。差別在於[方案](/docs/zh-hant/self-hosting/plans-and-payments/)的付款方式，以及 APK 裡是否包含 Google 的封閉式付款程式庫：
 
-- `foss`，預設：不含 Google Play 付款。用於 F-Droid 與直接下載；加上 `--dart-define=BALNANA_EXTERNAL_PAYMENTS=true` 即可連到 Ko-fi。
+- `foss`，預設：不含 Google Play 付款。用於 F-Droid 與直接下載；加上 `--dart-define=BALNANA_EXTERNAL_PAYMENTS=true` 即可提供 Ko-fi 與 PayPal 付款。
 - `play`：販售 Google Play 訂閱。設定 `BALNANA_EXTERNAL_PAYMENTS` 時會拒絕建置，因為 Google Play 不允許 App 引導使用者到其他地方付款。
 
 ```bash

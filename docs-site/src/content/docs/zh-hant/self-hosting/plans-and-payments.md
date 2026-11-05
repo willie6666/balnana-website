@@ -1,6 +1,6 @@
 ---
 title: 方案與付款
-description: 設定每個方案的限制，並透過 Ko-fi 或 Google Play 收款。
+description: 設定每個方案的限制，並透過 Ko-fi、PayPal 或 Google Play 收款。
 ---
 
 方案預設關閉，關閉時伺服器不做任何限制。方案需要[帳號模式](/docs/zh-hant/self-hosting/access-and-sign-in/)。在 `/admin` 的**方案與付款**下開啟**方案與限制**，再到**方案**設定每個方案允許的內容：
@@ -21,19 +21,30 @@ description: 設定每個方案的限制，並透過 Ko-fi 或 Google Play 收�
 1. 把 **Ko-fi 頁面**設為你的 `https://ko-fi.com/...` 網址。
 2. 在 Ko-fi 的 webhook 設定中，把網址填為 `<公開網址>/api/v1/webhooks/kofi`。`/admin` 會顯示確切的網址。公開網址必須是 `https://`。
 3. 把 Ko-fi 的驗證權杖複製到 **Ko-fi 驗證權杖**。設定之前，webhook 一律回應 404。
-4. 在**方案**下，為每樣販售的東西新增一個商品。有等級名稱的商品對應該等級的 Ko-fi 會員付款，不分大小寫。沒有等級名稱的商品對應任何金額至少達到它、幣別相同的單次或每月付款。
+4. 在你的 Ko-fi 商店中，為每種販售的期間新增一個商品，例如 90 天與 360 天。
+5. 在**方案**下，為每個商店商品新增一個**付款方式**為 Ko-fi 的商品。它的**商店商品代碼**是商品連結的最後一段 `ko-fi.com/s/<代碼>`，**天數**則是這個商品的有效天數。一次買多個同樣的商品時，每個都會加上它的天數。
+6. 若也要接受打賞，請新增一個沒有商店商品代碼的商品。它對應金額至少達到它、幣別相同的打賞；有多個時，以打賞金額能達到的最高門檻為準。
 
-付款會以下列三種方式之一歸到帳號：
+付款時，付款人在你的 Ko-fi 頁面購買其中一個商店商品，或送出打賞。接著在 App 的**方案**頁面打開**加入 Ko-fi 款項**，輸入 Ko-fi 收據上的交易 ID，或含有它的連結。每筆付款會把它的天數加到剩餘天數上。
 
-- **付款代碼。** **方案**頁面會給每個人一組像 `BAL-7KQ2M9XP` 的代碼，讓他們貼在 Ko-fi 留言中。伺服器會從留言讀出代碼，不會保存留言。
-- **交易 ID。** 忘記留代碼的人，可以在同一頁的**忘記留代碼？**下輸入該筆付款的 Ko-fi 交易 ID，或含有它的連結。
-- **訂閱續費。** 續費沒有留言可依據，因此當某筆訂閱付款以上述任一方式歸到帳號後，伺服器會記住 Ko-fi 回報的電子郵件地址，之後來自該地址的訂閱付款都歸給同一個帳號。沒有人需要輸入這個地址，它也不必是帳號本身的地址，單次付款也從不依它歸屬。
+**付款紀錄**列出 Ko-fi 送來的所有付款。*待認領*代表還沒有人加入它，*未對應*代表沒有符合的商品；兩者都可以用**提供給帳戶**手動處理。Ko-fi 不會回報退款：退款給某人後，請到**帳戶**撤銷他的方案。
 
-每筆付款會把它的天數加到剩餘天數上。
+## PayPal
 
-**付款紀錄**列出 Ko-fi 送來的所有付款。*待認領*代表還不知道是誰的，*未對應*代表沒有符合的商品；兩者都可以用**提供給帳戶**手動處理。Ko-fi 不會回報退款：退款給某人後，請到**帳戶**撤銷他的方案。
+1. 在 [developer.paypal.com](https://developer.paypal.com) 為你的 PayPal 商家帳戶建立一個 REST 應用程式。在**方案與付款**下，把它的用戶端 ID 貼到 **PayPal 用戶端 ID**，密鑰貼到 **PayPal 密鑰**。
+2. 在該應用程式新增一個 webhook，網址填 `<公開網址>/api/v1/webhooks/paypal`（`/admin` 會顯示確切的網址），並勾選這些事件：`CHECKOUT.ORDER.APPROVED`、`PAYMENT.CAPTURE.COMPLETED`、`PAYMENT.CAPTURE.REFUNDED`、`PAYMENT.CAPTURE.REVERSED`、`PAYMENT.CAPTURE.DENIED`、`PAYMENT.SALE.COMPLETED`，以及所有 `BILLING.SUBSCRIPTION.*` 事件。公開網址必須是 `https://`。
+3. 把 webhook 的 ID 複製到 **PayPal Webhook ID**。用戶端 ID、密鑰與 webhook ID 都設定之前，PayPal 不會開啟。
+4. 在**方案**下，為每樣販售的東西新增一個**付款方式**為 PayPal 的商品。它的**方案 ID 或名稱**決定它是什麼：
+   - PayPal 訂閱方案的 ID（以 `P-` 開頭）會讓它成為訂閱。價格由 PayPal 設定，只要訂閱持續付款，方案就一直有效。
+   - 其他任何名稱都會讓它成為單次付款，金額與幣別依商品設定，付款後把它的天數加到剩餘天數上。
 
-只有網頁版，以及設定為連到 Ko-fi 的 Android 建置（見 [Android 正式版建置](/docs/zh-hant/apps/android/#兩種建置)），會顯示 Ko-fi 頁面。其他版本只顯示方案與它的限制。
+若想先試用，請開啟 **PayPal 沙盒**並使用沙盒應用程式的憑證：不會真的付款。
+
+付款人在 App 的**方案**頁面點選其中一個方案，在 PayPal 付款後回到 App，App 會告知付款是否成功。伺服器會向 PayPal 查證每筆付款，不採信其他來源。訂閱者可以在 paypal.com 變更或取消訂閱，**管理 PayPal 訂閱**會打開那裡。
+
+PayPal 會回報退款與撤回：該筆付款在**付款紀錄**中會顯示為*已退款*，它給的時間也會收回。
+
+只有網頁版，以及設定為允許外部付款的 Android 建置（見 [Android 正式版建置](/docs/zh-hant/apps/android/#兩種建置)），會顯示 Ko-fi 與 PayPal。其他版本只顯示方案與它的限制。
 
 ## Google Play
 
@@ -49,7 +60,7 @@ description: 設定每個方案的限制，並透過 Ko-fi 或 Google Play 收�
 
 ## 付款紀錄
 
-每筆付款都會保存付款人的電子郵件與名稱。設定 `BALNANA_PAYMENT_KEEP_DAYS` 後，它們會在那麼多天後清除；金額、日期與方案則會保留，即使帳號已刪除。之後未認領的付款只能用代碼或交易 ID 認領。請依你所在國家對銷售紀錄的要求決定天數，並寫在你的隱私權政策中。未設定或設為 0 時，會永久保存。
+每筆付款都會保存付款人的電子郵件與名稱。設定 `BALNANA_PAYMENT_KEEP_DAYS` 後，它們會在那麼多天後清除；金額、日期與方案則會保留，即使帳號已刪除。之後未認領的付款只能用交易 ID 認領。請依你所在國家對銷售紀錄的要求決定天數，並寫在你的隱私權政策中。未設定或設為 0 時，會永久保存。
 
 ## 設定
 
@@ -60,6 +71,10 @@ description: 設定每個方案的限制，並透過 Ko-fi 或 Google Play 收�
 | `BALNANA_BILLING_ENABLED` | 方案與限制 | 設為 `true` 開啟方案。需要 `BALNANA_AUTH_MODE=accounts`。 |
 | `BALNANA_KOFI_URL` | Ko-fi 頁面 | `https://` 網址。需與權杖一起設定。 |
 | `BALNANA_KOFI_TOKEN` | Ko-fi 驗證權杖 | |
+| `BALNANA_PAYPAL_CLIENT_ID` | PayPal 用戶端 ID | 來自 developer.paypal.com 的 REST 應用程式。需與密鑰、webhook ID 一起設定。 |
+| `BALNANA_PAYPAL_SECRET` | PayPal 密鑰 | |
+| `BALNANA_PAYPAL_WEBHOOK_ID` | PayPal Webhook ID | |
+| `BALNANA_PAYPAL_SANDBOX` | PayPal 沙盒 | 設為 `true` 時使用 PayPal 沙盒，並搭配沙盒應用程式的憑證。 |
 | `BALNANA_PLAY_PACKAGE` | Google Play 套件名稱 | |
 | `BALNANA_PLAY_SERVICE_ACCOUNT` | Google Play 服務帳號 | 服務帳號的 JSON 金鑰。 |
 | `BALNANA_PLAY_PUSH_ACCOUNT` | Pub/Sub 推送帳號 | |

@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 
 ROOT=Path(__file__).resolve().parents[1]
 # Open Graph wants language_TERRITORY; pick the region each translation is written for.
-OG_LOCALES={'ar':'ar_AR','de':'de_DE','en':'en_US','es':'es_ES','fr':'fr_FR','hi':'hi_IN','id':'id_ID','it':'it_IT','ja':'ja_JP','ko':'ko_KR','nl':'nl_NL','pl':'pl_PL','pt':'pt_BR','ru':'ru_RU','th':'th_TH','tr':'tr_TR','uk':'uk_UA','vi':'vi_VN','zh':'zh_CN','zh-Hant':'zh_TW'}
+OG_LOCALES={'en':'en_US','zh':'zh_CN','zh-Hant':'zh_TW'}
 
 def prepare(site_url=None, output=None):
     output=output or ROOT/'build/web'
@@ -28,7 +28,7 @@ def prepare(site_url=None, output=None):
         copy=locales[tag]
         title='Balnana — '+copy['heroTitle'].replace('\n',' ')
         description=copy['heroBody']
-        content=re.sub(r'<html lang="[^"]*">',f'<html lang="{tag}" dir="{"rtl" if tag=="ar" else "ltr"}">',template)
+        content=re.sub(r'<html lang="[^"]*">',f'<html lang="{tag}" dir="ltr">',template)
         content=re.sub(r'<title>.*?</title>',f'<title>{html.escape(title)}</title>',content)
         for attr,name,value in [('name','description',description),('property','og:title',title),('property','og:description',description)]:
             content=re.sub(f'<meta {attr}="{name}" content="[^"]*">',f'<meta {attr}="{name}" content="{html.escape(value,quote=True)}">',content)

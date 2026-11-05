@@ -5,24 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'site_localizations_ar.dart';
-import 'site_localizations_de.dart';
 import 'site_localizations_en.dart';
-import 'site_localizations_es.dart';
-import 'site_localizations_fr.dart';
-import 'site_localizations_hi.dart';
-import 'site_localizations_id.dart';
-import 'site_localizations_it.dart';
-import 'site_localizations_ja.dart';
-import 'site_localizations_ko.dart';
-import 'site_localizations_nl.dart';
-import 'site_localizations_pl.dart';
-import 'site_localizations_pt.dart';
-import 'site_localizations_ru.dart';
-import 'site_localizations_th.dart';
-import 'site_localizations_tr.dart';
-import 'site_localizations_uk.dart';
-import 'site_localizations_vi.dart';
 import 'site_localizations_zh.dart';
 
 // ignore_for_file: type=lint
@@ -109,24 +92,7 @@ abstract class SiteLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('ar'),
-    Locale('de'),
     Locale('en'),
-    Locale('es'),
-    Locale('fr'),
-    Locale('hi'),
-    Locale('id'),
-    Locale('it'),
-    Locale('ja'),
-    Locale('ko'),
-    Locale('nl'),
-    Locale('pl'),
-    Locale('pt'),
-    Locale('ru'),
-    Locale('th'),
-    Locale('tr'),
-    Locale('uk'),
-    Locale('vi'),
     Locale('zh'),
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
@@ -711,27 +677,7 @@ class _SiteLocalizationsDelegate extends LocalizationsDelegate<SiteLocalizations
   }
 
   @override
-  bool isSupported(Locale locale) => <String>[
-    'ar',
-    'de',
-    'en',
-    'es',
-    'fr',
-    'hi',
-    'id',
-    'it',
-    'ja',
-    'ko',
-    'nl',
-    'pl',
-    'pt',
-    'ru',
-    'th',
-    'tr',
-    'uk',
-    'vi',
-    'zh',
-  ].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SiteLocalizationsDelegate old) => false;
@@ -752,42 +698,8 @@ SiteLocalizations lookupSiteLocalizations(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar':
-      return SiteLocalizationsAr();
-    case 'de':
-      return SiteLocalizationsDe();
     case 'en':
       return SiteLocalizationsEn();
-    case 'es':
-      return SiteLocalizationsEs();
-    case 'fr':
-      return SiteLocalizationsFr();
-    case 'hi':
-      return SiteLocalizationsHi();
-    case 'id':
-      return SiteLocalizationsId();
-    case 'it':
-      return SiteLocalizationsIt();
-    case 'ja':
-      return SiteLocalizationsJa();
-    case 'ko':
-      return SiteLocalizationsKo();
-    case 'nl':
-      return SiteLocalizationsNl();
-    case 'pl':
-      return SiteLocalizationsPl();
-    case 'pt':
-      return SiteLocalizationsPt();
-    case 'ru':
-      return SiteLocalizationsRu();
-    case 'th':
-      return SiteLocalizationsTh();
-    case 'tr':
-      return SiteLocalizationsTr();
-    case 'uk':
-      return SiteLocalizationsUk();
-    case 'vi':
-      return SiteLocalizationsVi();
     case 'zh':
       return SiteLocalizationsZh();
   }

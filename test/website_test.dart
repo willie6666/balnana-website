@@ -48,12 +48,12 @@ void main() {
       }
     });
   }
-  testWidgets('minimum viewport and enlarged Arabic/German text do not overflow', (tester) async {
+  testWidgets('minimum viewport and enlarged text do not overflow', (tester) async {
     tester.view.devicePixelRatio = 1;
     tester.view.physicalSize = const Size(320, 850);
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    for (final tag in ['en', 'de', 'ar', 'zh-Hant']) {
+    for (final tag in ['en', 'zh', 'zh-Hant']) {
       await tester.pumpWidget(
         MaterialApp(
           theme: siteTheme(Brightness.dark),
@@ -102,7 +102,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    await tester.pumpWidget(localized(const DemoSection(), 'de', scale: 2));
+    await tester.pumpWidget(localized(const DemoSection(), 'zh', scale: 2));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('split-shares')));
     await tester.pumpAndSettle();
@@ -114,7 +114,7 @@ void main() {
       await tester.pumpAndSettle();
     }
     // Alex now pays the whole bill they paid for, so nobody owes anything.
-    expect(find.text('Alle Salden sind ausgeglichen.'), findsWidgets);
+    expect(find.text('所有人都已结清。'), findsWidgets);
     await tester.tap(find.byKey(const ValueKey('shares-fewer-0')));
     await tester.tap(find.byKey(const ValueKey('shares-fewer-0')));
     await tester.pumpAndSettle();
@@ -139,8 +139,6 @@ void main() {
     expect(storage.getString('site.theme'), 'dark');
     await tester.tap(find.byKey(const ValueKey('language-picker')));
     await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextField).first, '繁體');
-    await tester.pumpAndSettle();
     await tester.tap(find.text('繁體中文'));
     await tester.pumpAndSettle();
     expect(storage.getString('site.locale'), 'zh-Hant');
@@ -148,7 +146,7 @@ void main() {
   });
   testWidgets('docs links are absolute and pick the translated docs', (tester) async {
     final urls = <String, String>{};
-    for (final tag in ['en', 'de', 'zh', 'zh-Hant']) {
+    for (final tag in ['en', 'zh', 'zh-Hant']) {
       await tester.pumpWidget(
         localized(
           Builder(
@@ -162,8 +160,7 @@ void main() {
       );
     }
     expect(Uri.parse(urls['en']!).path, '/docs/self-hosting/quick-start/');
-    expect(urls['de'], urls['en']);
-    expect(urls['zh'], urls['en']);
+    expect(Uri.parse(urls['zh']!).path, '/docs/zh-hans/self-hosting/quick-start/');
     expect(Uri.parse(urls['zh-Hant']!).path, '/docs/zh-hant/self-hosting/quick-start/');
     expect(Uri.parse(urls['en']!).hasScheme, isTrue);
   });

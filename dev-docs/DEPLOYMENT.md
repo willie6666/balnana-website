@@ -17,7 +17,7 @@ SITE_URL=https://your-real-domain.example bash tool/build.sh
 
 `tool/build.sh` also runs `npm ci` and builds `docs-site/` into `build/web/docs`. Replace the example origin with the actual production origin. Do not publish using an example domain. `SITE_URL` must be a root origin, without a subpath or credentials. The output is `build/web`.
 
-Without `SITE_URL`, the build intentionally emits `noindex` entry documents and a disallowing robots.txt for previews. The docs follow the same rule: without `SITE_URL` every page carries `noindex`; with it they get canonical URLs and `/docs/sitemap-index.xml`, which robots.txt lists. With the origin, it also generates localized title/description, canonical URLs, 20 hreflang entries plus x-default, Open Graph, sitemap.xml and robots.txt. The website's visible interface is Flutter; this metadata does not make its full body content reliably indexable.
+Without `SITE_URL`, the build intentionally emits `noindex` entry documents and a disallowing robots.txt for previews. The docs follow the same rule: without `SITE_URL` every page carries `noindex`; with it they get canonical URLs and `/docs/sitemap-index.xml`, which robots.txt lists. With the origin, it also generates localized title/description, canonical URLs, three hreflang entries plus x-default, Open Graph, sitemap.xml and robots.txt. The website's visible interface is Flutter; this metadata does not make its full body content reliably indexable.
 
 ## Pages project
 
@@ -36,7 +36,7 @@ Cloudflare says a Direct Upload project cannot later be switched directly to Git
 ## Routing and caching
 
 - The website is hosted at `/`, with locale routes such as `/en` and `/zh-Hant`.
-- The docs are plain static pages under `/docs/` (English) and `/docs/zh-hant/` (Traditional Chinese). Pages serves each directory's `index.html` and redirects `/docs` to `/docs/`; the Flutter router never sees these paths.
+- The docs are plain static pages under `/docs/` (English) and `/docs/zh-hant/` (Traditional Chinese) and `/docs/zh-hans/` (Simplified Chinese). Pages serves each directory's `index.html` and redirects `/docs` to `/docs/`; the Flutter router never sees these paths.
 - Every locale has an actual `<tag>.html` document (served at `/<tag>` without a trailing-slash redirect) so share crawlers can read metadata before Flutter starts.
 - Pages SPA fallback handles remaining extensionless routes when there is no top-level `404.html` (the docs' own `404.html` sits under `/docs/`). The Flutter router then displays its own not-found page for unknown paths.
 - This SPA fallback may return HTTP 200 for unknown paths. If HTTP-level 404 responses become a requirement, add and test an explicit edge routing strategy.

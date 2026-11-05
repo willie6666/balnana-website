@@ -15,7 +15,7 @@ export default defineConfig({
 	vite: { server: { fs: { allow: ['..'] } } },
 	integrations: [
 		starlight({
-			title: { en: 'Balnana Docs', 'zh-TW': 'Balnana 文件' },
+			title: { en: 'Balnana Docs', 'zh-TW': 'Balnana 文件', 'zh-CN': 'Balnana 文档' },
 			description: 'Run Balnana on your own server and connect the apps.',
 			logo: { src: './src/assets/logo.svg', alt: 'Balnana' },
 			favicon: '/favicon.svg',
@@ -23,6 +23,7 @@ export default defineConfig({
 			locales: {
 				root: { label: 'English', lang: 'en' },
 				'zh-hant': { label: '繁體中文', lang: 'zh-TW' },
+				'zh-hans': { label: '简体中文', lang: 'zh-CN' },
 			},
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/willie6666/balnana' }],
 			editLink: { baseUrl: `${repo}/edit/main/docs-site/` },
@@ -40,7 +41,7 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Self-hosting',
-					translations: { 'zh-TW': '自行架設' },
+					translations: { 'zh-TW': '自行架設', 'zh-CN': '自托管' },
 					items: [
 						'self-hosting/quick-start',
 						'self-hosting/administration',
@@ -53,12 +54,12 @@ export default defineConfig({
 				},
 				{
 					label: 'Apps',
-					translations: { 'zh-TW': 'App' },
+					translations: { 'zh-TW': 'App', 'zh-CN': '应用' },
 					items: ['apps/connecting', 'apps/android'],
 				},
 				{
 					label: 'Guides',
-					translations: { 'zh-TW': '使用指南' },
+					translations: { 'zh-TW': '使用指南', 'zh-CN': '使用指南' },
 					items: ['guides/import-settle-up'],
 				},
 			],

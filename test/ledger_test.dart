@@ -86,7 +86,8 @@ void main() {
     expect(supportedTag('zh-HK'), 'zh-Hant');
     expect(supportedTag('zh-Hant'), 'zh-Hant');
     expect(supportedTag('zh-CN'), 'zh');
-    expect(supportedTag('de-DE'), 'de');
+    expect(supportedTag('en-GB'), 'en');
+    expect(supportedTag('de-DE'), isNull);
     expect(supportedTag('xyz'), isNull);
   });
 }

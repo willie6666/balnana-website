@@ -1,0 +1,41 @@
+---
+title: Balnana 文档
+description: 在自己的服务器上运行 Balnana、连接网页版与 Android App，并把群组一起带过来。
+template: splash
+hero:
+  title: 你的服务器，你们的账
+  tagline: 自托管 Balnana 所需的一切：从一行 Docker 命令，到具备登录、电子邮件与推送通知的公开服务器。
+  actions:
+    - text: 开始自托管
+      link: /docs/zh-hans/self-hosting/quick-start/
+      icon: right-arrow
+    - text: 回到网站
+      link: /zh
+      variant: secondary
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<Card title="几分钟就能上线" icon="rocket">
+		一个 Docker Compose 文件加上一个 PostgreSQL 数据库。启动时会自动执行数据库迁移。
+	</Card>
+	<Card title="在浏览器里设置" icon="setting">
+		有密码保护的 `/admin` 页面，可以在服务器运行时调整大部分设置。
+	</Card>
+	<Card title="链接或账号" icon="open-book">
+		分享私人群组链接，无需注册；或开启账号模式，用密码、Google 或 OpenID Connect 登录。
+	</Card>
+	<Card title="自由软件" icon="github">
+		Balnana 采用 AGPL-3.0 许可证。你可以自由运行、修改与分享。
+	</Card>
+</CardGrid>
+
+## 接下来
+
+<CardGrid>
+	<LinkCard title="快速开始" description="用 Docker 启动服务器并设置管理员密码。" href="/docs/zh-hans/self-hosting/quick-start/" />
+	<LinkCard title="反向代理与限制" description="在 TLS 后面安全地把 Balnana 放到网上。" href="/docs/zh-hans/self-hosting/reverse-proxy/" />
+	<LinkCard title="连接 App" description="让 Android 与网页版 App 连到你的服务器。" href="/docs/zh-hans/apps/connecting/" />
+	<LinkCard title="从 Settle Up 导入" description="把群组搬过来，余额保持不变。" href="/docs/zh-hans/guides/import-settle-up/" />
+</CardGrid>

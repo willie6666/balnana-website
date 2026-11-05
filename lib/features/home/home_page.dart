@@ -78,54 +78,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> pickLanguage() async {
-    var query = '';
     final selected = await showDialog<String>(
       context: context,
-      builder: (dialogContext) => StatefulBuilder(
-        builder: (context, update) {
-          final entries = languageNames.entries
-              .where((e) => '${e.key} ${e.value}'.toLowerCase().contains(query.toLowerCase()))
-              .toList();
-          return AlertDialog(
-            title: Text(context.l.languageLabel),
-            content: SizedBox(
-              width: 360,
-              height: MediaQuery.sizeOf(context).height.clamp(200, 480) * .8,
-              child: Column(
-                children: [
-                  TextField(
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.search_rounded),
-                      labelText: context.l.languageLabel,
-                    ),
-                    onChanged: (value) => update(() => query = value),
-                  ),
-                  const SizedBox(height: 12),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: entries.length,
-                      itemBuilder: (context, index) {
-                        final entry = entries[index];
-                        return ListTile(
-                          title: Text(entry.value),
-                          subtitle: Text(entry.key),
-                          trailing: entry.key == widget.tag
-                              ? Icon(Icons.check_rounded, color: context.c.primary)
-                              : null,
-                          onTap: () => Navigator.pop(context, entry.key),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(onPressed: () => Navigator.pop(context), child: Text(context.l.cancel)),
+      builder: (context) => AlertDialog(
+        title: Text(context.l.languageLabel),
+        content: SizedBox(
+          width: 360,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final entry in languageNames.entries)
+                ListTile(
+                  title: Text(entry.value),
+                  subtitle: Text(entry.key),
+                  trailing: entry.key == widget.tag
+                      ? Icon(Icons.check_rounded, color: context.c.primary)
+                      : null,
+                  onTap: () => Navigator.pop(context, entry.key),
+                ),
             ],
-          );
-        },
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(context.l.cancel)),
+        ],
       ),
     );
     if (selected != null && mounted) {
@@ -301,7 +277,7 @@ class _HomePageState extends State<HomePage> {
   Widget hero() => LayoutBuilder(
     builder: (context, constraints) {
       final wide = constraints.maxWidth >= 900;
-      final cjk = ['zh', 'ja', 'ko'].contains(Localizations.localeOf(context).languageCode);
+      final cjk = Localizations.localeOf(context).languageCode == 'zh';
       final title = Text(
         context.l.heroTitle,
         style: TextStyle(

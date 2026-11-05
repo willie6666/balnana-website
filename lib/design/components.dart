@@ -9,12 +9,16 @@ import 'theme.dart';
 const sourceUrl = 'https://github.com/willie6666/balnana';
 const memberNames = ['Alex', 'Jamie', 'Morgan', 'Sam'];
 
-/// The Starlight docs live beside the app under /docs; only Traditional Chinese is translated.
+/// The Starlight docs live beside the app under /docs, with both Chinese scripts translated.
 ///
 /// The address is absolute so [Link] loads the page instead of pushing an app route.
 String docsUrl(BuildContext context, [String page = '']) {
-  final zh = Localizations.localeOf(context).toLanguageTag() == 'zh-Hant';
-  return Uri.base.resolve('/docs/${zh ? 'zh-hant/' : ''}$page').toString();
+  final prefix = switch (Localizations.localeOf(context).toLanguageTag()) {
+    'zh-Hant' => 'zh-hant/',
+    'zh' => 'zh-hans/',
+    _ => '',
+  };
+  return Uri.base.resolve('/docs/$prefix$page').toString();
 }
 
 String quickStartUrl(BuildContext context) => docsUrl(context, 'self-hosting/quick-start/');

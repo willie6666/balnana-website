@@ -88,7 +88,7 @@ h1#_top,
 	letter-spacing: -0.025em;
 	color: var(--sl-color-white);
 }
-:lang(zh-TW) :is(h1, h2, h3, h4) {
+:lang(zh) :is(h1, h2, h3, h4) {
 	letter-spacing: 0;
 }
 .sl-markdown-content h2 {

@@ -7,7 +7,7 @@ description: Pick the build for where the app goes, sign it with your own key, a
 
 The app has two flavors with the same application ID. They differ in how a [plan](/docs/self-hosting/plans-and-payments/) is paid for, and in whether Google's closed billing library is in the APK:
 
-- `foss`, the default: no Google Play billing. For F-Droid and direct downloads, add `--dart-define=BALNANA_EXTERNAL_PAYMENTS=true` to link to Ko-fi.
+- `foss`, the default: no Google Play billing. For F-Droid and direct downloads, add `--dart-define=BALNANA_EXTERNAL_PAYMENTS=true` to offer Ko-fi and PayPal.
 - `play`: sells Google Play subscriptions. It refuses to build with `BALNANA_EXTERNAL_PAYMENTS`, since Google Play doesn't let an app send people elsewhere to pay.
 
 ```bash

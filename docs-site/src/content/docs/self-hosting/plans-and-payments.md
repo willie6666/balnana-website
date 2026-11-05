@@ -1,6 +1,6 @@
 ---
 title: Plans and payments
-description: Limit what each plan allows, and take payments through Ko-fi or Google Play.
+description: Limit what each plan allows, and take payments through Ko-fi, PayPal or Google Play.
 ---
 
 Plans are off unless you turn them on, and a server with them off limits nothing. They need [accounts mode](/docs/self-hosting/access-and-sign-in/). Turn them on in `/admin` under **Plans and payments** with **Plans and limits**, then use **Plans** to set what each plan allows:
@@ -21,19 +21,30 @@ A group's limits come from the member who shares their plan with it, for as long
 1. Set **Ko-fi page** to your `https://ko-fi.com/...` address.
 2. In Ko-fi's webhook settings, enter `<public URL>/api/v1/webhooks/kofi` as the URL. `/admin` shows the exact address. The public URL must be `https://`.
 3. Copy Ko-fi's verification token into **Ko-fi verification token**. Until it is set, the webhook answers 404.
-4. Under **Plans**, add a product for each thing you sell. One with a tier name matches Ko-fi membership payments of that tier, ignoring case. One without a tier name matches any one-off or monthly payment of at least its amount, in its currency.
+4. In your Ko-fi shop, add an item for each length you sell, such as 90 days and 360 days.
+5. Under **Plans**, add a product with **Paid through** set to Ko-fi for each item. Its **Shop item code** is the end of the item's link, `ko-fi.com/s/<code>`, and **Days** is how long the item lasts. Buying several of an item adds its days for each.
+6. To take tips as well, add a product with no shop item code. It matches a tip of at least its amount, in its currency; with several, the highest amount a tip reaches wins.
 
-Payments reach accounts in one of three ways:
+To pay, someone buys one of the shop items on your Ko-fi page, or sends a tip. Then, on the app's **Plan** page, they open **Add a Ko-fi payment** and enter the transaction ID from Ko-fi's receipt, or the link with it in. Each payment adds its days to what is left.
 
-- **Payment code.** The **Plan** page shows each person a code like `BAL-7KQ2M9XP` to paste in the Ko-fi message. The server reads the code from the message and doesn't keep the message.
-- **Transaction ID.** Someone who forgot the code enters the payment's Ko-fi transaction ID, or the link with it in, under **Forgot the code?** on the same page.
-- **Subscription renewals.** These have no message to go by, so once a subscription payment has reached an account by either way above, the server remembers the address Ko-fi reported and sends that address's later subscription payments to the same account. Nobody enters this address, it doesn't have to be the account's own, and one-off payments never go by it.
+**Payments** lists everything Ko-fi sent. *Unclaimed* means nobody has added it yet and *unmatched* means no product fits; **Give to an account** settles either by hand. Ko-fi does not report refunds: after refunding someone, revoke the plan under **Accounts**.
 
-Each payment adds its days to what is left.
+## PayPal
 
-**Payments** lists everything Ko-fi sent. *Unclaimed* means nothing says whose it is yet and *unmatched* means no product fits; **Give to an account** settles either by hand. Ko-fi does not report refunds: after refunding someone, revoke the plan under **Accounts**.
+1. At [developer.paypal.com](https://developer.paypal.com), create a REST app for your PayPal Business account. Under **Plans and payments**, paste its client ID into **PayPal client ID** and its secret into **PayPal secret**.
+2. Add a webhook to the app with `<public URL>/api/v1/webhooks/paypal` as its URL (`/admin` shows the exact address) and these events: `CHECKOUT.ORDER.APPROVED`, `PAYMENT.CAPTURE.COMPLETED`, `PAYMENT.CAPTURE.REFUNDED`, `PAYMENT.CAPTURE.REVERSED`, `PAYMENT.CAPTURE.DENIED`, `PAYMENT.SALE.COMPLETED` and every `BILLING.SUBSCRIPTION.*` event. The public URL must be `https://`.
+3. Copy the webhook's ID into **PayPal webhook ID**. PayPal stays off until the client ID, secret and webhook ID are all set.
+4. Under **Plans**, add a product with **Paid through** set to PayPal for each thing you sell. Its **Plan ID or name** decides what it is:
+   - A PayPal subscription plan's ID, starting with `P-`, makes it a subscription. PayPal sets its price, and the plan lasts as long as the subscription is paid for.
+   - Any other name makes it a one-off payment of the product's amount and currency, which adds its days to what is left.
 
-Only the web app, and Android builds made to link to Ko-fi (see [Android release builds](/docs/apps/android/#two-builds)), show the Ko-fi page. The others show the plan and its limits only.
+To try it out first, turn on **PayPal sandbox** and use a sandbox app's credentials: nothing is really paid.
+
+On the app's **Plan** page, someone taps one of the offers, pays on PayPal, and comes back to the app, which says whether the payment went through. The server asks PayPal about every payment and believes nothing else. Subscribers change or cancel their subscription at paypal.com, which **Manage PayPal subscription** opens.
+
+PayPal reports refunds and reversals: the payment shows as *refunded* in **Payments**, and the time it gave is taken back.
+
+Only the web app, and Android builds made to allow outside payments (see [Android release builds](/docs/apps/android/#two-builds)), show Ko-fi and PayPal. The others show the plan and its limits only.
 
 ## Google Play
 
@@ -49,7 +60,7 @@ The server asks Google about every purchase and believes nothing else, so refund
 
 ## Payment records
 
-Each payment keeps the payer's email and name. Set `BALNANA_PAYMENT_KEEP_DAYS` to erase them after that many days; the amount, date and plan stay, even if the account is deleted. An unclaimed payment can then only be claimed by its code or transaction ID. Choose the number with what your country requires of sales records, and say so in your privacy policy. Left out or 0, they are kept for good.
+Each payment keeps the payer's email and name. Set `BALNANA_PAYMENT_KEEP_DAYS` to erase them after that many days; the amount, date and plan stay, even if the account is deleted. An unclaimed payment can then only be claimed by its transaction ID. Choose the number with what your country requires of sales records, and say so in your privacy policy. Left out or 0, they are kept for good.
 
 ## Settings
 
@@ -60,6 +71,10 @@ All of these but the last are **admin** settings: they can also be set in `.env`
 | `BALNANA_BILLING_ENABLED` | Plans and limits | `true` turns plans on. Needs `BALNANA_AUTH_MODE=accounts`. |
 | `BALNANA_KOFI_URL` | Ko-fi page | An `https://` address. Set it and the token together. |
 | `BALNANA_KOFI_TOKEN` | Ko-fi verification token | |
+| `BALNANA_PAYPAL_CLIENT_ID` | PayPal client ID | From a REST app at developer.paypal.com. Set it with the secret and webhook ID. |
+| `BALNANA_PAYPAL_SECRET` | PayPal secret | |
+| `BALNANA_PAYPAL_WEBHOOK_ID` | PayPal webhook ID | |
+| `BALNANA_PAYPAL_SANDBOX` | PayPal sandbox | `true` uses PayPal's sandbox, with a sandbox app's credentials. |
 | `BALNANA_PLAY_PACKAGE` | Google Play package name | |
 | `BALNANA_PLAY_SERVICE_ACCOUNT` | Google Play service account | The service account's JSON key. |
 | `BALNANA_PLAY_PUSH_ACCOUNT` | Pub/Sub push account | |

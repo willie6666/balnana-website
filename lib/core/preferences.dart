@@ -12,23 +12,6 @@ const languageNames = <String, String>{
   'en': 'English',
   'zh-Hant': '繁體中文',
   'zh': '简体中文',
-  'ja': '日本語',
-  'ko': '한국어',
-  'es': 'Español',
-  'fr': 'Français',
-  'de': 'Deutsch',
-  'pt': 'Português',
-  'it': 'Italiano',
-  'ru': 'Русский',
-  'uk': 'Українська',
-  'pl': 'Polski',
-  'nl': 'Nederlands',
-  'tr': 'Türkçe',
-  'vi': 'Tiếng Việt',
-  'id': 'Bahasa Indonesia',
-  'th': 'ไทย',
-  'ar': 'العربية',
-  'hi': 'हिन्दी',
 };
 
 String? supportedTag(String? tag) {
