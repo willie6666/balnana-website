@@ -1,0 +1,16 @@
+# Build output (the deployable site is build/web)
+/build/
+
+# Dependencies, Astro caches and Wrangler's local state
+node_modules/
+.astro/
+dist/
+.wrangler/
+.dev.vars*
+
+# Editors and operating systems
+.idea/
+*.iml
+*.log
+*.swp
+.DS_Store

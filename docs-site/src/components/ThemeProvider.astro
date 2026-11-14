@@ -1,0 +1,55 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+---
+
+{/*
+  Starlight's provider, sharing the theme choice with the homepage
+  (localStorage "balnana.theme": "light" or "dark"; absent means follow the system).
+  Inlined to avoid a flash of the wrong theme.
+*/}
+<script is:inline>
+	window.StarlightThemeProvider = (() => {
+		const siteKey = 'balnana.theme';
+		try {
+			const site = localStorage.getItem(siteKey);
+			if (site === 'light' || site === 'dark') localStorage.setItem('starlight-theme', site);
+			else localStorage.removeItem('starlight-theme');
+		} catch {}
+		let storedTheme = null;
+		try {
+			storedTheme = localStorage.getItem('starlight-theme');
+		} catch {}
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		document.addEventListener('change', (event) => {
+			const select = event.target;
+			if (!(select instanceof HTMLSelectElement) || !select.closest('starlight-theme-select')) return;
+			try {
+				if (select.value === 'auto') localStorage.removeItem(siteKey);
+				else localStorage.setItem(siteKey, select.value);
+			} catch {}
+		});
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+					}
+				});
+			},
+		};
+	})();
+</script>
+
+<template id="theme-icons">
+	<Icon name="sun" class="light" />
+	<Icon name="moon" class="dark" />
+	<Icon name="laptop" class="auto" />
+</template>

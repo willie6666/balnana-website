@@ -1,0 +1,8 @@
+---
+/** Text with its authored line breaks, which matter most in Chinese headings. */
+interface Props {
+	text: string;
+}
+---
+
+{Astro.props.text.split('\n').map((line, i) => [i > 0 && <br />, line])}

@@ -1,0 +1,12 @@
+---
+import Home from '../components/Home.astro';
+import { preferredLang } from '../i18n/index.ts';
+
+// Visitors go straight on to their language, before anything is drawn. The English page below
+// is what crawlers and browsers without scripts get.
+const redirect = `location.replace('/'+${preferredLang}+location.hash)`;
+---
+
+<Home lang="en" path="/">
+	<script is:inline slot="head" set:html={redirect} />
+</Home>

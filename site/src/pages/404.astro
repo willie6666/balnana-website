@@ -1,0 +1,24 @@
+---
+import BrandMark from '../components/BrandMark.astro';
+import { languages, langs, preferredLang } from '../i18n/index.ts';
+import Base from '../layouts/Base.astro';
+
+const t = languages.en.messages;
+// The server answers every unknown address with this one page, so it picks its words in the browser.
+const words = Object.fromEntries(
+	langs.map((lang) => [lang, [languages[lang].messages.notFound, languages[lang].messages.backHome, languages[lang].tag]]),
+);
+const localize = `(function(){var lang=${preferredLang},words=${JSON.stringify(words)}[lang],home=document.querySelector('a.btn');
+document.documentElement.lang=words[2];
+document.querySelector('h1').textContent=words[0];
+home.textContent=words[1];home.href='/'+lang})()`;
+---
+
+<Base lang="en" title={`Balnana — ${t.notFound}`} description={t.notFound}>
+	<main class="missing">
+		<BrandMark />
+		<h1>{t.notFound}</h1>
+		<a class="btn btn-primary" href="/en">{t.backHome}</a>
+	</main>
+	<script is:inline set:html={localize} />
+</Base>

@@ -1,0 +1,70 @@
+---
+import extraBold from '../../../assets/fonts/PlusJakartaSans-ExtraBold.woff2?url';
+import regular from '../../../assets/fonts/PlusJakartaSans-Regular.woff2?url';
+import { languages, langs, type Lang } from '../i18n/index.ts';
+import '../styles/global.css';
+
+interface Props {
+	lang: Lang;
+	title: string;
+	description: string;
+	/** The page's address, such as `/en`. Pages without one, like the 404 page, are never indexed. */
+	path?: string;
+}
+const { lang, title, description, path } = Astro.props;
+// Without SITE_URL the build is a preview: no canonical addresses, and hidden from search.
+const site = path ? Astro.site?.origin : undefined;
+---
+
+<!doctype html>
+<html lang={languages[lang].tag} dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#E8A800" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#191A16" media="(prefers-color-scheme: dark)" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Balnana" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content={languages[lang].ogLocale} />
+		<meta property="og:image" content={`${site ?? ''}/social-preview.png`} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={title} />
+		<meta name="twitter:card" content="summary_large_image" />
+		{
+			site ? (
+				<>
+					<link rel="canonical" href={site + path} />
+					<meta property="og:url" content={site + path} />
+					{langs.map((other) => (
+						<link rel="alternate" hreflang={languages[other].tag} href={`${site}/${other}`} />
+					))}
+					<link rel="alternate" hreflang="x-default" href={`${site}/`} />
+				</>
+			) : (
+				<meta name="robots" content="noindex, nofollow" />
+			)
+		}
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/icons/Icon-192.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<link rel="preload" as="font" type="font/woff2" href={extraBold} crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href={regular} crossorigin />
+		{/* Applied before the first paint so a chosen theme never flashes the other one. */}
+		<script is:inline>
+			try {
+				const theme = localStorage.getItem('balnana.theme');
+				if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+			} catch {}
+		</script>
+		<slot name="head" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

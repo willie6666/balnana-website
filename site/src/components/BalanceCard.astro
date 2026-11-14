@@ -1,0 +1,100 @@
+---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Ellipsis from '@lucide/astro/icons/ellipsis';
+import { formatMoney } from '../demo/amount.ts';
+import { groups } from '../demo/icons.ts';
+import {
+	balances,
+	currencyOf,
+	memberNames,
+	scenarioLedger,
+	scenarios,
+	separateTransfers,
+	topCreditor,
+	transfers,
+} from '../demo/ledger.ts';
+import { fill, languages, type Lang } from '../i18n/index.ts';
+
+interface Props {
+	lang: Lang;
+	/** The hero's card is a still picture with only the first payment; the demo's card is live. */
+	hero?: boolean;
+}
+const { lang, hero = false } = Astro.props;
+const t = languages[lang].messages;
+const group = groups(t);
+
+// The demo starts from the same trip, and src/demo/demo.ts redraws the marked parts as it changes.
+const ledger = scenarioLedger('travel');
+const money = (minor: number) => formatMoney(minor, currencyOf(ledger.scenario), lang);
+const values = balances(ledger);
+const payments = transfers(ledger);
+const shown = hero ? payments.slice(0, 1) : payments;
+const creditor = topCreditor(ledger);
+---
+
+<div class="panel balance-card" data-scenario={hero ? ledger.scenario : undefined}>
+	<div class="card-head">
+		<span class="badge">{scenarios.map((s) => {
+			const Icon = group[s].icon;
+			return <Icon class={`for-${s}`} size={21} />;
+		})}</span>
+		<strong data-slot="group">{group[ledger.scenario].name}</strong>
+		<Ellipsis size={21} aria-hidden="true" />
+	</div>
+	{/* The demo's card announces its new total when an edit changes it. */}
+	<div class="card-total" aria-live={hero ? undefined : 'polite'} aria-atomic={hero ? undefined : 'true'}>
+		<span data-slot="owed">{fill(t.owed, { name: memberNames[creditor] })}</span>
+		<strong class="num" dir="ltr" data-slot="total">{money(values[creditor])}</strong>
+	</div>
+	<p class="card-label">{t.balances}</p>
+	<ul class="members">
+		{
+			values.map((value, i) => (
+				<li>
+					<span class={`avatar m${i}`} aria-hidden="true">{memberNames[i][0]}</span>
+					<span class="name">{memberNames[i]}</span>
+					<span class={`balance num ${value < 0 ? 'neg' : 'pos'}`} dir="ltr" data-slot="balance">
+						{value < 0 ? '−' : '+'}{money(Math.abs(value))}
+					</span>
+				</li>
+			))
+		}
+	</ul>
+	<div class="payments">
+		<h3>{t.payments}</h3>
+		<ul data-slot="transfers">
+			{
+				shown.map(({ from, to, amount }) => (
+					<li class="transfer">
+						<span class={`avatar avatar-sm m${from}`} title={memberNames[from]} aria-hidden="true">{memberNames[from][0]}</span>
+						<ArrowRight size={16} aria-hidden="true" />
+						<span class={`avatar avatar-sm m${to}`} title={memberNames[to]} aria-hidden="true">{memberNames[to][0]}</span>
+						<span class="sr-only">{fill(t.transferLabel, { from: memberNames[from], to: memberNames[to] })}</span>
+						<strong class="num" dir="ltr">{money(amount)}</strong>
+					</li>
+				))
+			}
+		</ul>
+		{
+			!hero && (
+				<template data-slot="transfer-row">
+					<li class="transfer">
+						<span class="avatar avatar-sm" aria-hidden="true" />
+						<ArrowRight size={16} aria-hidden="true" />
+						<span class="avatar avatar-sm" aria-hidden="true" />
+						<span class="sr-only" />
+						<strong class="num" dir="ltr" />
+					</li>
+				</template>
+			)
+		}
+		<p class="note" data-slot="summary">
+			{
+				hero
+					? fill(t.morePayments, { count: payments.length - 1 })
+					: fill(t.demoSummary, { separate: separateTransfers(ledger), payments: payments.length })
+			}
+		</p>
+	</div>
+</div>

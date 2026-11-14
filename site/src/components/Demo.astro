@@ -1,0 +1,140 @@
+---
+import Minus from '@lucide/astro/icons/minus';
+import Plus from '@lucide/astro/icons/plus';
+import RotateCcw from '@lucide/astro/icons/rotate-ccw';
+import { formatAmount, formatMoney, maxAmount } from '../demo/amount.ts';
+import { groups } from '../demo/icons.ts';
+import { currencyOf, memberNames, people, scenarioLedger, scenarios } from '../demo/ledger.ts';
+import { fill, languages, type Lang } from '../i18n/index.ts';
+import BalanceCard from './BalanceCard.astro';
+
+interface Props {
+	lang: Lang;
+}
+const { lang } = Astro.props;
+const t = languages[lang].messages;
+const group = groups(t);
+const ledger = scenarioLedger('travel');
+const currency = currencyOf(ledger.scenario);
+const current = ledger.expenses[ledger.selected];
+
+/** The words the script needs to redraw the demo, read from the page instead of bundled per language. */
+const messages = {
+	groups: Object.fromEntries(scenarios.map((s) => [s, { name: group[s].name, expenses: group[s].expenses }])),
+	paidBy: t.paidBy,
+	splitWays: t.splitWays,
+	splitByShares: t.splitByShares,
+	editing: t.editing,
+	owed: t.owed,
+	settled: t.settled,
+	demoSummary: t.demoSummary,
+	transferLabel: t.transferLabel,
+	invalid: t.invalidAmount,
+	tooLarge: t.amountTooLarge,
+};
+---
+
+<div class="demo" data-demo data-scenario={ledger.scenario} data-messages={JSON.stringify(messages)}>
+	<div class="panel panel-warm">
+		<div class="chips">
+			{
+				scenarios.map((s) => (
+					<button class="chip chip-scenario" type="button" data-pick-scenario={s} aria-pressed={s === ledger.scenario ? 'true' : 'false'}>
+						{group[s].label}
+					</button>
+				))
+			}
+		</div>
+
+		<h3 class="field-label">{t.expensesLabel}</h3>
+		<div class="expenses">
+			{
+				ledger.expenses.map((e, i) => (
+					<button class="expense" type="button" data-pick-expense={i} aria-pressed={i === ledger.selected ? 'true' : 'false'}>
+						{scenarios.map((s) => {
+							const Icon = group[s].icons[i];
+							return <Icon class={`for-${s}`} size={21} aria-hidden="true" />;
+						})}
+						<span class="expense-text">
+							<span class="expense-top">
+								<span data-slot="title">{group[ledger.scenario].expenses[i]}</span>
+								<span class="num" dir="ltr" data-slot="amount">{formatMoney(e.amount, currency, lang)}</span>
+							</span>
+							<span class="expense-meta" data-slot="meta">
+								{fill(t.paidBy, { name: memberNames[e.payer] })} · {e.mode === 'equal' ? fill(t.splitWays, { count: people(e) }) : t.splitByShares}
+							</span>
+						</span>
+					</button>
+				))
+			}
+		</div>
+
+		<h3 class="editing" data-slot="editing">{fill(t.editing, { expense: group[ledger.scenario].expenses[ledger.selected] })}</h3>
+		<div class="amount" data-amount-box>
+			<label>
+				{t.amountLabel}
+				<input
+					class="num"
+					type="text"
+					inputmode="numeric"
+					autocomplete="off"
+					maxlength="18"
+					dir="ltr"
+					value={formatAmount(current.amount, currency.digits, lang)}
+					aria-describedby="demo-amount-help"
+					data-amount
+				/>
+			</label>
+			<span data-slot="currency">{currency.code}</span>
+		</div>
+		<p class="field-help num" id="demo-amount-help" data-slot="help">
+			{formatMoney(1, currency, lang)} – {formatMoney(maxAmount * 10 ** currency.digits, currency, lang)}
+		</p>
+
+		<h3 class="field-label">{t.payer}</h3>
+		<div class="chips">
+			{
+				memberNames.map((name, i) => (
+					<button class="chip chip-person" type="button" data-pick-payer={i} aria-pressed={i === current.payer ? 'true' : 'false'}>
+						<span class={`avatar avatar-sm m${i}`} aria-hidden="true">{name[0]}</span>
+						{name}
+					</button>
+				))
+			}
+		</div>
+
+		<div class="chips" style="margin-top:1.5rem">
+			<button class="chip" type="button" data-pick-mode="equal" aria-pressed={current.mode === 'equal' ? 'true' : 'false'}>{t.splitEqual}</button>
+			<button class="chip" type="button" data-pick-mode="shares" aria-pressed={current.mode === 'shares' ? 'true' : 'false'}>{t.splitShares}</button>
+		</div>
+		<div class="share-rows" data-shares hidden={current.mode !== 'shares'}>
+			{
+				memberNames.map((name, i) => (
+					<div class="share-row">
+						<span class={`avatar avatar-sm m${i}`} aria-hidden="true">{name[0]}</span>
+						<span class="name">{name}</span>
+						<button class="icon-btn" type="button" data-share={i} data-step="-1" aria-label={fill(t.fewerShares, { name })}>
+							<Minus size={18} />
+						</button>
+						<output class="num" data-slot="shares">{current.shareCounts[i]}</output>
+						<button class="icon-btn" type="button" data-share={i} data-step="1" aria-label={fill(t.moreShares, { name })}>
+							<Plus size={18} />
+						</button>
+					</div>
+				))
+			}
+			<p>{t.weightedHelp}</p>
+		</div>
+
+		<div class="demo-foot">
+			<button class="btn btn-text btn-small" type="button" data-reset><RotateCcw size={16} />{t.reset}</button>
+			<span>{t.demoNotice}</span>
+		</div>
+	</div>
+
+	<BalanceCard lang={lang} />
+</div>
+
+<script>
+	import '../demo/demo.ts';
+</script>

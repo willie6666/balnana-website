@@ -1,0 +1,16 @@
+---
+import Lines from './Lines.astro';
+
+interface Props {
+	title: string;
+	eyebrow?: string;
+	body?: string;
+}
+const { title, eyebrow, body } = Astro.props;
+---
+
+<div class="section-head">
+	{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+	<h2 class="title"><Lines text={title} /></h2>
+	{body && <p class="lede">{body}</p>}
+</div>

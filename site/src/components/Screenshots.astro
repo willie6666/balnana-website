@@ -1,0 +1,67 @@
+---
+import X from '@lucide/astro/icons/x';
+import { getImage, Image } from 'astro:assets';
+import expenses from '../../../assets/screenshots/expenses.png';
+import foreign from '../../../assets/screenshots/foreign.png';
+import statistics from '../../../assets/screenshots/statistics.png';
+import { languages, type Lang } from '../i18n/index.ts';
+
+interface Props {
+	lang: Lang;
+}
+const { lang } = Astro.props;
+const t = languages[lang].messages;
+
+// Real Android screens. The page shows small copies; the larger one loads only when opened.
+const shots = await Promise.all(
+	[
+		[expenses, t.screenshotExpenses],
+		[foreign, t.screenshotForeign],
+		[statistics, t.screenshotStats],
+	].map(async ([src, label]) => ({
+		src: src as ImageMetadata,
+		label: label as string,
+		full: await getImage({ src: src as ImageMetadata, width: 1080, format: 'webp' }),
+	})),
+);
+const { width, height } = shots[0].full.attributes;
+---
+
+<ul class="shots">
+	{
+		shots.map(({ src, label, full }) => (
+			<li>
+				<a class="shot" href={full.src} target="_blank" data-shot aria-label={`${t.screenshotOpen}: ${label}`}>
+					<Image src={src} alt="" width={560} widths={[280, 560, 840]} sizes="(min-width: 48rem) 17rem, 62vw" format="webp" loading="lazy" />
+				</a>
+				<p>{label}</p>
+			</li>
+		))
+	}
+</ul>
+<p class="shots-note">{t.screenshotsNote}</p>
+
+<dialog class="lightbox" data-lightbox>
+	<form method="dialog"><button class="icon-btn" aria-label={t.close} title={t.close}><X size={22} /></button></form>
+	<img alt="" width={width} height={height} />
+	<p>{t.screenshotsNote}</p>
+</dialog>
+
+<script>
+	// With scripts on, a screenshot opens enlarged in place instead of in a new tab.
+	const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]')!;
+	const image = dialog.querySelector('img')!;
+	for (const shot of document.querySelectorAll<HTMLAnchorElement>('[data-shot]')) {
+		shot.addEventListener('click', (event) => {
+			if (!dialog.showModal) return;
+			event.preventDefault();
+			image.src = shot.href;
+			image.alt = shot.nextElementSibling?.textContent ?? '';
+			dialog.showModal();
+		});
+	}
+	// A click on the dimmed area around the dialog lands on the dialog element itself.
+	dialog.addEventListener('click', (event) => {
+		if (event.target === dialog) dialog.close();
+	});
+</script>

@@ -1,0 +1,200 @@
+---
+import ArrowLeftRight from '@lucide/astro/icons/arrow-left-right';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import BookOpen from '@lucide/astro/icons/book-open';
+import CalendarSync from '@lucide/astro/icons/calendar-sync';
+import Check from '@lucide/astro/icons/check';
+import ChevronDown from '@lucide/astro/icons/chevron-down';
+import CloudCheck from '@lucide/astro/icons/cloud-check';
+import CodeXml from '@lucide/astro/icons/code-xml';
+import Globe from '@lucide/astro/icons/globe';
+import Heart from '@lucide/astro/icons/heart';
+import ReceiptText from '@lucide/astro/icons/receipt-text';
+import RefreshCw from '@lucide/astro/icons/refresh-cw';
+import Share from '@lucide/astro/icons/share';
+import Split from '@lucide/astro/icons/split';
+import { memberNames } from '../demo/ledger.ts';
+import { languages, type Lang } from '../i18n/index.ts';
+import Base from '../layouts/Base.astro';
+import { appUrl, donateUrl, sourceUrl } from '../links.ts';
+import BalanceCard from './BalanceCard.astro';
+import BrandMark from './BrandMark.astro';
+import Demo from './Demo.astro';
+import Header from './Header.astro';
+import Lines from './Lines.astro';
+import Screenshots from './Screenshots.astro';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+	lang: Lang;
+	path: string;
+}
+const { lang, path } = Astro.props;
+const { messages: t, docs } = languages[lang];
+
+const trust = [
+	[Split, t.trustSplit],
+	[Globe, t.trustLanguages],
+	[CodeXml, t.trustOpen],
+	[CloudCheck, t.trustOfficial],
+] as const;
+const extras = [
+	[CalendarSync, t.recurringTitle, t.recurringBody],
+	[ReceiptText, t.receiptsTitle, t.receiptsBody],
+	[RefreshCw, t.liveTitle, t.liveBody],
+	[Share, t.exportTitle, t.exportBody],
+] as const;
+const faq = [
+	[t.faqAccountQ, t.faqAccountA],
+	[t.faqOfflineQ, t.faqOfflineA],
+	[t.faqCurrencyQ, t.faqCurrencyA],
+	[t.faqPlatformQ, t.faqPlatformA],
+	[t.faqCostQ, t.faqCostA],
+];
+---
+
+<Base lang={lang} path={path} title={`Balnana — ${t.heroTitle.replace('\n', lang === 'en' ? ' ' : '')}`} description={t.heroBody}>
+	<slot name="head" slot="head" />
+	<a class="skip" href="#main">{t.skipToContent}</a>
+	<Header lang={lang} />
+
+	<main id="main">
+		<div class="wrap">
+			<section class="hero">
+				<div>
+					<p class="eyebrow eyebrow-filled">{t.heroEyebrow}</p>
+					<h1 class="hero-title"><Lines text={t.heroTitle} /></h1>
+					<p class="hero-body">{t.heroBody}</p>
+					<div class="actions">
+						<a class="btn btn-primary" href={appUrl}>{t.openApp}<ArrowRight size={19} /></a>
+						<a class="btn btn-soft" href="#demo">{t.tryDemo}</a>
+					</div>
+					<p class="status">{t.development}</p>
+				</div>
+				<div class="hero-visual">
+					<svg class="arc" viewBox="0 0 100 110" preserveAspectRatio="none" aria-hidden="true">
+						<path d="M74 9C112 21 104 106 30 97" vector-effect="non-scaling-stroke"></path>
+					</svg>
+					<p>{t.demoNotice}</p>
+					<BalanceCard lang={lang} hero />
+				</div>
+			</section>
+
+			<ul class="trust">
+				{trust.map(([Icon, label]) => <li><span class="badge"><Icon size={19} /></span>{label}</li>)}
+			</ul>
+
+			<section class="section" id="demo">
+				<SectionHead eyebrow={t.demoLabel} title={t.demoTitle} body={t.demoBody} />
+				<Demo lang={lang} />
+			</section>
+
+			<section class="section" id="features">
+				<SectionHead eyebrow={t.featureLabel} title={t.featureTitle} />
+				<div class="tiles">
+					<div class="panel panel-warm tile">
+						<Split size={38} />
+						<h3>{t.featureSplitTitle}</h3>
+						<p>{t.featureSplitBody}</p>
+						<div class="tile-art">
+							{/* The four members' parts of one bill, split by shares. */}
+							<div class="split-bar" aria-hidden="true">
+								{[3, 2, 2, 1].map((share, i) => <span class={`m${i}`} style={`flex:${share}`} />)}
+							</div>
+							<ul class="checks">
+								<li><Check size={18} />{t.splitEqual}</li>
+								<li><Check size={18} />{t.splitShares}</li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel tile">
+						<ArrowLeftRight size={38} />
+						<h3>{t.featureSettleTitle}</h3>
+						<p>{t.featureSettleBody}</p>
+						<div class="tile-art settle-art" aria-hidden="true">
+							<span class="avatar avatar-lg m2">{memberNames[2][0]}</span>
+							<ArrowRight size={30} />
+							<span class="avatar avatar-lg m0">{memberNames[0][0]}</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<SectionHead eyebrow={t.travelLabel} title={t.travelTitle} body={t.travelBody} />
+				<Screenshots lang={lang} />
+			</section>
+
+			<section class="section">
+				<h2 class="extras-title">{t.extraTitle}</h2>
+				<ul class="extras">
+					{
+						extras.map(([Icon, title, body]) => (
+							<li>
+								<span class="badge badge-square"><Icon size={26} /></span>
+								<h3>{title}</h3>
+								<p>{body}</p>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</div>
+
+		<section class="band always-dark" id="hosting">
+			<div class="wrap band-grid">
+				<div>
+					<SectionHead eyebrow={t.hostingLabel} title={t.hostingTitle} body={t.hostingBody} />
+					<div class="actions">
+						<a class="btn btn-primary" href={appUrl}>{t.hostingOfficial}<ArrowRight size={19} /></a>
+						<a class="btn btn-text" href={`${docs}self-hosting/quick-start/`}>{t.hostingLink}<BookOpen size={18} /></a>
+					</div>
+				</div>
+				<div class="panel donate">
+					<span class="badge badge-square" style="border-radius:50%"><Heart size={26} fill="currentColor" /></span>
+					<h3>{t.donateTitle}</h3>
+					<p>{t.donateBody}</p>
+					<a class="btn btn-text" href={donateUrl} target="_blank" rel="noopener">{t.donateLink}<ArrowUpRight size={18} /></a>
+				</div>
+			</div>
+		</section>
+
+		<div class="wrap">
+			<section class="section faq" id="faq">
+				<h2 class="title">{t.faqTitle}</h2>
+				<div>
+					{
+						faq.map(([question, answer]) => (
+							<details>
+								<summary>{question}<ChevronDown size={22} /></summary>
+								<p>{answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="panel panel-warm end">
+				<BrandMark />
+				<h2>{t.endTitle}</h2>
+				<p>{t.endBody}</p>
+				<div class="actions">
+					<a class="btn btn-primary" href={appUrl}>{t.openApp}<ArrowRight size={19} /></a>
+					<a class="btn btn-text" href={sourceUrl} target="_blank" rel="noopener">{t.github}<CodeXml size={18} /></a>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<footer class="wrap footer">
+		<div class="footer-row">
+			<a class="brand" href={`/${lang}`} aria-label={t.backHome}><BrandMark /><span translate="no">balnana</span></a>
+			<a class="btn btn-text btn-small" href={docs}>{t.navDocs}</a>
+			<a class="btn btn-text btn-small" href={sourceUrl} target="_blank" rel="noopener">{t.github}</a>
+			<a class="btn btn-text btn-small" href={`${sourceUrl}/issues`} target="_blank" rel="noopener">{t.reportIssue}</a>
+			<a class="btn btn-text btn-small" href={`${sourceUrl}/blob/main/LICENSE`} target="_blank" rel="noopener">AGPL-3.0</a>
+		</div>
+		<p>{t.footerNote}</p>
+	</footer>
+</Base>

@@ -1,0 +1,41 @@
+---
+title: Balnana Docs
+description: Balnana 的安装、设置与使用指南，从启动服务器到连接 App。
+template: splash
+hero:
+  title: 把 Balnana 跑起来
+  tagline: 这里整理了 Self-host 的设置步骤，以及连接 App、导入群组等用法。第一次安装，可以从「快速开始」看起。
+  actions:
+    - text: Self-host
+      link: /docs/zh-hans/self-hosting/quick-start/
+      icon: right-arrow
+    - text: 回到网站
+      link: /zh
+      variant: secondary
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+	<Card title="用 Docker 启动" icon="rocket">
+		用 Docker Compose 一起启动 Balnana 和 PostgreSQL，数据库迁移会在启动时自动执行。
+	</Card>
+	<Card title="在网页上调整设置" icon="setting">
+		打开 `/admin` 就能调整大部分设置，不用重启服务器。进入前需要输入管理员密码。
+	</Card>
+	<Card title="选择加入群组的方式" icon="open-book">
+		用私人链接邀朋友加入，不用注册。也能开启账号模式，通过密码、Google 或 OpenID Connect 登录。
+	</Card>
+	<Card title="源代码公开" icon="github">
+		Balnana 采用 AGPL-3.0 许可证，你可以查看、修改和分享源代码。
+	</Card>
+</CardGrid>
+
+## 从这里开始
+
+<CardGrid>
+	<LinkCard title="快速开始" description="用 Docker 启动服务器并设置管理员密码。" href="/docs/zh-hans/self-hosting/quick-start/" />
+	<LinkCard title="反向代理与限制" description="设置 HTTPS，让其他人也能连到你的服务器。" href="/docs/zh-hans/self-hosting/reverse-proxy/" />
+	<LinkCard title="连接 App" description="让 Android 与网页版 App 连到你的服务器。" href="/docs/zh-hans/apps/connecting/" />
+	<LinkCard title="从 Settle Up 导入" description="把群组搬过来，余额保持不变。" href="/docs/zh-hans/guides/import-settle-up/" />
+</CardGrid>

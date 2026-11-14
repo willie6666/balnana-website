@@ -1,0 +1,149 @@
+---
+import BookOpen from '@lucide/astro/icons/book-open';
+import Check from '@lucide/astro/icons/check';
+import CodeXml from '@lucide/astro/icons/code-xml';
+import Globe from '@lucide/astro/icons/globe';
+import Menu from '@lucide/astro/icons/menu';
+import Monitor from '@lucide/astro/icons/monitor';
+import Moon from '@lucide/astro/icons/moon';
+import Sun from '@lucide/astro/icons/sun';
+import { languages, langs, type Lang } from '../i18n/index.ts';
+import { appUrl, sourceUrl } from '../links.ts';
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+	lang: Lang;
+}
+const { lang } = Astro.props;
+const { messages: t, docs } = languages[lang];
+const themes = [
+	['system', t.themeSystem, Monitor],
+	['light', t.themeLight, Sun],
+	['dark', t.themeDark, Moon],
+] as const;
+---
+
+<header class="site-header" data-header>
+	<div class="wrap header-row">
+		<a class="brand" href={`/${lang}`} aria-label={t.backHome}>
+			<BrandMark /><span translate="no">balnana</span>
+		</a>
+		<nav class="nav">
+			<a href={docs}>{t.navDocs}</a>
+		</nav>
+		<a class="btn btn-primary btn-small header-cta" href={appUrl}>{t.openAppShort}</a>
+
+		<details class="menu" data-menu>
+			<summary class="icon-btn" aria-label={`${t.languageLabel}: ${languages[lang].name}`} title={t.languageLabel}>
+				<Globe size={21} />
+			</summary>
+			<div class="menu-panel">
+				{
+					langs.map((other) => (
+						<a
+							class="menu-item"
+							href={`/${other}`}
+							lang={languages[other].tag}
+							hreflang={languages[other].tag}
+							data-lang={other}
+							aria-current={other === lang ? 'page' : undefined}
+						>
+							{languages[other].name}
+							<Check class="trail check" size={18} />
+						</a>
+					))
+				}
+			</div>
+		</details>
+
+		<details class="menu" data-menu>
+			<summary class="icon-btn" aria-label={t.themeLabel} title={t.themeLabel}>
+				<Sun class="sun" size={21} /><Moon class="moon" size={21} />
+			</summary>
+			<div class="menu-panel" role="radiogroup" aria-label={t.themeLabel}>
+				{
+					themes.map(([mode, label, Icon]) => (
+						<button class="menu-item" type="button" role="radio" aria-checked="false" data-theme-set={mode}>
+							<Icon size={18} />
+							{label}
+							<Check class="trail check" size={18} />
+						</button>
+					))
+				}
+			</div>
+		</details>
+
+		<a class="icon-btn header-source" href={sourceUrl} target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+			<CodeXml size={21} />
+		</a>
+
+		<details class="menu nav-menu" data-menu>
+			<summary class="icon-btn" aria-label={t.menu} title={t.menu}><Menu size={22} /></summary>
+			<div class="menu-panel">
+				<a class="menu-item" href={appUrl}>{t.openAppShort}</a>
+				<a class="menu-item" href={docs}>{t.navDocs}<BookOpen class="trail" size={18} /></a>
+				<a class="menu-item" href={sourceUrl} target="_blank" rel="noopener">GitHub<CodeXml class="trail" size={18} /></a>
+			</div>
+		</details>
+	</div>
+</header>
+
+<script>
+	const root = document.documentElement;
+	const menus = [...document.querySelectorAll<HTMLDetailsElement>('details[data-menu]')];
+
+	// A menu closes when one of its items is picked, on a click elsewhere, and on Escape.
+	document.addEventListener('click', (event) => {
+		const target = event.target as Element;
+		for (const menu of menus) {
+			if (menu.open && (!menu.contains(target) || target.closest('.menu-item'))) menu.open = false;
+		}
+	});
+	document.addEventListener('keydown', (event) => {
+		if (event.key !== 'Escape') return;
+		for (const menu of menus) {
+			if (!menu.open) continue;
+			menu.open = false;
+			menu.querySelector('summary')?.focus();
+		}
+	});
+
+	// Theme: "system" stores nothing, so the page and the docs follow the device again.
+	const themeKey = 'balnana.theme';
+	const options = [...document.querySelectorAll<HTMLElement>('[data-theme-set]')];
+	const show = (mode: string) => options.forEach((o) => o.setAttribute('aria-checked', String(o.dataset.themeSet === mode)));
+	show(root.dataset.theme ?? 'system');
+	for (const option of options) {
+		option.addEventListener('click', () => {
+			const mode = option.dataset.themeSet!;
+			if (mode === 'system') delete root.dataset.theme;
+			else root.dataset.theme = mode;
+			try {
+				if (mode === 'system') localStorage.removeItem(themeKey);
+				else localStorage.setItem(themeKey, mode);
+			} catch {
+				// Storage can be disabled; the choice still lasts for this page.
+			}
+			show(mode);
+		});
+	}
+
+	// Remember the picked language for the next visit to "/", and stay on the same section.
+	for (const link of document.querySelectorAll<HTMLAnchorElement>('a[data-lang]')) {
+		link.addEventListener('click', () => {
+			try {
+				localStorage.setItem('balnana.locale', link.dataset.lang!);
+			} catch {
+				// The link still works.
+			}
+			link.hash = location.hash;
+		});
+	}
+
+	window.addEventListener('load', () => requestAnimationFrame(() => root.classList.add('loaded')));
+
+	const header = document.querySelector('[data-header]')!;
+	const mark = () => header.classList.toggle('scrolled', window.scrollY > 8);
+	window.addEventListener('scroll', mark, { passive: true });
+	mark();
+</script>
