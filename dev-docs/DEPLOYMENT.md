@@ -39,7 +39,11 @@ The docs get canonical URLs and `/docs/sitemap-index.xml`, which robots.txt list
 
    No build variables are needed. Workers Builds installs the root `package.json`, so it uses the pinned Wrangler version. Optionally, under **Settings > Builds**, turn on builds for non-production branches; those builds are noindex previews.
 
-2. **Move the domain from the old Pages project.** `balnana.com` is still attached to the old Pages project `balnana-website`. Under **Workers & Pages > balnana-website (Pages) > Custom domains**, remove `balnana.com`. Then, under **the Worker > Settings > Domains & Routes > Add > Custom domain**, add `balnana.com`. Cloudflare creates the DNS record and certificate. Expect a short gap between the two steps. Once the Worker serves the domain, the old Pages project can be deleted.
+2. **Move the domain from the old Pages project** (done on 2026-11-14). Remove `balnana.com` from the old Pages project's **Custom domains**, then add it to the Worker under **Settings > Domains & Routes**. Cloudflare creates the DNS record and certificate. Once the Worker serves the domain, the old Pages project can be deleted.
+
+Custom domains are managed in the dashboard only. `wrangler.jsonc` has no `routes`, so deploys leave the domains alone. To add another hostname, such as `www.balnana.com`, add it under the Worker's **Settings > Domains & Routes**.
+
+The `*.workers.dev` address and the preview URLs are turned off. `wrangler.jsonc` must keep `workers_dev` and `preview_urls` set to `false`: every deploy applies both settings, and without `workers_dev` Wrangler turns the workers.dev address back on.
 
 ## Deploying
 
