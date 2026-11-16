@@ -45,4 +45,6 @@ docker compose exec db psql -U balnana balnana -c \
 
 ## 隱私權聲明
 
+官方服務的資料處理方式請參閱 [Balnana 隱私權政策](/zh-Hant/privacy)。這份政策不適用於其他人營運的自架伺服器；自架營運者應提供自己的政策及聯絡方式。
+
 App 會在登入頁面與設定 → 關於中連結隱私權聲明。請把 `BALNANA_PRIVACY_URL`，或 `/admin` 中對應的欄位，設為你自己的政策。未設定時，App 會顯示一份簡短的內建說明，描述伺服器儲存了哪些資料，也可以在 `/privacy` 查看。

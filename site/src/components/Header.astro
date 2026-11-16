@@ -13,8 +13,9 @@ import BrandMark from './BrandMark.astro';
 
 interface Props {
 	lang: Lang;
+	languagePaths?: Record<Lang, string>;
 }
-const { lang } = Astro.props;
+const { lang, languagePaths } = Astro.props;
 const { messages: t, docs } = languages[lang];
 const themes = [
 	['system', t.themeSystem, Monitor],
@@ -42,10 +43,11 @@ const themes = [
 					langs.map((other) => (
 						<a
 							class="menu-item"
-							href={`/${other}`}
+							href={languagePaths?.[other] ?? `/${other}`}
 							lang={languages[other].tag}
 							hreflang={languages[other].tag}
 							data-lang={other}
+							data-preserve-hash={languagePaths ? undefined : ''}
 							aria-current={other === lang ? 'page' : undefined}
 						>
 							{languages[other].name}
@@ -128,7 +130,7 @@ const themes = [
 		});
 	}
 
-	// Remember the picked language for the next visit to "/", and stay on the same section.
+	// Remember the language. Homepage section IDs are shared; translated policy headings are not.
 	for (const link of document.querySelectorAll<HTMLAnchorElement>('a[data-lang]')) {
 		link.addEventListener('click', () => {
 			try {
@@ -136,7 +138,7 @@ const themes = [
 			} catch {
 				// The link still works.
 			}
-			link.hash = location.hash;
+			if (link.hasAttribute('data-preserve-hash')) link.hash = location.hash;
 		});
 	}
 

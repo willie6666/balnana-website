@@ -21,6 +21,7 @@ import { appUrl, donateUrl, sourceUrl } from '../links.ts';
 import BalanceCard from './BalanceCard.astro';
 import BrandMark from './BrandMark.astro';
 import Demo from './Demo.astro';
+import Footer from './Footer.astro';
 import Header from './Header.astro';
 import Lines from './Lines.astro';
 import Screenshots from './Screenshots.astro';
@@ -187,14 +188,5 @@ const faq = [
 		</div>
 	</main>
 
-	<footer class="wrap footer">
-		<div class="footer-row">
-			<a class="brand" href={`/${lang}`} aria-label={t.backHome}><BrandMark /><span translate="no">balnana</span></a>
-			<a class="btn btn-text btn-small" href={docs}>{t.navDocs}</a>
-			<a class="btn btn-text btn-small" href={sourceUrl} target="_blank" rel="noopener">{t.github}</a>
-			<a class="btn btn-text btn-small" href={`${sourceUrl}/issues`} target="_blank" rel="noopener">{t.reportIssue}</a>
-			<a class="btn btn-text btn-small" href={`${sourceUrl}/blob/main/LICENSE`} target="_blank" rel="noopener">AGPL-3.0</a>
-		</div>
-		<p>{t.footerNote}</p>
-	</footer>
+	<Footer lang={lang} />
 </Base>

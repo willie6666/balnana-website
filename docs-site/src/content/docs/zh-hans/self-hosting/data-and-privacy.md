@@ -45,4 +45,6 @@ docker compose exec db psql -U balnana balnana -c \
 
 ## 隐私声明
 
+官方服务的数据处理方式请参阅 [Balnana 隐私权政策](/zh/privacy)。这份政策不适用于其他人运营的自托管服务器；自托管运营者应提供自己的政策及联系方式。
+
 App 会在登录页面与设置 → 关于中链接隐私声明。请把 `BALNANA_PRIVACY_URL`，或 `/admin` 中对应的字段，设为你自己的政策。未设置时，App 会显示一份简短的内置说明，描述服务器存储了哪些数据，也可以在 `/privacy` 查看。

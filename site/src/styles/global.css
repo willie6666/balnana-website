@@ -1317,6 +1317,127 @@ p {
 	color: var(--muted);
 	font-size: 0.875rem;
 }
+
+/* ---------- Privacy policy ---------- */
+.policy {
+	padding-block: 3rem 4.5rem;
+}
+.policy-back {
+	display: flex;
+	width: fit-content;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 2.5rem;
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+.policy-back:hover {
+	color: var(--accent);
+}
+.policy-heading {
+	padding-bottom: 2.5rem;
+	border-bottom: 1px solid var(--line);
+}
+.policy-heading .eyebrow {
+	width: fit-content;
+	margin-bottom: 1rem;
+}
+.policy-heading h1 {
+	font-size: clamp(2.5rem, 6vw, 4.5rem);
+	line-height: 1.15;
+	letter-spacing: -0.04em;
+}
+.policy-description {
+	max-width: 42rem;
+	margin-top: 1.25rem;
+	color: var(--muted);
+	font-size: 1.125rem;
+	line-height: 1.8;
+}
+.policy-date {
+	margin-top: 1.5rem;
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+.policy-grid {
+	display: grid;
+	gap: 2.5rem;
+	padding-top: 2.5rem;
+}
+.policy-index {
+	min-width: 0;
+}
+.policy-index nav {
+	padding: 1.5rem;
+	border: 1px solid var(--line);
+	border-radius: 1.25rem;
+	background: var(--panel);
+}
+.policy-index p {
+	font-weight: 800;
+}
+.policy-index ol {
+	display: grid;
+	gap: 0.75rem;
+	margin-top: 1rem;
+	padding-left: 1.4rem;
+	color: var(--muted);
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+.policy-index a:hover {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+.policy-content {
+	min-width: 0;
+	max-width: 48rem;
+	overflow-wrap: anywhere;
+	font-size: 1rem;
+	line-height: 1.9;
+}
+.policy-content h2 {
+	margin-top: 2.75rem;
+	font-size: 1.5rem;
+	line-height: 1.5;
+	letter-spacing: -0.02em;
+}
+.policy-content p,
+.policy-content ul {
+	margin-top: 1rem;
+}
+.policy-content > p:first-child {
+	margin-top: 0;
+	padding: 1.25rem 1.5rem;
+	border-radius: 1rem;
+	background: var(--warm);
+	color: var(--on-warm);
+}
+.policy-content ul {
+	padding-left: 1.4rem;
+	list-style: disc;
+}
+.policy-content li + li {
+	margin-top: 0.8rem;
+}
+.policy-content a {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+@media (min-width: 64rem) {
+	.policy-grid {
+		grid-template-columns: 16rem minmax(0, 1fr);
+		gap: 4rem;
+	}
+	.policy-index nav {
+		position: sticky;
+		top: 6rem;
+		max-height: calc(100vh - 7rem);
+		overflow-y: auto;
+	}
+}
 .missing {
 	display: flex;
 	flex-direction: column;

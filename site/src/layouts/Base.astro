@@ -10,8 +10,10 @@ interface Props {
 	description: string;
 	/** The page's address, such as `/en`. Pages without one, like the 404 page, are never indexed. */
 	path?: string;
+	alternatePaths?: Record<Lang, string>;
+	defaultPath?: string;
 }
-const { lang, title, description, path } = Astro.props;
+const { lang, title, description, path, alternatePaths, defaultPath = '/' } = Astro.props;
 // Without SITE_URL the build is a preview: no canonical addresses, and hidden from search.
 const site = path ? Astro.site?.origin : undefined;
 ---
@@ -42,9 +44,9 @@ const site = path ? Astro.site?.origin : undefined;
 					<link rel="canonical" href={site + path} />
 					<meta property="og:url" content={site + path} />
 					{langs.map((other) => (
-						<link rel="alternate" hreflang={languages[other].tag} href={`${site}/${other}`} />
+						<link rel="alternate" hreflang={languages[other].tag} href={`${site}${alternatePaths?.[other] ?? `/${other}`}`} />
 					))}
-					<link rel="alternate" hreflang="x-default" href={`${site}/`} />
+					<link rel="alternate" hreflang="x-default" href={`${site}${defaultPath}`} />
 				</>
 			) : (
 				<meta name="robots" content="noindex, nofollow" />

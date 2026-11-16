@@ -1,0 +1,52 @@
+---
+import ArrowLeft from '@lucide/astro/icons/arrow-left';
+import * as en from '../content/privacy/en.md';
+import * as zhHant from '../content/privacy/zh-Hant.md';
+import * as zh from '../content/privacy/zh.md';
+import { languages, privacyPaths, type Lang } from '../i18n/index.ts';
+import Base from '../layouts/Base.astro';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+
+interface Props {
+	lang: Lang;
+}
+const { lang } = Astro.props;
+const policy = { en, 'zh-Hant': zhHant, zh }[lang];
+const { Content, frontmatter } = policy;
+const headings = policy.getHeadings().filter((heading) => heading.depth === 2);
+const { messages: t } = languages[lang];
+---
+
+<Base
+	lang={lang}
+	path={privacyPaths[lang]}
+	alternatePaths={privacyPaths}
+	defaultPath="/privacy"
+	title={`${frontmatter.title} — Balnana`}
+	description={frontmatter.description}
+>
+	<a class="skip" href="#main">{t.skipToContent}</a>
+	<Header lang={lang} languagePaths={privacyPaths} />
+	<main id="main" class="wrap policy">
+		<header class="policy-heading">
+			<a class="policy-back" href={`/${lang}`}><ArrowLeft size={17} />{t.backHome}</a>
+			<p class="eyebrow eyebrow-filled">{frontmatter.eyebrow}</p>
+			<h1>{frontmatter.title}</h1>
+			<p class="policy-description">{frontmatter.description}</p>
+			<p class="policy-date">{frontmatter.updatedLabel} <time datetime="2026-11-17">{frontmatter.updated}</time></p>
+		</header>
+		<div class="policy-grid">
+			<aside class="policy-index">
+				<nav aria-label={frontmatter.contents}>
+					<p>{frontmatter.contents}</p>
+					<ol>{headings.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+				</nav>
+			</aside>
+			<article class="policy-content" aria-label={frontmatter.title}>
+				<Content />
+			</article>
+		</div>
+	</main>
+	<Footer lang={lang} />
+</Base>

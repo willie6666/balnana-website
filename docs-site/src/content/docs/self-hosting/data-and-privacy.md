@@ -45,4 +45,6 @@ Each member can add up to five payment details in a group, such as a bank accoun
 
 ## Privacy notice
 
+For the official service, read the [Balnana privacy policy](/privacy). It does not cover independently operated servers; self-hosting operators should provide their own policy and contact information.
+
 The app links a privacy notice from its sign-in page and Settings → About. Set `BALNANA_PRIVACY_URL`, or the field under `/admin`, to your own policy. Without it the app shows a short built-in description of what the server stores, also reachable at `/privacy`.

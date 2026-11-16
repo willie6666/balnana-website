@@ -19,6 +19,13 @@ export const languages: Record<Lang, { name: string; tag: string; messages: Mess
 
 export const langs = Object.keys(languages) as Lang[];
 
+/** The English policy is also the stable, public address used by app stores. */
+export const privacyPaths: Record<Lang, string> = {
+	en: '/privacy',
+	'zh-Hant': '/zh-Hant/privacy',
+	zh: '/zh/privacy',
+};
+
 /**
  * The site language for a browser language tag, or undefined when there is none.
  *

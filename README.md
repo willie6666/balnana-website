@@ -36,6 +36,12 @@ The page works without JavaScript except for the demo, the theme choice, and the
 
 The website demo does not connect to a ledger server and does not create real groups. The product is still marked as in development, and no store download links are invented. The Chinese copy has not yet been proofread by native speakers.
 
+## Privacy policy
+
+The public privacy policy is a complete static HTML page at `/privacy` (English), `/zh-Hant/privacy` (Traditional Chinese), and `/zh/privacy` (Simplified Chinese). Each homepage footer links to its language's policy, and changing language on a policy page keeps the visitor on the policy. Reading it needs neither JavaScript nor an account.
+
+Policy text lives in `site/src/content/privacy/`. Keep all three translations and the effective date in `site/src/components/Privacy.astro` in sync when data practices change. See [privacy implementation notes](dev-docs/PRIVACY.md) for the code audit, retention limitations, and the official server's privacy-link setting.
+
 ## Docs site (/docs)
 
 User documentation is written in Markdown and built with [Astro Starlight](https://starlight.astro.build/) in `docs-site/`. It is output to `build/web/docs/`, next to the homepage:
