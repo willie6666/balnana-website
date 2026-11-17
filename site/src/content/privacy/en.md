@@ -3,7 +3,7 @@ title: Privacy policy
 description: How Balnana handles your account, shared expenses, receipts, location and device data.
 eyebrow: Your data, explained
 updatedLabel: 'Effective and last updated:'
-updated: November 17, 2026
+updated: November 18, 2026
 contents: On this page
 ---
 
@@ -86,7 +86,7 @@ Send requests to [balnana.com@gmail.com](mailto:balnana.com@gmail.com), identify
 
 ## Age and children
 
-Balnana’s intended audience is people **16 years and older**. It is not directed at children under 16. We do not collect birth dates as part of normal registration or claim that every user’s age has been verified. Where local law requires a higher age or parental authorization, that requirement also applies. If you believe a child’s data has been provided inappropriately, contact us so we can investigate and address it.
+Balnana is intended for people **13 years and older**. It is not directed at children under 13. We do not collect birth dates as part of normal registration or claim that every user’s age has been verified. Where local law requires a higher age or parental authorization, that requirement also applies. If you believe a child’s data has been provided inappropriately, contact us so we can investigate and address it.
 
 ## Changes and contact
 
