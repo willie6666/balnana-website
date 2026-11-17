@@ -8,7 +8,7 @@ Already using Settle Up? Import your existing group instead of adding everything
 1. In Settle Up, export the group as **CSV**.
 2. In Balnana, choose **New group → Import** and pick the file.
 
-Expenses, payments and members come along, and balances stay the same.
+Expenses, payments and members come along, and balances stay the same. Payments arrive as expenses in the Transfer category.
 
 ## Refunds and income
 

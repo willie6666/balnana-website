@@ -41,7 +41,7 @@ Groups deleted together with an account, those nobody else could reach, are not 
 
 ## Payment details
 
-Each member can add up to five payment details in a group, such as a bank account, a payment app or a link, so the others know how to pay them. Everyone in the group can see them. In accounts mode only the member's own account can change them; in link mode anyone with the link can, as with names. They are deleted with the group.
+Earlier versions let members add payment details, such as a bank account, a payment app or a link. That feature is gone, and upgrading deletes any details that were saved. Payments recorded between members become ordinary expenses in the Transfer category, paid by one member for the other, so balances stay the same.
 
 ## Privacy notice
 
