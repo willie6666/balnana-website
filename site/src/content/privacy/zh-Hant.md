@@ -4,6 +4,7 @@ description: 說明 Balnana 如何處理你的帳號、共享帳務、收據、�
 eyebrow: 關於你的資料
 updatedLabel: 生效與最後更新日期：
 updated: 2026 年 11 月 18 日
+date: '2026-11-18'
 contents: 本頁內容
 ---
 

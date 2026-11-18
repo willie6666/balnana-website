@@ -1,40 +1,49 @@
 ---
 import ArrowLeft from '@lucide/astro/icons/arrow-left';
-import * as en from '../content/privacy/en.md';
-import * as zhHant from '../content/privacy/zh-Hant.md';
-import * as zh from '../content/privacy/zh.md';
-import { languages, privacyPaths, type Lang } from '../i18n/index.ts';
+import * as privacyEn from '../content/privacy/en.md';
+import * as privacyZhHant from '../content/privacy/zh-Hant.md';
+import * as privacyZh from '../content/privacy/zh.md';
+import * as termsEn from '../content/terms/en.md';
+import * as termsZhHant from '../content/terms/zh-Hant.md';
+import * as termsZh from '../content/terms/zh.md';
+import { languages, policyPaths, type Lang, type Policy } from '../i18n/index.ts';
 import Base from '../layouts/Base.astro';
 import Footer from './Footer.astro';
 import Header from './Header.astro';
 
 interface Props {
 	lang: Lang;
+	policy: Policy;
 }
-const { lang } = Astro.props;
-const policy = { en, 'zh-Hant': zhHant, zh }[lang];
-const { Content, frontmatter } = policy;
-const headings = policy.getHeadings().filter((heading) => heading.depth === 2);
+const { lang, policy } = Astro.props;
+const documents = {
+	privacy: { en: privacyEn, 'zh-Hant': privacyZhHant, zh: privacyZh },
+	terms: { en: termsEn, 'zh-Hant': termsZhHant, zh: termsZh },
+};
+const doc = documents[policy][lang];
+const { Content, frontmatter } = doc;
+const headings = doc.getHeadings().filter((heading) => heading.depth === 2);
+const paths = policyPaths[policy];
 const { messages: t } = languages[lang];
 ---
 
 <Base
 	lang={lang}
-	path={privacyPaths[lang]}
-	alternatePaths={privacyPaths}
-	defaultPath="/privacy"
+	path={paths[lang]}
+	alternatePaths={paths}
+	defaultPath={paths.en}
 	title={`${frontmatter.title} — Balnana`}
 	description={frontmatter.description}
 >
 	<a class="skip" href="#main">{t.skipToContent}</a>
-	<Header lang={lang} languagePaths={privacyPaths} />
+	<Header lang={lang} languagePaths={paths} />
 	<main id="main" class="wrap policy">
 		<header class="policy-heading">
 			<a class="policy-back" href={`/${lang}`}><ArrowLeft size={17} />{t.backHome}</a>
 			<p class="eyebrow eyebrow-filled">{frontmatter.eyebrow}</p>
 			<h1>{frontmatter.title}</h1>
 			<p class="policy-description">{frontmatter.description}</p>
-			<p class="policy-date">{frontmatter.updatedLabel} <time datetime="2026-11-17">{frontmatter.updated}</time></p>
+			<p class="policy-date">{frontmatter.updatedLabel} <time datetime={frontmatter.date}>{frontmatter.updated}</time></p>
 		</header>
 		<div class="policy-grid">
 			<aside class="policy-index">

@@ -1,5 +1,5 @@
 ---
-import { languages, privacyPaths, type Lang } from '../i18n/index.ts';
+import { languages, policyPaths, type Lang } from '../i18n/index.ts';
 import { sourceUrl } from '../links.ts';
 import BrandMark from './BrandMark.astro';
 
@@ -14,7 +14,8 @@ const { messages: t, docs } = languages[lang];
 	<div class="footer-row">
 		<a class="brand" href={`/${lang}`} aria-label={t.backHome}><BrandMark /><span translate="no">balnana</span></a>
 		<a class="btn btn-text btn-small" href={docs}>{t.navDocs}</a>
-		<a class="btn btn-text btn-small" href={privacyPaths[lang]}>{t.privacyLabel}</a>
+		<a class="btn btn-text btn-small" href={policyPaths.privacy[lang]}>{t.privacyLabel}</a>
+		<a class="btn btn-text btn-small" href={policyPaths.terms[lang]}>{t.termsLabel}</a>
 		<a class="btn btn-text btn-small" href={sourceUrl} target="_blank" rel="noopener">{t.github}</a>
 		<a class="btn btn-text btn-small" href={`${sourceUrl}/issues`} target="_blank" rel="noopener">{t.reportIssue}</a>
 		<a class="btn btn-text btn-small" href={`${sourceUrl}/blob/main/LICENSE`} target="_blank" rel="noopener">AGPL-3.0</a>

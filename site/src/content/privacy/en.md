@@ -4,6 +4,7 @@ description: How Balnana handles your account, shared expenses, receipts, locati
 eyebrow: Your data, explained
 updatedLabel: 'Effective and last updated:'
 updated: November 18, 2026
+date: '2026-11-18'
 contents: On this page
 ---
 

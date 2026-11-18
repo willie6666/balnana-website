@@ -15,7 +15,7 @@ function origin(value = process.env.SITE_URL) {
 
 const site = origin();
 const browsers = ['chrome80', 'edge80', 'firefox78', 'safari13'];
-const pages = ['/en', '/zh-Hant', '/zh', '/privacy', '/zh-Hant/privacy', '/zh/privacy'];
+const pages = ['/en', '/zh-Hant', '/zh', '/privacy', '/zh-Hant/privacy', '/zh/privacy', '/terms', '/zh-Hant/terms', '/zh/terms'];
 
 /** Writes robots.txt, and a sitemap once the real origin is known; previews stay out of search. */
 const robots = {

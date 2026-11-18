@@ -21,7 +21,7 @@ test('a build without SITE_URL is a preview that search engines skip', () => {
 	const { ok, read } = build();
 	assert.ok(ok);
 	const pages = readdirSync(out, { recursive: true, encoding: 'utf8' }).filter((name) => name.endsWith('.html'));
-	assert.deepEqual(pages.sort(), ['404.html', 'en.html', 'index.html', 'privacy.html', 'zh-Hant.html', 'zh-Hant/privacy.html', 'zh.html', 'zh/privacy.html']);
+	assert.deepEqual(pages.sort(), ['404.html', 'en.html', 'index.html', 'privacy.html', 'terms.html', 'zh-Hant.html', 'zh-Hant/privacy.html', 'zh-Hant/terms.html', 'zh.html', 'zh/privacy.html', 'zh/terms.html']);
 	assert.match(read('zh.html'), /<html lang="zh-Hans" dir="ltr">/);
 	assert.match(read('zh.html'), /先付再说/);
 	for (const page of pages) {
@@ -36,7 +36,7 @@ test('a build without SITE_URL is a preview that search engines skip', () => {
 	// Only the root page sends visitors on to their language.
 	assert.match(read('index.html'), /location\.replace\(/);
 	assert.doesNotMatch(read('en.html'), /location\.replace\(/);
-	assertPrivacyPages(read);
+	assertPolicyPages(read);
 });
 
 test('a build with SITE_URL has canonical addresses, alternates and a sitemap', () => {
@@ -58,43 +58,62 @@ test('a build with SITE_URL has canonical addresses, alternates and a sitemap', 
 	// The 404 page answers for every unknown address, so it has no address of its own.
 	assert.match(read('404.html'), /noindex/);
 	assert.doesNotMatch(read('404.html'), /rel="canonical"/);
-	assert.equal(read('sitemap.xml').match(/<url>/g)?.length, 6);
-	for (const path of ['/privacy', '/zh-Hant/privacy', '/zh/privacy']) {
-		assert.ok(read('sitemap.xml').includes(`<loc>https://website.example${path}</loc>`));
-		const policy = read(`${path.slice(1)}.html`);
-		assert.ok(policy.includes(`<link rel="canonical" href="https://website.example${path}">`));
-		assert.match(policy, /hreflang="en" href="https:\/\/website\.example\/privacy"/);
-		assert.match(policy, /hreflang="zh-Hant" href="https:\/\/website\.example\/zh-Hant\/privacy"/);
-		assert.match(policy, /hreflang="zh-Hans" href="https:\/\/website\.example\/zh\/privacy"/);
-		assert.match(policy, /hreflang="x-default" href="https:\/\/website\.example\/privacy"/);
-		assert.doesNotMatch(policy, /noindex/);
+	assert.equal(read('sitemap.xml').match(/<url>/g)?.length, 9);
+	for (const name of ['privacy', 'terms']) {
+		for (const path of [`/${name}`, `/zh-Hant/${name}`, `/zh/${name}`]) {
+			assert.ok(read('sitemap.xml').includes(`<loc>https://website.example${path}</loc>`));
+			const policy = read(`${path.slice(1)}.html`);
+			assert.ok(policy.includes(`<link rel="canonical" href="https://website.example${path}">`));
+			assert.ok(policy.includes(`hreflang="en" href="https://website.example/${name}"`));
+			assert.ok(policy.includes(`hreflang="zh-Hant" href="https://website.example/zh-Hant/${name}"`));
+			assert.ok(policy.includes(`hreflang="zh-Hans" href="https://website.example/zh/${name}"`));
+			assert.ok(policy.includes(`hreflang="x-default" href="https://website.example/${name}"`));
+			assert.doesNotMatch(policy, /noindex/);
+		}
 	}
-	assertPrivacyPages(read);
+	assertPolicyPages(read);
 	assert.match(read('robots.txt'), /Sitemap: https:\/\/website\.example\/sitemap\.xml\n/);
 	assert.match(read('robots.txt'), /Sitemap: https:\/\/website\.example\/docs\/sitemap-index\.xml\n/);
 });
 
-/** The policy must be a complete public HTML document, even without client JavaScript. */
-function assertPrivacyPages(read: (file: string) => string) {
+/** Each policy must be a complete public HTML document, even without client JavaScript. */
+function assertPolicyPages(read: (file: string) => string) {
 	for (const [home, policyPath, lang, title, retention] of [
 		['en', 'privacy', 'en', 'Privacy policy', 'indefinitely'],
 		['zh-Hant', 'zh-Hant/privacy', 'zh-Hant', '隱私權政策', '永久保存'],
 		['zh', 'zh/privacy', 'zh-Hans', '隐私权政策', '永久保存'],
 	]) {
+		assertPolicyPage(read, home, policyPath, lang, title, 'privacy');
 		const page = read(`${policyPath}.html`);
-		assert.ok(read(`${home}.html`).includes(`href="/${policyPath}"`));
-		assert.ok(page.includes(`<html lang="${lang}"`));
-		assert.ok(page.includes(`<h1>${title}</h1>`));
-		assert.match(page, /<article[^>]*>[\s\S]*willie6666[\s\S]*<\/article>/);
-		assert.doesNotMatch(page.match(/<article[^>]*>[\s\S]*<\/article>/)![0], /\*\*/, 'Markdown emphasis must render in every language');
-		assert.match(page, /mailto:balnana\.com@gmail\.com/);
 		assert.match(page, /href="https:\/\/app\.balnana\.com\/delete-account"/);
 		assert.match(page, /AWS SES/);
 		assert.ok(page.includes(retention));
-		assert.doesNotMatch(page, /location\.replace\(|contenteditable/);
-		for (const path of ['/privacy', '/zh-Hant/privacy', '/zh/privacy']) {
-			assert.ok(page.includes(`href="${path}"`), `Language switch on /${policyPath} must stay on the policy`);
-		}
+		assert.match(page, /<time datetime="2026-11-18">/);
+	}
+	for (const [home, policyPath, lang, title, refund] of [
+		['en', 'terms', 'en', 'Terms of service', 'Within 7 days of a payment'],
+		['zh-Hant', 'zh-Hant/terms', 'zh-Hant', '服務條款', '付款後 7 天內'],
+		['zh', 'zh/terms', 'zh-Hans', '服务条款', '付款后 7 天内'],
+	]) {
+		assertPolicyPage(read, home, policyPath, lang, title, 'terms');
+		const page = read(`${policyPath}.html`);
+		assert.ok(page.includes(refund));
+		assert.ok(page.includes(`href="/${home === 'en' ? '' : `${home}/`}privacy"`), 'Terms must link to the privacy policy in the same language');
+		assert.match(page, /AGPL-3\.0/);
+	}
+}
+
+function assertPolicyPage(read: (file: string) => string, home: string, policyPath: string, lang: string, title: string, name: string) {
+	const page = read(`${policyPath}.html`);
+	assert.ok(read(`${home}.html`).includes(`href="/${policyPath}"`));
+	assert.ok(page.includes(`<html lang="${lang}"`));
+	assert.ok(page.includes(`<h1>${title}</h1>`));
+	assert.match(page, /<article[^>]*>[\s\S]*willie6666[\s\S]*<\/article>/);
+	assert.doesNotMatch(page.match(/<article[^>]*>[\s\S]*<\/article>/)![0], /\*\*/, 'Markdown emphasis must render in every language');
+	assert.match(page, /mailto:balnana\.com@gmail\.com/);
+	assert.doesNotMatch(page, /location\.replace\(|contenteditable/);
+	for (const path of [`/${name}`, `/zh-Hant/${name}`, `/zh/${name}`]) {
+		assert.ok(page.includes(`href="${path}"`), `Language switch on /${policyPath} must stay on the policy`);
 	}
 }
 

@@ -1,0 +1,9 @@
+---
+import Policy from '../../components/Policy.astro';
+import { langs, type Lang } from '../../i18n/index.ts';
+
+export const getStaticPaths = () => langs.filter((lang) => lang !== 'en').map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+---
+
+<Policy lang={lang} policy="terms" />

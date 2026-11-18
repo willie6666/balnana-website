@@ -19,11 +19,12 @@ export const languages: Record<Lang, { name: string; tag: string; messages: Mess
 
 export const langs = Object.keys(languages) as Lang[];
 
-/** The English policy is also the stable, public address used by app stores. */
-export const privacyPaths: Record<Lang, string> = {
-	en: '/privacy',
-	'zh-Hant': '/zh-Hant/privacy',
-	zh: '/zh/privacy',
+export type Policy = 'privacy' | 'terms';
+
+/** Each policy's address in every language; the English one is also the stable, public address used by app stores. */
+export const policyPaths: Record<Policy, Record<Lang, string>> = {
+	privacy: { en: '/privacy', 'zh-Hant': '/zh-Hant/privacy', zh: '/zh/privacy' },
+	terms: { en: '/terms', 'zh-Hant': '/zh-Hant/terms', zh: '/zh/terms' },
 };
 
 /**
