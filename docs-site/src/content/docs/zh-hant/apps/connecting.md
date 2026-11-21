@@ -1,6 +1,6 @@
 ---
 title: 連接 App
-description: 讓網頁版與 Android App 連到你的伺服器，並建置內建預設伺服器的版本。
+description: 讓網頁版、Android 與 iOS App 連到你的伺服器，並在建置時指定預設伺服器。
 ---
 
 ## 網頁版
@@ -26,6 +26,12 @@ keytool -list -v -keystore <你的 keystore>
 ```
 
 接著伺服器就會提供 `/.well-known/assetlinks.json`。若使用 Play 應用程式簽署，也請加上 Play 應用程式簽署憑證的指紋。
+
+## iOS
+
+第一次開啟時，請輸入 `https://app.balnana.com` 或你自行架設的伺服器網址。日後可在**設定 → 伺服器**變更。若 iOS 詢問是否允許取用區域網路，請允許，App 才能連到同一個區域網路內的伺服器。
+
+安裝與預設伺服器的設定方式請見[建置 iOS 版 Balnana](/docs/zh-hant/apps/ios/)。Google 與 OpenID Connect 登入完成後會回到 App。使用 HTTPS 的群組和邀請連結會在瀏覽器中開啟。
 
 ## 在其他來源提供網頁版 App
 

@@ -88,7 +88,7 @@ function assertPolicyPages(read: (file: string) => string) {
 		assert.match(page, /href="https:\/\/app\.balnana\.com\/delete-account"/);
 		assert.match(page, /AWS SES/);
 		assert.ok(page.includes(retention));
-		assert.match(page, /<time datetime="2026-11-18">/);
+		assert.match(page, /<time datetime="2026-11-21">/);
 	}
 	for (const [home, policyPath, lang, title, refund] of [
 		['en', 'terms', 'en', 'Terms of service', 'Within 7 days of a payment'],

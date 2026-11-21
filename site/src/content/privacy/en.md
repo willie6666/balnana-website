@@ -3,8 +3,8 @@ title: Privacy policy
 description: How Balnana handles your account, shared expenses, receipts, location and device data.
 eyebrow: Your data, explained
 updatedLabel: 'Effective and last updated:'
-updated: November 18, 2026
-date: '2026-11-18'
+updated: November 21, 2026
+date: '2026-11-21'
 contents: On this page
 ---
 
@@ -12,7 +12,7 @@ contents: On this page
 
 ## Scope and responsibility
 
-This policy covers the Balnana Android app, the official service at [app.balnana.com](https://app.balnana.com), and the official website at [balnana.com](https://balnana.com). It describes data handled when you use the official service, and data processed locally by the app.
+This policy covers the Balnana apps for Android and iOS, the official service at [app.balnana.com](https://app.balnana.com), and the official website at [balnana.com](https://balnana.com). It describes data handled when you use the official service, and data processed locally by the app.
 
 Balnana also supports independently operated servers. If you connect to a self-hosted server, its operator determines how server-side data is stored, used, secured and deleted. Contact that operator and consult their policy; this policy does not govern their operation. The server you choose receives the account and group data you send to it.
 
@@ -66,6 +66,8 @@ If you choose a self-hosted server, its operator controls the server’s securit
 ## Data on your device and website
 
 The app stores the selected server address, sign-in credentials or session tokens, preferences, group access information, and local group copies for offline use. Offline changes remain on the device until they can be synchronized. Removing the app or clearing its data removes its local storage; it does not delete server-side data, files you exported, or copies in other apps.
+
+On iOS, Balnana stores session tokens in the device's Keychain and excludes offline group copies and pending expenses from Apple device backups. Pending expenses remain on the device across app updates until they can sync.
 
 The official website stores language and theme preferences in browser local storage. Its expense-splitting demo runs in your browser without sending the demo entries to a ledger server. The web app also uses the session cookies and local storage needed for sign-in and application features. We do not use advertising or analytics cookies.
 

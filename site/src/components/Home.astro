@@ -50,9 +50,9 @@ const faq = [
 	[t.faqAccountQ, t.faqAccountA],
 	[t.faqOfflineQ, t.faqOfflineA],
 	[t.faqCurrencyQ, t.faqCurrencyA],
-	[t.faqPlatformQ, t.faqPlatformA],
+	[t.faqPlatformQ, t.faqPlatformA, { href: `${docs}apps/ios/`, label: t.faqPlatformLink }],
 	[t.faqCostQ, t.faqCostA],
-];
+] as const;
 ---
 
 <Base lang={lang} path={path} title={`Balnana — ${t.heroTitle.replace('\n', lang === 'en' ? ' ' : '')}`} description={t.heroBody}>
@@ -166,10 +166,10 @@ const faq = [
 				<h2 class="title">{t.faqTitle}</h2>
 				<div>
 					{
-						faq.map(([question, answer]) => (
+						faq.map(([question, answer, link]) => (
 							<details>
 								<summary>{question}<ChevronDown size={22} /></summary>
-								<p>{answer}</p>
+								<p>{answer}{link && <>{' '}<a href={link.href}>{link.label}</a></>}</p>
 							</details>
 						))
 					}

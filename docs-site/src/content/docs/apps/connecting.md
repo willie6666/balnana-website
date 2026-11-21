@@ -1,6 +1,6 @@
 ---
 title: Connecting the apps
-description: Point the web and Android apps at your server, and build them with a default server.
+description: Connect the web, Android and iOS apps to your server and configure a default server when building.
 ---
 
 ## Web
@@ -26,6 +26,12 @@ keytool -list -v -keystore <your keystore>
 ```
 
 The server then serves `/.well-known/assetlinks.json`. With Play App Signing, add Play's app signing certificate fingerprint as well.
+
+## iOS
+
+Enter `https://app.balnana.com` or the address of your own server on first launch. You can change it later under **Settings → Server**. If iOS asks for local network access, allow it to connect to a server on your LAN.
+
+See [Build Balnana for iOS](/docs/apps/ios/) for installation and for setting a default server at build time. Google and OpenID Connect sign-in return to the app. HTTPS group and invitation links open in the browser.
 
 ## Web app on another origin
 

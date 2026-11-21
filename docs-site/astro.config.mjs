@@ -54,7 +54,7 @@ export default defineConfig({
 				{
 					label: 'Apps',
 					translations: { 'zh-TW': 'App', 'zh-CN': '应用' },
-					items: ['apps/connecting', 'apps/android'],
+					items: ['apps/connecting', 'apps/android', 'apps/ios'],
 				},
 				{
 					label: 'Guides',
