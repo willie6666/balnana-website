@@ -31,7 +31,7 @@ The server then serves `/.well-known/assetlinks.json`. With Play App Signing, ad
 
 Enter `https://app.balnana.com` or the address of your own server on first launch. You can change it later under **Settings → Server**. If iOS asks for local network access, allow it to connect to a server on your LAN.
 
-See [Build Balnana for iOS](/docs/apps/ios/) for installation and for setting a default server at build time. Google and OpenID Connect sign-in return to the app. HTTPS group and invitation links open in the browser.
+See [Build Balnana for iOS](/docs/apps/ios/) for installation and for setting a default server at build time. Google and OpenID Connect sign-in open in a browser sheet inside the app and return to it; [Sign in with Apple](/docs/self-hosting/access-and-sign-in/#sign-in-with-apple) uses the iPhone's own sheet. HTTPS group and invitation links open in the browser.
 
 ## Web app on another origin
 

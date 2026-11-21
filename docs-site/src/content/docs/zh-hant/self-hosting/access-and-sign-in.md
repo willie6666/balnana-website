@@ -1,6 +1,6 @@
 ---
 title: 存取與登入
-description: 連結模式、帳號模式、註冊規則、兩步驟登入，以及用 Google 或任何 OpenID Connect 提供者登入。
+description: 連結模式、帳號模式、註冊規則、兩步驟登入，以及用 Google、Apple 或任何 OpenID Connect 提供者登入。
 ---
 
 Balnana 有兩種存取模式，可用 `BALNANA_AUTH_MODE` 或在 `/admin` 設定。
@@ -57,6 +57,20 @@ BALNANA_OAUTH_GOOGLE_SECRET=
 
 使用者也可以在設定中把 Google 加到現有帳號。
 
+## 使用 Apple 登入
+
+iOS App 可以使用 Apple 登入。App 會自己向 Apple 登入，再把 Apple 給的身分權杖送到伺服器，由伺服器以 Apple 的公開金鑰和 App 的 Bundle ID 驗證。伺服器不需要任何金鑰、密鑰或重新導向 URI；只有 iOS App 提供這個登入方式，網頁版和 Android App 沒有。
+
+設定 iOS App 上架時使用的 Bundle ID，並在 Apple Developer 網站替該 App ID 開啟 **Sign in with Apple**：
+
+```ini
+BALNANA_APPLE_BUNDLE_ID=com.balnana.app
+```
+
+這也是 **admin** 設定，位於 **iOS App** 區塊。Apple 會確認它分享的每個電子郵件，包括使用者可以改用的私密轉寄地址，所以用 Apple 登入時，會連到已確認相同電子郵件的現有帳號。使用者可以在 iOS App 的設定中把 Apple 加到現有帳號，也可以在 iOS App 或任何能登入的地方移除。
+
+開啟方案時，同一個設定也會開啟 [App Store 訂閱](/docs/zh-hant/self-hosting/plans-and-payments/#app-store)。
+
 ## OpenID Connect 提供者
 
 任何提供 `/.well-known/openid-configuration` 的提供者都能使用，例如 Authentik、Keycloak 或 Dex。列出提供者 ID（小寫字母、數字與連字號，不能是 `google`），並為每個提供者設定各自的變數，名稱為該 ID 的大寫、連字號改為底線：
@@ -76,6 +90,7 @@ BALNANA_OAUTH_OIDC_AUTHENTIK_NAME=Authentik
 只有在雙方都確認過同一個電子郵件時，透過提供者登入才會連到現有帳號。
 
 - `BALNANA_OAUTH_GOOGLE_TRUST_EMAIL`（預設 `true`）信任 Google 已驗證的電子郵件。
+- Apple 的電子郵件一律信任：Apple 會確認它分享的每個地址。
 - `BALNANA_OAUTH_OIDC_<ID>_TRUST_EMAIL`（預設 `false`）對該提供者做同樣的事。只對你自己執行、或你信任會確認電子郵件屬於本人的提供者開啟。
 
 當有人透過受信任的提供者登入，而其電子郵件與某個從未確認該信箱的帳號相符時：

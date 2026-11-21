@@ -1,6 +1,6 @@
 ---
 title: 方案與付款
-description: 設定每個方案的限制，並透過 Ko-fi、PayPal 或 Google Play 收款。
+description: 設定每個方案的限制，並透過 Ko-fi、PayPal、Google Play 或 App Store 收款。
 ---
 
 方案預設關閉，關閉時伺服器不做任何限制。方案需要[帳號模式](/docs/zh-hant/self-hosting/access-and-sign-in/)。在 `/admin` 的**方案與付款**下開啟**方案與限制**，再到**方案**設定每個方案允許的內容：
@@ -57,7 +57,7 @@ description: 設定每個方案的限制，並透過 Ko-fi、PayPal 或 Google P
 
 PayPal 會回報退款與撤回：該筆付款在**付款紀錄**中會顯示為*已退款*，它給的時間也會收回。免費試用沒有付款，但**付款紀錄**也會列出：每筆有試用期的訂閱各有一筆沒有金額的 *Trial* 項目。
 
-只有網頁版，以及設定為允許外部付款的 Android 建置（見 [Android 正式版建置](/docs/zh-hant/apps/android/#兩種建置)），會顯示 Ko-fi 與 PayPal。其他版本只顯示方案與它的限制。
+只有網頁版，以及設定為允許外部付款的 Android 建置（見 [Android 正式版建置](/docs/zh-hant/apps/android/#兩種建置)），會顯示 Ko-fi 與 PayPal。其他版本只顯示方案與它的限制；iOS App 一律不顯示。
 
 ## Google Play
 
@@ -70,6 +70,18 @@ PayPal 會回報退款與撤回：該筆付款在**付款紀錄**中會顯示為
 5. 若要讓續費與取消自動送達，請建立一個 Pub/Sub 主題，給 `google-play-developer-notifications@system.gserviceaccount.com` 該主題的 Pub/Sub 發布者角色，再到 Play Console 的**營利設定**填入這個主題。接著新增一個推送到 `<公開網址>/api/v1/webhooks/play` 的推送訂閱，開啟驗證，以同一個網址作為目標對象，並使用你自己的服務帳號；把那個帳號的電子郵件填為 **Pub/Sub 推送帳號**。沒有這些設定時，續費只會在擁有者打開方案頁面時才送達。
 
 伺服器會向 Google 查證每筆購買，不採信其他來源，因此在 Play Console 做的退款與撤銷也會同樣送達。在**帳戶**撤銷方案後，即使 Google 再次回報該筆購買，撤銷仍然有效，但這不會停止訂閱：請一併在 Play Console 取消。
+
+## App Store
+
+只有 iOS App 會販售這些方案，以 App 內購買的自動續訂訂閱提供。伺服器會以 Apple 的根憑證驗證每筆交易的簽章，因此不需要 App Store Connect 的金鑰。
+
+1. 在 App Store Connect 建立 App，並建立一個訂閱群組，為每個要販售的方案各建立一個自動續訂訂閱。
+2. 在 **iOS App** 區塊中，把 **iOS Bundle ID**（`BALNANA_APPLE_BUNDLE_ID`）設為 App 的 Bundle ID。同一個設定也會開啟[使用 Apple 登入](/docs/zh-hant/self-hosting/access-and-sign-in/#使用-apple-登入)。
+3. 在 **方案** 新增產品，**付款方式** 選 App Store，填入 App Store Connect 的 **產品 ID** 與它購買的方案。App Store 會告知每次付款何時到期，所以產品沒有自己的天數。
+4. 為了讓續訂、退款與到期自動送達，請在 App Store Connect 把 **App Store 伺服器通知** 設為第 2 版，正式與沙盒環境都設定網址 `<public URL>/api/v1/webhooks/appstore`。`/admin` 會顯示確切網址。沒有設定時，續訂要等使用者開啟 App 才會送達。
+5. Apple 審核 App 期間，請開啟 **接受 App Store 沙盒購買**（`BALNANA_APPSTORE_SANDBOX`）。App 審核、TestFlight 與 Xcode 都在不實際付款的沙盒中購買，連的卻是你的正式伺服器；沒有開啟這個設定，這些購買會被拒絕。沙盒購買在 **帳戶** 中會標示 *App Store sandbox*。
+
+方案頁面會以 Apple 定的價格顯示每個訂閱，並提供 **恢復購買**，已訂閱的人還會看到 **管理訂閱**；使用者在 Apple 帳號的訂閱設定中取消。退款由 Apple 決定：Apple 回報退款後，該筆付款給予的期間會被收回，並在 **付款紀錄** 中顯示為 *已退款*。每筆購買屬於購買它的帳號，用同一個 Apple 帳號登入的其他帳號無法拿走。
 
 ## 付款紀錄
 
@@ -91,4 +103,6 @@ PayPal 會回報退款與撤回：該筆付款在**付款紀錄**中會顯示為
 | `BALNANA_PLAY_PACKAGE` | Google Play 套件名稱 | |
 | `BALNANA_PLAY_SERVICE_ACCOUNT` | Google Play 服務帳號 | 服務帳號的 JSON 金鑰。 |
 | `BALNANA_PLAY_PUSH_ACCOUNT` | Pub/Sub 推送帳號 | |
+| `BALNANA_APPLE_BUNDLE_ID` | iOS Bundle ID | 位於 **iOS App** 區塊。也會開啟使用 Apple 登入。 |
+| `BALNANA_APPSTORE_SANDBOX` | 接受 App Store 沙盒購買 | `true` 也接受沙盒購買，例如 App 審核的購買。 |
 | `BALNANA_PAYMENT_KEEP_DAYS` | — | 只能寫在 `.env`。見[付款紀錄](#付款紀錄)。 |

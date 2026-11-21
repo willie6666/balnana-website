@@ -28,4 +28,6 @@ To prefill a server address, add `--dart-define=BALNANA_SERVER_URL=https://balna
 
 ## Features
 
-The iOS build supports core expense tracking, splits, transfers and saving a location on an expense. Push notifications, home screen widgets and Google Play Billing are unavailable on iOS. External payment links are hidden by default.
+The iOS build supports core expense tracking, splits, transfers and saving a location on an expense. On a server that sets it up, it also has [Sign in with Apple](/docs/self-hosting/access-and-sign-in/#sign-in-with-apple) and sells plans as [App Store subscriptions](/docs/self-hosting/plans-and-payments/#app-store), with **Restore purchases** and **Manage subscription** on the Plan page. It never shows Ko-fi or PayPal: the App Store only allows its own In-App Purchase for plans. Push notifications and home screen widgets are unavailable on iOS.
+
+Sign-in with Google or an OpenID Connect provider opens in a browser sheet inside the app and returns to it when done.

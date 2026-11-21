@@ -1,6 +1,6 @@
 ---
 title: Plans and payments
-description: Limit what each plan allows, and take payments through Ko-fi, PayPal or Google Play.
+description: Limit what each plan allows, and take payments through Ko-fi, PayPal, Google Play or the App Store.
 ---
 
 Plans are off unless you turn them on, and a server with them off limits nothing. They need [accounts mode](/docs/self-hosting/access-and-sign-in/). Turn them on in `/admin` under **Plans and payments** with **Plans and limits**, then use **Plans** to set what each plan allows:
@@ -57,7 +57,7 @@ On the app's **Plan** page, someone taps one of the offers, pays on PayPal, and 
 
 PayPal reports refunds and reversals: the payment shows as *refunded* in **Payments**, and the time it gave is taken back. A free trial pays nothing, but **Payments** lists it too, once for each subscription that had one: a *Trial* entry with no amount.
 
-Only the web app, and Android builds made to allow outside payments (see [Android release builds](/docs/apps/android/#two-builds)), show Ko-fi and PayPal. The others show the plan and its limits only.
+Only the web app, and Android builds made to allow outside payments (see [Android release builds](/docs/apps/android/#two-builds)), show Ko-fi and PayPal. The others show the plan and its limits only; the iOS app never shows them.
 
 ## Google Play
 
@@ -70,6 +70,18 @@ Only the app's `play` build sells these (see [Android release builds](/docs/apps
 5. For renewals and cancellations to arrive by themselves, create a Pub/Sub topic and give `google-play-developer-notifications@system.gserviceaccount.com` the Pub/Sub Publisher role on it, then enter the topic under **Monetization setup** in Play Console. Add a push subscription to `<public URL>/api/v1/webhooks/play` with authentication on, that same URL as its audience, and a service account of your own; enter that account's email as **Pub/Sub push account**. Without this, a renewal only arrives when its owner opens the plan page.
 
 The server asks Google about every purchase and believes nothing else, so refunds and revocations made in Play Console reach it the same way. Revoking a plan under **Accounts** holds when Google reports on the purchase again, but it doesn't stop the subscription: cancel that in Play Console too.
+
+## App Store
+
+Only the iOS app sells these, as auto-renewable subscriptions through In-App Purchase. The server checks Apple's signature on every transaction against Apple's root certificate, so it needs no App Store Connect key.
+
+1. In App Store Connect, create the app and a subscription group with an auto-renewable subscription for each plan you sell.
+2. Under **iOS app**, set **iOS bundle ID** (`BALNANA_APPLE_BUNDLE_ID`) to the app's bundle ID. The same setting turns on [Sign in with Apple](/docs/self-hosting/access-and-sign-in/#sign-in-with-apple).
+3. Add a product under **Plans** with **Paid through** set to App Store, the **Product ID** from App Store Connect, and the plan it buys. The App Store says when each payment ends, so a product has no days of its own.
+4. For renewals, refunds and expirations to arrive by themselves, set **App Store Server Notifications** to Version 2 in App Store Connect, for both production and sandbox, with `<public URL>/api/v1/webhooks/appstore` as the URL. `/admin` shows the exact address. Without them, a renewal only arrives when its owner opens the app.
+5. While Apple reviews the app, turn on **Accept App Store sandbox purchases** (`BALNANA_APPSTORE_SANDBOX`). App Review, TestFlight and Xcode buy in the sandbox, where nothing is paid, against your production server; without the setting those purchases are refused. A sandbox purchase is marked *App Store sandbox* under **Accounts**.
+
+The Plan page shows each subscription at the price Apple sets, **Restore purchases**, and **Manage subscription** for someone who has one; people cancel in their Apple Account's subscriptions. Apple decides refunds: a refund it reports takes back the time the payment gave, and the payment shows as *refunded* in **Payments**. Each purchase belongs to the account that bought it, so another account signed in with the same Apple Account can't take it over.
 
 ## Payment records
 
@@ -91,4 +103,6 @@ All of these but the last are **admin** settings: they can also be set in `.env`
 | `BALNANA_PLAY_PACKAGE` | Google Play package name | |
 | `BALNANA_PLAY_SERVICE_ACCOUNT` | Google Play service account | The service account's JSON key. |
 | `BALNANA_PLAY_PUSH_ACCOUNT` | Pub/Sub push account | |
+| `BALNANA_APPLE_BUNDLE_ID` | iOS bundle ID | Under **iOS app**. Also turns on Sign in with Apple. |
+| `BALNANA_APPSTORE_SANDBOX` | Accept App Store sandbox purchases | `true` also takes sandbox purchases, such as App Review's. |
 | `BALNANA_PAYMENT_KEEP_DAYS` | — | `.env` only. See [Payment records](#payment-records). |

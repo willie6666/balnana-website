@@ -1,6 +1,6 @@
 ---
 title: Access and sign-in
-description: Link mode, accounts mode, sign-up rules, two-step sign-in, and signing in with Google or any OpenID Connect provider.
+description: Link mode, accounts mode, sign-up rules, two-step sign-in, and signing in with Google, Apple or any OpenID Connect provider.
 ---
 
 Balnana has two access modes, set with `BALNANA_AUTH_MODE` or at `/admin`.
@@ -57,6 +57,20 @@ BALNANA_OAUTH_GOOGLE_SECRET=
 
 People can also add Google to an existing account in Settings.
 
+## Sign in with Apple
+
+The iOS app can sign in with Apple. It asks Apple itself and sends the server the identity token Apple gives it, which the server checks against Apple's keys for the app's bundle ID. That needs no key or secret on the server, and no redirect URI; only the iOS app offers it, not the web or Android app.
+
+Set the bundle ID the iOS app is published under, and enable **Sign in with Apple** for that App ID in the Apple Developer portal:
+
+```ini
+BALNANA_APPLE_BUNDLE_ID=com.balnana.app
+```
+
+It is also an **admin** setting, under **iOS app**. Apple confirms every email it shares, including the private relay addresses people can choose instead of their own, so an Apple sign-in joins an existing account with the same confirmed email. People can add Apple to an existing account in Settings in the iOS app, and remove it there or anywhere else they sign in.
+
+The same setting turns on [App Store subscriptions](/docs/self-hosting/plans-and-payments/#app-store) when plans are on.
+
 ## OpenID Connect providers
 
 Any provider that serves `/.well-known/openid-configuration` works, such as Authentik, Keycloak or Dex. List provider IDs (lowercase letters, digits and dashes, not `google`) and give each its own settings, named after the ID in capitals with dashes as underscores:
@@ -76,6 +90,7 @@ Each provider's redirect URI is `<BALNANA_PUBLIC_URL>/api/v1/auth/oauth/<id>/cal
 A provider sign-in joins an existing account only when both sides have confirmed the same email.
 
 - `BALNANA_OAUTH_GOOGLE_TRUST_EMAIL` (default `true`) trusts Google's verified email.
+- Apple's email is always trusted: Apple confirms every address it shares.
 - `BALNANA_OAUTH_OIDC_<ID>_TRUST_EMAIL` (default `false`) does the same for a provider. Only turn it on for a provider you run or trust to check that emails belong to people.
 
 When someone signs in with a trusted provider whose email matches an account that never confirmed that email:

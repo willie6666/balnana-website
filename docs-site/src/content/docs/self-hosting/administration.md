@@ -12,6 +12,7 @@ description: The /admin page, the administrator password, settings from the envi
 - email (SMTP);
 - Google and OpenID Connect sign-in;
 - Android app links;
+- the iOS app: its bundle ID, for [Sign in with Apple](/docs/self-hosting/access-and-sign-in/#sign-in-with-apple) and [App Store subscriptions](/docs/self-hosting/plans-and-payments/#app-store), and whether to accept App Store sandbox purchases;
 - maps and the privacy notice;
 - [plans and payments](/docs/self-hosting/plans-and-payments/), when turned on;
 - accounts, which the administrator can find and delete.

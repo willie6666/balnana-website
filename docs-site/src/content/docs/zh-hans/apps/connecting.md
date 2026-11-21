@@ -31,7 +31,7 @@ keytool -list -v -keystore <你的 keystore>
 
 首次打开时，请输入 `https://app.balnana.com` 或自行部署的服务器地址。之后可在**设置 → 服务器**中更改。如果 iOS 询问是否允许访问本地网络，请允许，以便 App 连接同一局域网内的服务器。
 
-安装与默认服务器的设置方法见[构建 iOS 版 Balnana](/docs/zh-hans/apps/ios/)。Google 与 OpenID Connect 登录完成后会返回 App。使用 HTTPS 的群组和邀请链接会在浏览器中打开。
+安装与默认服务器的设置方法见[构建 iOS 版 Balnana](/docs/zh-hans/apps/ios/)。Google 与 OpenID Connect 登录会在 App 内的浏览器窗口中进行，完成后返回 App；[通过 Apple 登录](/docs/zh-hans/self-hosting/access-and-sign-in/#通过-apple-登录)则使用 iPhone 本身的登录界面。使用 HTTPS 的群组和邀请链接会在浏览器中打开。
 
 ## 在其他来源提供网页版 App
 

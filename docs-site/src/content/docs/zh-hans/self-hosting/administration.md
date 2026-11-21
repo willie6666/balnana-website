@@ -12,6 +12,7 @@ description: 使用 /admin 管理服务器、把设置移到 .env、重置管理
 - 电子邮件（SMTP）；
 - Google 与 OpenID Connect 登录；
 - Android App 链接；
+- iOS 应用：它的 Bundle ID（用于[通过 Apple 登录](/docs/zh-hans/self-hosting/access-and-sign-in/#通过-apple-登录)与 [App Store 订阅](/docs/zh-hans/self-hosting/plans-and-payments/#app-store)），以及是否接受 App Store 沙盒购买；
 - 地图与隐私声明；
 - [方案与付款](/docs/zh-hans/self-hosting/plans-and-payments/)（开启时）；
 - 账号，管理员可以搜索并删除。

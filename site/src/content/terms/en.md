@@ -3,8 +3,8 @@ title: Terms of service
 description: The agreement between you and Balnana when you use the official service, including paid plans, cancellations and refunds.
 eyebrow: The rules, in plain words
 updatedLabel: 'Effective and last updated:'
-updated: November 19, 2026
-date: '2026-11-19'
+updated: November 21, 2026
+date: '2026-11-21'
 contents: On this page
 ---
 
@@ -17,6 +17,8 @@ How we handle personal data is described separately in our [privacy policy](/pri
 These terms cover the official Balnana service at [app.balnana.com](https://app.balnana.com), the Balnana apps while they are connected to it, and the official website at [balnana.com](https://balnana.com).
 
 Balnana is also open-source software. These terms do not limit any right you have under the software’s license, [AGPL-3.0](https://github.com/willie6666/balnana/blob/main/LICENSE): you may run, study, change and share the software under that license. If you connect the app to a server operated by someone else, that server’s operator, not us, provides the service, and its own terms apply. We pay for the official server, so paid plans there pay for the service, not for the software.
+
+If you got the app from Apple’s App Store, Apple’s [standard license agreement for apps](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) also applies to your use of the app. Apple is not a party to these terms and is not responsible for the official service.
 
 ## Your account
 
@@ -32,7 +34,7 @@ Groups are shared spaces. Everyone with access to a group can see and, depending
 
 ## Balnana is a record, not a payment service
 
-Balnana records who paid for what and suggests how to settle up. It does not hold or move money, and recording a repayment does not pay anyone. Balances and suggestions are only as accurate as what members enter; check them before paying. Payment details a member enters, such as bank information or payment links, come from that member, and we do not verify them. Balnana does not give financial, tax or legal advice.
+Balnana records who paid for what and suggests how to settle up. It does not hold or move money, and recording a repayment does not pay anyone. Balances and suggestions are only as accurate as what members enter; check them before paying. Balnana does not give financial, tax or legal advice.
 
 ## Acceptable use
 
@@ -50,8 +52,8 @@ Running your own server with the open-source software is always allowed and is n
 
 Bookkeeping is free: expenses, splits, settling up, statistics, CSV export and notifications are never limited by plan. Paid plans raise limits such as receipt photos and recurring expenses per group, the number of groups and people per group, and the groups you can share your plan with, and can add features such as payment reminders. The **Plan** page in the app shows the current plans, what each includes and the price before you pay.
 
-- **Payment providers.** Depending on how you got the app, you pay through Google Play, PayPal or Ko-fi. The provider charges you, under its own terms, and shows the final price, including any taxes or currency conversion it applies. We never receive your full card details.
-- **Subscriptions** bought through Google Play or PayPal renew automatically at the end of each billing period until you cancel. Cancel in Google Play’s subscriptions, or at paypal.com through **Manage PayPal subscription** on the Plan page. Cancelling stops future charges; your plan stays active until the end of the period you have already paid for. Deleting your Balnana account does **not** cancel a subscription.
+- **Payment providers.** Depending on how you got the app, you pay through Google Play, the App Store, PayPal or Ko-fi. The provider charges you, under its own terms, and shows the final price, including any taxes or currency conversion it applies. We never receive your full card details.
+- **Subscriptions** bought through Google Play, the App Store or PayPal renew automatically at the end of each billing period until you cancel. Cancel in Google Play’s subscriptions; for the App Store, at least 24 hours before the period ends, in your Apple Account’s subscriptions, which **Manage subscription** on the Plan page opens; or at paypal.com through **Manage PayPal subscription** on the Plan page. Cancelling stops future charges; your plan stays active until the end of the period you have already paid for. Deleting your Balnana account does **not** cancel a subscription.
 - **One-off payments**, such as a PayPal order or a Ko-fi shop item, add the number of days shown at purchase to your plan and do not renew. Ko-fi payments are added on the Plan page with the transaction ID from Ko-fi’s receipt. If one cannot be added, email us the transaction ID.
 - **Free trials** are offered at most once per account. If you do not cancel before the trial ends, the subscription is charged at its regular price from then on.
 - **Plan sharing.** A plan you share with a group raises that group’s limits while you remain a member and your plan lasts. Afterwards, the group returns to the free limits.
@@ -63,6 +65,7 @@ Bookkeeping is free: expenses, splits, settling up, statistics, CSV export and n
 - **Within 7 days of a payment** made through PayPal or Ko-fi, you can ask us for a full refund by emailing [balnana.com@gmail.com](mailto:balnana.com@gmail.com) with the transaction ID. This includes the first charge after a free trial.
 - **After 7 days,** payments are not refunded for unused time, except where the law requires it, where the official service ends as described below, or where we decide to as a goodwill gesture.
 - **Google Play purchases** are refunded under Google Play’s refund policies. You can request a refund from Google Play, or contact us and we will consider it under the same rules as above.
+- **App Store purchases** are refunded by Apple under its own policies; ask Apple at [reportaproblem.apple.com](https://reportaproblem.apple.com). We cannot refund App Store purchases ourselves.
 - A refunded payment removes the plan time it gave. Ko-fi does not report refunds to us automatically, so we remove that time by hand.
 - If you open a dispute or chargeback with your provider instead of contacting us, we may suspend the plan while it is resolved.
 
@@ -94,7 +97,7 @@ These limits do not apply to liability that cannot be limited by law, such as fo
 
 ## Other services
 
-Sign-in, maps, push notifications and payments rely on other services, such as Google, PayPal, Ko-fi, OpenFreeMap and your push distributor. They operate under their own terms, and we are not responsible for their availability or conduct. Links to external websites are provided for convenience.
+Sign-in, maps, push notifications and payments rely on other services, such as Google, Apple, PayPal, Ko-fi, OpenFreeMap and your push distributor. They operate under their own terms, and we are not responsible for their availability or conduct. Links to external websites are provided for convenience.
 
 ## Changes to these terms
 

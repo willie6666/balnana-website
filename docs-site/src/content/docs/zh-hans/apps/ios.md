@@ -28,4 +28,6 @@ flutter run -d <simulator-id>
 
 ## 支持的功能
 
-iOS 版支持记账、分摊、记录转账和保存支出地点。iOS 目前未提供推送通知、主屏幕小组件和 Google Play 付款。外部付款链接默认隐藏。
+iOS 版支持记账、分摊、记录转账和保存支出地点。在有设置的服务器上，也支持[通过 Apple 登录](/docs/zh-hans/self-hosting/access-and-sign-in/#通过-apple-登录)，并以 [App Store 订阅](/docs/zh-hans/self-hosting/plans-and-payments/#app-store)销售方案，方案页面有 **恢复购买** 与 **管理订阅**。iOS 版一律不显示 Ko-fi 或 PayPal：App Store 只允许以 App 内购买销售方案。iOS 目前未提供推送通知和主屏幕小组件。
+
+使用 Google 或 OpenID Connect 登录时，会在 App 内的浏览器窗口中进行，完成后返回 App。
