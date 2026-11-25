@@ -14,7 +14,7 @@ A group's link is all anyone needs to open it. With a group password, the link a
 Who can set it depends on the server:
 
 - **Link mode**: anyone who can open the group.
-- **Accounts mode**: the group's owner. When the group has no owner left, any member signed in to their account can.
+- **Accounts mode**: any member of the group, signed in to their account.
 
 To change or remove it later, choose **Group password** again.
 

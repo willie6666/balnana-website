@@ -13,7 +13,7 @@ When an account is deleted:
 - a group it owned passes to the longest-standing member who has an account;
 - groups nobody else can reach are deleted with it at once.
 
-Group owners (or, in link mode, anyone with the link) can delete a whole group under its settings.
+Any member of a group (or, in link mode, anyone with the link) can delete the whole group under its settings.
 
 ## Restoring a deleted group
 

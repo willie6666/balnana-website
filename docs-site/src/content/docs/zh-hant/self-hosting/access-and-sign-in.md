@@ -13,14 +13,14 @@ Balnana 有兩種存取模式，可用 `BALNANA_AUTH_MODE` 或在 `/admin` 設�
 
 ## 帳號模式
 
-設定 `BALNANA_AUTH_MODE=accounts` 後，使用者需要登入，群組連結只讓已登入的人加入群組：認領其中一位成員，或新增自己。除非設定 `BALNANA_LINK_GROUPS=false`，群組擁有者仍可讓任何持有連結的人進入群組。
+設定 `BALNANA_AUTH_MODE=accounts` 後，使用者需要登入，群組連結只讓已登入的人加入群組：認領其中一位成員，或新增自己。除非設定 `BALNANA_LINK_GROUPS=false`，群組的任何成員仍可讓任何持有連結的人進入群組。
 
 | 設定 | 預設 | 作用 |
 | --- | --- | --- |
 | `BALNANA_AUTH_PASSWORD` | `true` | 允許用電子郵件與密碼登入。 |
 | `BALNANA_AUTH_REQUIRE_EMAIL` | `true` | 設為 `false` 時，改用使用者名稱註冊，並可用任一種登入。 |
 | `BALNANA_AUTH_SIGNUP` | `open` | 誰可以註冊：`open`、`invite_only` 或 `closed`。 |
-| `BALNANA_LINK_GROUPS` | `true` | 群組擁有者能否只憑連結就讓人加入。 |
+| `BALNANA_LINK_GROUPS` | `true` | 群組成員能否只憑連結就讓人加入。 |
 | `BALNANA_AUTH_REQUIRE_VERIFIED` | `false` | 帳號確認電子郵件前，只能進入自己的設定。需要[電子郵件](/docs/zh-hant/self-hosting/configuration/#電子郵件)。 |
 
 伺服器上第一個註冊的帳號一定能註冊，即使設定了 `BALNANA_AUTH_SIGNUP=closed`，所以關閉註冊的伺服器仍然可以完成初始設定。

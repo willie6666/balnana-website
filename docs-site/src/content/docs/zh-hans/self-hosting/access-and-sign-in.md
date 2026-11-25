@@ -13,14 +13,14 @@ Balnana 有两种访问模式，可用 `BALNANA_AUTH_MODE` 或在 `/admin` 设�
 
 ## 账号模式
 
-设置 `BALNANA_AUTH_MODE=accounts` 后，用户需要登录，群组链接只让已登录的人加入群组：认领其中一位成员，或添加自己。除非设置 `BALNANA_LINK_GROUPS=false`，群组所有者仍可让任何持有链接的人进入群组。
+设置 `BALNANA_AUTH_MODE=accounts` 后，用户需要登录，群组链接只让已登录的人加入群组：认领其中一位成员，或添加自己。除非设置 `BALNANA_LINK_GROUPS=false`，群组的任何成员仍可让任何持有链接的人进入群组。
 
 | 设置 | 默认 | 作用 |
 | --- | --- | --- |
 | `BALNANA_AUTH_PASSWORD` | `true` | 允许用电子邮件与密码登录。 |
 | `BALNANA_AUTH_REQUIRE_EMAIL` | `true` | 设为 `false` 时，改用用户名注册，并可用任一种登录。 |
 | `BALNANA_AUTH_SIGNUP` | `open` | 谁可以注册：`open`、`invite_only` 或 `closed`。 |
-| `BALNANA_LINK_GROUPS` | `true` | 群组所有者能否仅凭链接就让人加入。 |
+| `BALNANA_LINK_GROUPS` | `true` | 群组成员能否仅凭链接就让人加入。 |
 | `BALNANA_AUTH_REQUIRE_VERIFIED` | `false` | 账号确认电子邮件前，只能进入自己的设置。需要[电子邮件](/docs/zh-hans/self-hosting/configuration/#电子邮件)。 |
 
 服务器上第一个注册的账号一定能注册，即使设置了 `BALNANA_AUTH_SIGNUP=closed`，所以关闭注册的服务器仍然可以完成初始设置。

@@ -27,7 +27,7 @@ Paths below are relative to the sibling application repository.
 | Area | Evidence and policy consequence |
 | --- | --- |
 | App policy links | `app/lib/features/settings/privacy_page.dart`: opens the server's `privacyUrl`, with a built-in fallback; both sign-in and About use the existing privacy entry point. |
-| Account deletion | `server/internal/api/account.go`, `deleteAccount`: removes the user, detaches members, transfers ownership, and deletes groups inaccessible to other accounts unless link access remains. Shared member names and ledger content remain. Account-related cascading deletion is defined in `server/migrations/`. |
+| Account deletion | `server/internal/api/account.go`, `deleteAccount`: removes the user, detaches members, and deletes groups inaccessible to other accounts unless link access remains. Shared member names and ledger content remain. Account-related cascading deletion is defined in `server/migrations/`. |
 | Group and receipt retention | `server/internal/api/sweep.go`: 30-day archive retention and deleted-expense receipt retention; an hourly cleanup deletes live-database records. `groups.go` archives a deleted group. `receipts.go` deletes an explicitly removed receipt immediately. |
 | Deleted expense history | `server/internal/api/expenses.go`: soft deletion is restorable; the cleanup does not delete the expense record itself after 30 days. Do not claim every expense is erased after 30 days. |
 | Receipt collection | `app/lib/features/expense/receipt.dart`: user-selected camera/gallery input; `requestFullMetadata: false`. `server/internal/api/receipts.go`: resize and JPEG conversion; binary images are stored in the database. |

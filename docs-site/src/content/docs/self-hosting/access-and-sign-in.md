@@ -13,14 +13,14 @@ Link-mode groups live in each device's list of links. **Settings → My group li
 
 ## Accounts mode
 
-With `BALNANA_AUTH_MODE=accounts`, people sign in, and a group link only lets signed-in people join the group, claiming one of its members or adding themselves. A group owner can still open a group to anyone with the link, unless `BALNANA_LINK_GROUPS=false`.
+With `BALNANA_AUTH_MODE=accounts`, people sign in, and a group link only lets signed-in people join the group, claiming one of its members or adding themselves. Any member can still open a group to anyone with the link, unless `BALNANA_LINK_GROUPS=false`.
 
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `BALNANA_AUTH_PASSWORD` | `true` | Allow email and password sign-in. |
 | `BALNANA_AUTH_REQUIRE_EMAIL` | `true` | When `false`, people sign up with a username instead and sign in with either. |
 | `BALNANA_AUTH_SIGNUP` | `open` | Who may register: `open`, `invite_only` or `closed`. |
-| `BALNANA_LINK_GROUPS` | `true` | May group owners let people in by link alone. |
+| `BALNANA_LINK_GROUPS` | `true` | May group members let people in by link alone. |
 | `BALNANA_AUTH_REQUIRE_VERIFIED` | `false` | Keep accounts out of everything but their settings until they confirm their email. Needs [email](/docs/self-hosting/configuration/#email). |
 
 The first account registered on a server can always register, even with `BALNANA_AUTH_SIGNUP=closed`, so a closed server can still be set up.
