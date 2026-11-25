@@ -59,7 +59,7 @@ export default defineConfig({
 				{
 					label: 'Guides',
 					translations: { 'zh-TW': '使用指南', 'zh-CN': '使用指南' },
-					items: ['guides/import-settle-up', 'guides/group-password', 'guides/two-step-sign-in'],
+					items: ['guides/import-settle-up', 'guides/group-password', 'guides/view-only-link', 'guides/two-step-sign-in'],
 				},
 			],
 		}),
