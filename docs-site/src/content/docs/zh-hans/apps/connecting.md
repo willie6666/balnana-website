@@ -19,7 +19,7 @@ flutter build apk --dart-define=BALNANA_SERVER_URL=https://balnana.example.com
 
 ### App 链接
 
-这样的构建也会在 App 中打开该服务器的群组、邀请与电子邮件链接。若要让 Android 不经询问直接打开，请在 `/admin` → Android 应用链接中输入该构建签名证书的 SHA-256 指纹，或设置 `BALNANA_ANDROID_CERT_SHA256`（多个以逗号分隔）。以下命令会打印指纹：
+这样的构建也会在 App 中打开该服务器的群组、邀请、仅供查看与电子邮件链接。若要让 Android 不经询问直接打开，请在 `/admin` → Android 应用链接中输入该构建签名证书的 SHA-256 指纹，或设置 `BALNANA_ANDROID_CERT_SHA256`（多个以逗号分隔）。以下命令会打印指纹：
 
 ```bash
 keytool -list -v -keystore <你的 keystore>
@@ -31,7 +31,18 @@ keytool -list -v -keystore <你的 keystore>
 
 首次打开时，请输入 `https://app.balnana.com` 或自行部署的服务器地址。之后可在**设置 → 服务器**中更改。如果 iOS 询问是否允许访问本地网络，请允许，以便 App 连接同一局域网内的服务器。
 
-安装与默认服务器的设置方法见[构建 iOS 版 Balnana](/docs/zh-hans/apps/ios/)。Google 与 OpenID Connect 登录会在 App 内的浏览器窗口中进行，完成后返回 App；[通过 Apple 登录](/docs/zh-hans/self-hosting/access-and-sign-in/#通过-apple-登录)则使用 iPhone 本身的登录界面。使用 HTTPS 的群组和邀请链接会在浏览器中打开。
+安装与默认服务器的设置方法见[构建 iOS 版 Balnana](/docs/zh-hans/apps/ios/)。Google 与 OpenID Connect 登录会在 App 内的浏览器窗口中进行，完成后返回 App；[通过 Apple 登录](/docs/zh-hans/self-hosting/access-and-sign-in/#通过-apple-登录)则使用 iPhone 本身的登录界面。HTTPS 链接的打开方式见[通用链接](#通用链接)。
+
+### 通用链接
+
+iOS App 会在 App 中打开 `app.balnana.com` 上的群组、邀请、仅供查看与电子邮件链接。其他服务器的链接会在浏览器中打开，除非那台服务器有自己的构建（见下方）。只有链接属于 App 当前连接的服务器时才会在 App 中打开；否则 App 会提示这是另一台服务器的链接。
+
+若要让你自己的构建打开你服务器的链接：
+
+1. 在 `ios/Runner/Runner.entitlements` 中把 `app.balnana.com` 换成你服务器的主机（`applinks:balnana.example.com`），并在 Apple 开发者账号中为该 App ID 开启 Associated Domains 功能。
+2. 在 `/admin` → iOS 应用中输入签署 App 的 Apple 开发者账号团队 ID，或设置 `BALNANA_APPLE_TEAM_ID`。它由 10 个大写英文字母与数字组成，可在 Membership details 中找到。
+
+接着服务器就会为同一区块设置的 Bundle ID（留空则为 `com.balnana.app`）提供 `/.well-known/apple-app-site-association`。iOS 会在安装 App 时读取它，因此更改后请重新安装 App。
 
 ## 在其他来源提供网页版 App
 

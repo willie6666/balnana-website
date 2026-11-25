@@ -51,6 +51,8 @@ Choose **Turn off link**. It stops working at once, for everyone who has it. A n
 
 A link with a last day stops working at the end of that day. People who open it then see **This link has expired**.
 
+On a phone with the Balnana app connected to the same server, the link opens in the app; elsewhere it opens in the browser. See [App links](/docs/apps/connecting/#app-links).
+
 If the group's plan stops including view-only links, the link is paused rather than removed: people see **This link is paused**, and it works again once the plan includes it.
 
 ## Privacy

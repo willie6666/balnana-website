@@ -19,7 +19,7 @@ flutter build apk --dart-define=BALNANA_SERVER_URL=https://balnana.example.com
 
 ### App links
 
-Such a build also opens that server's group, invitation and email links in the app. For Android to do so without asking, enter the SHA-256 fingerprint of the build's signing certificate under `/admin` → Android app links, or set `BALNANA_ANDROID_CERT_SHA256` (comma separated for several). This prints it:
+Such a build also opens that server's group, invitation, view-only and email links in the app. For Android to do so without asking, enter the SHA-256 fingerprint of the build's signing certificate under `/admin` → Android app links, or set `BALNANA_ANDROID_CERT_SHA256` (comma separated for several). This prints it:
 
 ```bash
 keytool -list -v -keystore <your keystore>
@@ -31,7 +31,18 @@ The server then serves `/.well-known/assetlinks.json`. With Play App Signing, ad
 
 Enter `https://app.balnana.com` or the address of your own server on first launch. You can change it later under **Settings → Server**. If iOS asks for local network access, allow it to connect to a server on your LAN.
 
-See [Build Balnana for iOS](/docs/apps/ios/) for installation and for setting a default server at build time. Google and OpenID Connect sign-in open in a browser sheet inside the app and return to it; [Sign in with Apple](/docs/self-hosting/access-and-sign-in/#sign-in-with-apple) uses the iPhone's own sheet. HTTPS group and invitation links open in the browser.
+See [Build Balnana for iOS](/docs/apps/ios/) for installation and for setting a default server at build time. Google and OpenID Connect sign-in open in a browser sheet inside the app and return to it; [Sign in with Apple](/docs/self-hosting/access-and-sign-in/#sign-in-with-apple) uses the iPhone's own sheet. HTTPS links open as described under [Universal links](#universal-links).
+
+### Universal links
+
+The iOS app opens group, invitation, view-only and email links on `app.balnana.com` in the app. Links to another server open in the browser, unless that server has its own build (below). A link opens in the app only when it is for the server the app is connected to; otherwise the app says the link is for another server.
+
+To make your own build open your server's links:
+
+1. Replace `app.balnana.com` with your server's host in `ios/Runner/Runner.entitlements` (`applinks:balnana.example.com`), and turn on the Associated Domains capability for the App ID in your Apple developer account.
+2. Enter the team ID of the Apple developer account that signs the app under `/admin` → iOS app, or set `BALNANA_APPLE_TEAM_ID`. It is 10 capital letters and digits, shown under Membership details.
+
+The server then serves `/.well-known/apple-app-site-association` for the bundle ID set under the same section (`com.balnana.app` if empty). iOS fetches it when the app is installed, so reinstall the app after changing it.
 
 ## Web app on another origin
 

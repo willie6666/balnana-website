@@ -12,7 +12,7 @@ description: 使用 /admin 管理伺服器、把設定移到 .env、重設管理
 - 電子郵件（SMTP）；
 - Google 與 OpenID Connect 登入；
 - Android App 連結；
-- iOS App：它的 Bundle ID（用於[使用 Apple 登入](/docs/zh-hant/self-hosting/access-and-sign-in/#使用-apple-登入)與 [App Store 訂閱](/docs/zh-hant/self-hosting/plans-and-payments/#app-store)），以及是否接受 App Store 沙盒購買；
+- iOS App：它的 Bundle ID 與團隊 ID（用於[連結](/docs/zh-hant/apps/connecting/#通用連結)、[使用 Apple 登入](/docs/zh-hant/self-hosting/access-and-sign-in/#使用-apple-登入)與 [App Store 訂閱](/docs/zh-hant/self-hosting/plans-and-payments/#app-store)），以及是否接受 App Store 沙盒購買；
 - 地圖與隱私權聲明；
 - [方案與付款](/docs/zh-hant/self-hosting/plans-and-payments/)（開啟時）；
 - 帳號，管理員可以搜尋並刪除。
