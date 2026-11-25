@@ -45,6 +45,8 @@ You can change these settings later, and the link keeps its address.
 
 A snapshot is taken when you create the link. Later expenses and changes don't appear in it. To show them, turn off the link and create a new one.
 
+A snapshot keeps expense notes and places only if it shows them. Leave them off when you create it, or turn them off later, and they are removed from the snapshot: they can't be turned back on for it. To show them, turn off the link and create a new one.
+
 ## Turning off the link
 
 Choose **Turn off link**. It stops working at once, for everyone who has it. A new link has a different address.
