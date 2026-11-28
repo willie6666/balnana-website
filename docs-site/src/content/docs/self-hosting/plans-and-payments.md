@@ -52,6 +52,8 @@ To pay, someone buys one of the shop items on your Ko-fi page, or sends a tip. T
      - If the PayPal plan has a free trial, set **Plan ID without the trial** to the ID of the same plan with no trial. PayPal gives the trial to every new subscription, so accounts that have already had a trial subscribe to that plan instead. Each account gets access during a trial once.
    - Any other name makes it a one-off payment of the product's amount and currency, which adds its days to what is left.
 
+To show prices for Ko-fi on the app's **Plan** page, or word PayPal's, fill in a product's **Displayed price**, such as `US$5`. It changes only what the page shows, not what is charged or how payments are matched, so keep it the same as the price on Ko-fi or PayPal. Left empty, the page shows the product's amount and currency; a PayPal subscription then shows no price.
+
 To try it out first, turn on **PayPal sandbox** and use a sandbox app's credentials: nothing is really paid.
 
 On the app's **Plan** page, someone taps one of the offers, pays on PayPal, and comes back to the app, which says whether the payment went through. The server asks PayPal about every payment and believes nothing else. Subscribers change or cancel their subscription at paypal.com, which **Manage PayPal subscription** opens.
